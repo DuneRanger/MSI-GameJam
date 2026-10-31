@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bgsom0lqbhodk"]
+
+[ext_resource type="Texture2D" uid="uid://bq2gvbgqjc7o2" path="res://icon.svg" id="1_80nbo"]
+
+[node name="Game" type="Node" unique_id=1830910457]
+
+[node name="Background" type="ColorRect" parent="." unique_id=199252895]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.43137255, 0.6509804, 0.84705883, 1)
+
+[node name="Label" type="Label" parent="." unique_id=491539224]
+offset_left = 174.0
+offset_top = 132.0
+offset_right = 955.0
+offset_bottom = 270.64398
+theme_override_font_sizes/font_size = 50
+text = "t he awesomest text to EVER live"
+
+[node name="godot icon" type="Sprite2D" parent="." unique_id=328246183]
+position = Vector2(1018, 445)
+scale = Vector2(2, 2)
+texture = ExtResource("1_80nbo")
