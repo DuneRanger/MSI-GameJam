@@ -10,3 +10,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h5j0q")
+
+[node name="BackgroundBorder" type="ColorRect" parent="." unique_id=1137607859]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="Background" type="ColorRect" parent="BackgroundBorder" unique_id=116716831]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.35, 0.35, 0.35, 1)

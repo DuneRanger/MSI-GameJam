@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://crwocavy5kif"]
+
+[ext_resource type="PackedScene" uid="uid://b0xkp06e6vrlk" path="res://scenes/game/machines/minigames/minigame.tscn" id="1_4tcca"]
+[ext_resource type="Texture2D" uid="uid://bq2gvbgqjc7o2" path="res://assets/game/player/icon.svg" id="2_c6x8i"]
+[ext_resource type="Script" uid="uid://bhnpyuwu2nwd1" path="res://scripts/game/machines/minigames/steam_wheel.gd" id="3_c6x8i"]
+
+[node name="SteamWheel" unique_id=1172947997 instance=ExtResource("1_4tcca")]
+script = ExtResource("3_c6x8i")
+
+[node name="WheelInputArea" type="Control" parent="." index="1" unique_id=1604580949]
+layout_mode = 1
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SteamWheel" type="TextureRect" parent="WheelInputArea" index="0" unique_id=1243217041]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture = ExtResource("2_c6x8i")
+
+[node name="Timer" type="Timer" parent="." index="2" unique_id=1837230686]
+wait_time = 3.0
+one_shot = true
+
+[node name="Label" type="Label" parent="." index="3" unique_id=1434163879]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 77.0
+offset_right = 386.0
+offset_bottom = 206.0
+
+[connection signal="gui_input" from="WheelInputArea" to="." method="_on_wheel_input_area_gui_input"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
