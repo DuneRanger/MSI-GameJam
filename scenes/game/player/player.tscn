@@ -1,6 +1,111 @@
 [gd_scene format=3 uid="uid://43qca7aj17a6"]
 
 [ext_resource type="Script" uid="uid://dfkgp13nkw7d8" path="res://scripts/game/player/player.gd" id="1_4m2od"]
+[ext_resource type="Texture2D" uid="uid://jytasmud42ug" path="res://assets/game/player/player.png" id="2_t5cse"]
+[ext_resource type="Texture2D" uid="uid://dht3x1we320j7" path="res://assets/game/player/player_run.png" id="3_bkoau"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmc11"]
+atlas = ExtResource("2_t5cse")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkoau"]
+atlas = ExtResource("2_t5cse")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abehh"]
+atlas = ExtResource("2_t5cse")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prej5"]
+atlas = ExtResource("2_t5cse")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqfck"]
+atlas = ExtResource("2_t5cse")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdbv0"]
+atlas = ExtResource("3_bkoau")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bxg8"]
+atlas = ExtResource("3_bkoau")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywish"]
+atlas = ExtResource("3_bkoau")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcwky"]
+atlas = ExtResource("3_bkoau")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37tqn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmc11")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkoau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abehh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prej5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqfck")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdbv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bxg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywish")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcwky")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1hta"]
+size = Vector2(16, 10)
 
 [node name="Player" type="CharacterBody2D" unique_id=1893256284]
+scale = Vector2(3, 3)
 script = ExtResource("1_4m2od")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=769901604]
+sprite_frames = SubResource("SpriteFrames_37tqn")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1157020505]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_w1hta")
+
+[node name="OverclockTimer" type="Timer" parent="." unique_id=626857163]
+wait_time = 3.0
+
+[node name="RechargeTimer" type="Timer" parent="." unique_id=687818981]
+wait_time = 5.0
+
+[connection signal="timeout" from="OverclockTimer" to="." method="_on_overclock_timer_timeout"]
+[connection signal="timeout" from="RechargeTimer" to="." method="_on_recharge_timer_timeout"]
