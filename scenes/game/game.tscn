@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bgsom0lqbhodk"]
 
-[ext_resource type="Texture2D" uid="uid://bq2gvbgqjc7o2" path="res://icon.svg" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://bq2gvbgqjc7o2" path="res://assets/game/player/icon.svg" id="1_sul5r"]
+[ext_resource type="PackedScene" uid="uid://43qca7aj17a6" path="res://scenes/game/player/player.tscn" id="2_7h61r"]
 
 [node name="Game" type="Node" unique_id=1830910457]
 
@@ -20,4 +21,8 @@ text = "t he awesomest text to EVER live"
 [node name="godot icon" type="Sprite2D" parent="." unique_id=328246183]
 position = Vector2(1018, 445)
 scale = Vector2(2, 2)
-texture = ExtResource("1_80nbo")
+texture = ExtResource("1_sul5r")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1505231274]
+
+[node name="Player" parent="." unique_id=1893256284 instance=ExtResource("2_7h61r")]
