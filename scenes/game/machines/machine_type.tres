@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="MachineType" format=3 uid="uid://b754jhyjl5yjm"]
+
+[ext_resource type="Script" uid="uid://cerr72dbriu3h" path="res://scripts/game/machines/machine_type.gd" id="1_d5svg"]
+[ext_resource type="Texture2D" uid="uid://bq2gvbgqjc7o2" path="res://assets/game/player/icon.svg" id="2_hvgqp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yeiif"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hvgqp")
+}],
+"loop": 1,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hvgqp")
+}],
+"loop": 1,
+"name": &"overheated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hvgqp")
+}],
+"loop": 1,
+"name": &"running",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_d5svg")
+sprite_frames = SubResource("SpriteFrames_yeiif")
+metadata/_custom_type_script = "uid://cerr72dbriu3h"

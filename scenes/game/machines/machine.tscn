@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://lvebmnvqwohx"]
+
+[ext_resource type="Script" uid="uid://dujumfyffwvi7" path="res://scripts/game/machines/machine.gd" id="1_gbrlg"]
+[ext_resource type="Resource" uid="uid://b754jhyjl5yjm" path="res://scenes/game/machines/machine_type.tres" id="2_r0leb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yeiif"]
+size = Vector2(20, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2cqrr"]
+
+[node name="Node2D" type="Node2D" unique_id=964389702]
+script = ExtResource("1_gbrlg")
+machine_type = ExtResource("2_r0leb")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1954596973]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1147079626]
+shape = SubResource("RectangleShape2D_yeiif")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=970174829]
+sprite_frames = SubResource("SpriteFrames_2cqrr")
