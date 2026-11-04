@@ -41,14 +41,17 @@ func _physics_process(delta: float) -> void:
 		$PlayerSprite.animation = animation_name
 	else:
 		velocity = character_direction * movement_speed
-		$PlayerSprite.animation = "idle"
+		if overclocked == false:
+			$PlayerSprite.animation = "idle"
+		else:
+			$PlayerSprite.animation = "overclocked_idle"
 
 	move_and_slide()
 
 func _on_overclock_timer_timeout() -> void:
 	overclocked = true
 	overclock_timer_started = false
-	animation_name = "move"
+	animation_name = "overclocked"
 	movement_speed = movement_speed_exhausted
 	$OverclockTimer.stop()
 	$RechargeTimer.start()
