@@ -15,16 +15,14 @@ var player_in_range: bool = false
 var id: int = 0
 static var next_id: int = 0
 
-var x = 0
-var y = 0
+signal minigame_requested(machine: Machine, minigame_id: int)
 
-func _init(pos_x = 0, pos_y = 0):
-	x = pos_x
-	y = pos_y
+func _init():
 	id = next_id
 	next_id += 1
 
 func _ready() -> void:
+	add_to_group("machines")
 	sprite.sprite_frames = machine_type.sprite_frames
 	interaction_area.body_entered.connect(on_body_entered)
 	interaction_area.body_exited.connect(on_body_exited)
@@ -97,22 +95,17 @@ func interact() -> void:
 var minigame: Minigame
 func start_minigame() -> void:
 	print("Starting minigame for machine ", id)
-	minigame = machine_type.minigame_scene.instantiate() as Minigame
-	minigame.minigame_completed.connect(on_minigame_success)
-	minigame.minigame_failed.connect(on_minigame_failed)
-	add_child(minigame)
-	minigame.start_minigame()
-	
+	minigame_requested.emit(self, 1)
 	change_state(State.IN_MINIGAME)
 
 func on_minigame_success() -> void:
-	print("Minigame success")
 	temperature = 0
-	remove_child(minigame)
+	print("Minigame success, temperature: ", temperature)
 	change_state(State.RUNNING)
 	
 func on_minigame_failed() -> void:
-	print("Minigame failed")
 	temperature *= machine_type.spike_multiplier
-	remove_child(minigame)
+	print("Minigame failed, temperature: ", temperature)
+	# change to overheated, because minigames should only run when overheated
+	# but for debugging, they run whenever
 	change_state(State.OVERHEATED)
