@@ -31,6 +31,16 @@ var nearby_machines: Array[Machine] = []
 func _ready() -> void:
 	add_to_group("player")
 
+var glowing_machine: Machine = null
+func _process(_delta) -> void:
+	if glowing_machine != null: glowing_machine.turn_off_glow()
+	nearby_machines.sort_custom(_sort_by_distance_desc)
+	for machine in nearby_machines:
+		#if machine.state == Machine.State.OVERHEATED:
+			machine.turn_on_glow()
+			if Input.is_action_just_pressed("interact"):
+				machine.interact()
+			break
 func _physics_process(delta: float) -> void:
 	character_direction.x = Input.get_axis("move_left", "move_right")
 	character_direction.y = Input.get_axis("move_up", "move_down")
@@ -106,12 +116,6 @@ func _physics_process(delta: float) -> void:
 			$PlayerSprite.animation = "overclocked_idle"
 
 	move_and_slide()
-	
-	nearby_machines.sort_custom(_sort_by_distance_desc)
-	if Input.is_action_just_pressed("interact"):
-		for machine in nearby_machines:
-			#if machine.state == Machine.State.OVERHEATED:
-			machine.interact()
 
 func change_stamina(sign: String , amount: float):
 	match sign:

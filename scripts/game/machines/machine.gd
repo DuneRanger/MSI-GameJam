@@ -16,6 +16,7 @@ var id: int = 0
 static var next_id: int = 0
 
 signal minigame_requested(machine: Machine, minigame_id: int)
+var is_glowing: bool = false
 
 func _init():
 	id = next_id
@@ -26,9 +27,28 @@ func _ready() -> void:
 	sprite.sprite_frames = machine_type.sprite_frames
 	interaction_area.body_entered.connect(on_body_entered)
 	interaction_area.body_exited.connect(on_body_exited)
+	enter_state(State.RUNNING)
+
+func turn_on_glow():
+	is_glowing = true
+
+func turn_off_glow():
+	is_glowing = false
+
+func get_sprite_rect() -> Rect2:
+	var texture = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
+	var size = texture.get_size() * sprite.scale
+	var top_left := sprite.position + sprite.offset * sprite.scale
+	if sprite.centered: top_left -= size / 2.0
+	return Rect2(top_left, size)
 
 func _process(delta: float) -> void:
 	process_state(delta)
+	if is_glowing:
+		sprite.modulate = Color(1.5, 1.4, 0.8)
+		is_glowing = false
+	else:
+		sprite.modulate = Color(1, 1, 1)
 
 func on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
