@@ -33,10 +33,14 @@ func _process(delta: float) -> void:
 	process_state(delta)
 
 func on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"): player_in_range = true
+	if body.is_in_group("player"):
+		player_in_range = true
+		body.add_nearby_machine(self)
 
 func on_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"): player_in_range = false
+	if body.is_in_group("player"):
+		player_in_range = false
+		body.remove_nearby_machine(self)
 
 func change_state(new_state: State) -> void:
 	if new_state == state: return
@@ -46,7 +50,7 @@ func change_state(new_state: State) -> void:
 	enter_state(new_state)
 
 func enter_state(new_state: State) -> void:
-	print("Entering ", str(new_state))
+	print("Machine ", id, " entered state ", str(new_state))
 	match (new_state):
 		State.RUNNING:
 			sprite.play("running")
@@ -59,7 +63,7 @@ func enter_state(new_state: State) -> void:
 			sprite.play("broken")
 
 func exit_state(old_state: State) -> void:
-	print("Exiting ", str(old_state))
+	print("Machine ", id, " exited state ", str(old_state))
 	match (old_state):
 		State.RUNNING: pass
 		State.OVERHEATED: pass
@@ -86,21 +90,29 @@ func update_temperature(delta: float) -> void:
 		temperature *= machine_type.spike_multiplier
 
 func interact() -> void:
-	if not player_in_range or state != State.OVERHEATED:
-		return
+	#if not player_in_range or state != State.OVERHEATED:
+		#return
 	start_minigame()
 
+var minigame: Minigame
 func start_minigame() -> void:
-	print("Starting minigame for machine {id}")
-	change_state(State.IN_MINIGAME)
-	var minigame = machine_type.minigame_scene.instantiate() as Minigame
+	print("Starting minigame for machine ", id)
+	minigame = machine_type.minigame_scene.instantiate() as Minigame
 	minigame.minigame_completed.connect(on_minigame_success)
 	minigame.minigame_failed.connect(on_minigame_failed)
+	add_child(minigame)
+	minigame.start_minigame()
+	
+	change_state(State.IN_MINIGAME)
 
 func on_minigame_success() -> void:
+	print("Minigame success")
 	temperature = 0
+	remove_child(minigame)
 	change_state(State.RUNNING)
 	
 func on_minigame_failed() -> void:
+	print("Minigame failed")
 	temperature *= machine_type.spike_multiplier
+	remove_child(minigame)
 	change_state(State.OVERHEATED)

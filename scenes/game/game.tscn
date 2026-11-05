@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://43qca7aj17a6" path="res://scenes/game/player/player.tscn" id="2_7h61r"]
 [ext_resource type="PackedScene" uid="uid://crwocavy5kif" path="res://scenes/game/machines/minigames/steam_wheel.tscn" id="2_kelw5"]
 [ext_resource type="PackedScene" uid="uid://j4s1r411n22" path="res://scenes/game/machines/minigames/color_find.tscn" id="3_lfrn8"]
+[ext_resource type="PackedScene" uid="uid://lvebmnvqwohx" path="res://scenes/game/machines/machine.tscn" id="6_5i0tg"]
 
 [node name="Game" type="Node" unique_id=1830910457]
 script = ExtResource("1_0sr1o")
@@ -66,6 +67,9 @@ offset_top = 560.0
 offset_right = 150.0
 offset_bottom = 620.0
 text = "Colors"
+
+[node name="Node2D" parent="." unique_id=964389702 instance=ExtResource("6_5i0tg")]
+position = Vector2(214, 266)
 
 [connection signal="button_down" from="RandomGameButton" to="." method="_on_button_button_down"]
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]

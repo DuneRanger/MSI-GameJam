@@ -132,6 +132,7 @@ size = Vector2(16, 10)
 
 [node name="Player" type="CharacterBody2D" unique_id=1893256284]
 scale = Vector2(3, 3)
+collision_layer = 2
 script = ExtResource("1_4m2od")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=769901604]

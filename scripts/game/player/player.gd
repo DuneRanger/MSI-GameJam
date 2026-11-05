@@ -10,6 +10,11 @@ var animation_name = "move"
 var overclocked = false
 var overclock_timer_started = false
 
+var nearby_machines: Array[Machine] = []
+
+func _ready() -> void:
+	add_to_group("player")
+
 func _physics_process(delta: float) -> void:
 	character_direction.x = Input.get_axis("move_left", "move_right")
 	character_direction.y = Input.get_axis("move_up", "move_down")
@@ -47,6 +52,12 @@ func _physics_process(delta: float) -> void:
 			$PlayerSprite.animation = "overclocked_idle"
 
 	move_and_slide()
+	
+	nearby_machines.sort_custom(_sort_by_distance_desc)
+	if Input.is_action_just_pressed("interact"):
+		for machine in nearby_machines:
+			#if machine.state == Machine.State.OVERHEATED:
+			machine.interact()
 
 func _on_overclock_timer_timeout() -> void:
 	overclocked = true
@@ -60,3 +71,15 @@ func _on_recharge_timer_timeout() -> void:
 	overclocked = false
 	animation_name = "move"
 	movement_speed = movement_speed_default
+
+func add_nearby_machine(machine: Machine) -> void:
+	print("added machine ", machine.id)
+	nearby_machines.append(machine)
+	
+func remove_nearby_machine(machine: Machine) -> void:
+	print("removed machine ", machine.id)
+	nearby_machines.erase(machine)
+
+func _sort_by_distance_desc(a: Machine, b: Machine) -> bool:
+	var pos := global_position
+	return a.global_position.distance_squared_to(pos) < b.global_position.distance_squared_to(pos)
