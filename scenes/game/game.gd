@@ -3,6 +3,9 @@ extends Node
 @export var minigame_scenes : Array[PackedScene]
 var chosen_minigame : Minigame = null
 
+func _process(delta: float) -> void:
+	$LabelStamina.text = "Stamina : " + str($Player.stamina)
+
 func choose_minigame() -> Minigame:
 	var chosen_scene = minigame_scenes.pick_random()
 	var out = chosen_scene.instantiate()

@@ -7,8 +7,13 @@ extends CharacterBody2D
 var movement_speed = movement_speed_default
 var character_direction : Vector2
 var animation_name = "move"
-var overclocked = false
-var overclock_timer_started = false
+#var overclock_timer_started = false
+var is_overclocked = false ##if the player has depleted the stamina bar and is now recharging
+var is_moving = false ## if the player is moving in any velocity (overclocked, normal and sprinting)
+var is_sprinting = false ## if the player is sprinting (moving and holding shift and not overclocked)
+var max_stamina = 100 ##the maximum amout of stamina the player can reach
+var stamina = max_stamina ##the amount of stamina the player has right now
+signal signal_player_stamina_change(stamina: int)
 
 var nearby_machines: Array[Machine] = []
 
@@ -25,28 +30,51 @@ func _physics_process(delta: float) -> void:
 	elif character_direction.x < 0:
 		$PlayerSprite.flip_h = true
 	
+	if is_overclocked == true:
+		if stamina == max_stamina:
+			recharge()
+	
 	#sprint handling
 	if Input.is_action_pressed("sprint"):
-		if overclocked == false:
-			animation_name = "run"
-			movement_speed = movement_speed_sprint
-			if overclock_timer_started == false:
-				overclock_timer_started = true
-				$OverclockTimer.start()
+		if is_moving == true:
+			if is_overclocked == false:
+				#the start of the sprint takes away more stamina
+				#this is so the player wont just press shift repeatedly to try and outsmart the stamina system
+				if is_sprinting == false:
+					change_stamina("-", 10)
+				
+				is_sprinting = true
+				animation_name = "run"
+				change_stamina("-", 1)
+				movement_speed = movement_speed_sprint
+				if stamina <= 0:
+					overclock()
+				#if overclock_timer_started == false:
+					#overclock_timer_started = true
+					#$OverclockTimer.start()
 	if Input.is_action_just_released("sprint"):
-		if overclocked == false:
+		if is_overclocked == false:
+			is_sprinting = false
 			animation_name = "move"
 			movement_speed = movement_speed_default
-			$OverclockTimer.stop()
-			overclock_timer_started = false
+			#$OverclockTimer.stop()
+			#overclock_timer_started = false
+	
+	if is_sprinting == false:
+		if stamina != max_stamina:
+			change_stamina("+", 0.5)
 	
 	#nastavení animace a velocity
 	if character_direction:
+		is_moving = true
 		velocity = character_direction * movement_speed
 		$PlayerSprite.animation = animation_name
 	else:
+		is_moving = false
+		is_sprinting = false
+		$OverclockTimer.stop()
 		velocity = character_direction * movement_speed
-		if overclocked == false:
+		if is_overclocked == false:
 			$PlayerSprite.animation = "idle"
 		else:
 			$PlayerSprite.animation = "overclocked_idle"
@@ -59,18 +87,41 @@ func _physics_process(delta: float) -> void:
 			#if machine.state == Machine.State.OVERHEATED:
 			machine.interact()
 
-func _on_overclock_timer_timeout() -> void:
-	overclocked = true
-	overclock_timer_started = false
+func change_stamina(sign: String , amount: float):
+	match sign:
+		"+":
+			if stamina + amount > max_stamina:
+				stamina = 100
+			else:
+				stamina += amount
+		"-":
+			if stamina - amount < 0:
+				stamina = 0
+			else:
+				stamina -= amount
+	emit_signal("signal_player_stamina_change", stamina)
+
+func overclock() -> void:
+	is_sprinting = false
+	is_overclocked = true
+	#overclock_timer_started = false
 	animation_name = "overclocked"
 	movement_speed = movement_speed_exhausted
-	$OverclockTimer.stop()
-	$RechargeTimer.start()
-
-func _on_recharge_timer_timeout() -> void:
-	overclocked = false
+	
+func recharge() -> void:
+	is_overclocked = false
 	animation_name = "move"
 	movement_speed = movement_speed_default
+
+#func _on_overclock_timer_timeout() -> void:
+	#overclock()
+	#$OverclockTimer.stop()
+	#$RechargeTimer.start()
+
+#func _on_recharge_timer_timeout() -> void:
+	#is_overclocked = false
+	#animation_name = "move"
+	#movement_speed = movement_speed_default
 
 func add_nearby_machine(machine: Machine) -> void:
 	print("added machine ", machine.id)
