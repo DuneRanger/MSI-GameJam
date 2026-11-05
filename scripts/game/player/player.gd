@@ -1,5 +1,13 @@
 extends CharacterBody2D
 
+@export var timer_sfx_steps: Timer
+@export var audio_player_steps: AudioStreamPlayer2D
+@export var audio_player_sfx: AudioStreamPlayer2D
+
+var sfx_steps_normal_time = 0.33
+var sfx_steps_overclock_time = 0.66
+var sfx_steps_sprint_time = 0.2
+var sfx_is_timer_playing = false
 
 @export var movement_speed_default = 300
 @export var movement_speed_sprint = 450
@@ -13,6 +21,9 @@ var is_moving = false ## if the player is moving in any velocity (overclocked, n
 var is_sprinting = false ## if the player is sprinting (moving and holding shift and not overclocked)
 var max_stamina = 100 ##the maximum amout of stamina the player can reach
 var stamina = max_stamina ##the amount of stamina the player has right now
+
+
+
 signal signal_player_stamina_change(stamina: int)
 
 var nearby_machines: Array[Machine] = []
@@ -66,10 +77,25 @@ func _physics_process(delta: float) -> void:
 	
 	#nastavení animace a velocity
 	if character_direction:
+		
+		#audio_player_steps.stream_paused = false
+		
+		if is_sprinting == true:
+			play_step_sfx(sfx_steps_sprint_time)
+		elif is_overclocked == true:
+			play_step_sfx(sfx_steps_overclock_time)
+		else:
+			play_step_sfx(sfx_steps_normal_time)
+			
 		is_moving = true
 		velocity = character_direction * movement_speed
 		$PlayerSprite.animation = animation_name
 	else:
+		
+		#audio_player_steps.stream_paused = true
+		timer_sfx_steps.stop()
+		sfx_is_timer_playing = false
+		
 		is_moving = false
 		is_sprinting = false
 		$OverclockTimer.stop()
@@ -102,16 +128,36 @@ func change_stamina(sign: String , amount: float):
 	emit_signal("signal_player_stamina_change", stamina)
 
 func overclock() -> void:
+	audio_player_sfx.stream = load("res://assets/sfx/player/sfx_player_overclock.mp3")
+	audio_player_sfx.play()
+	
 	is_sprinting = false
 	is_overclocked = true
 	#overclock_timer_started = false
 	animation_name = "overclocked"
 	movement_speed = movement_speed_exhausted
 	
+	
 func recharge() -> void:
+	audio_player_sfx.stream = load("res://assets/sfx/player/sfx_player_recharge.mp3")
+	audio_player_sfx.play()
 	is_overclocked = false
 	animation_name = "move"
 	movement_speed = movement_speed_default
+
+func play_step_sfx(time_amount : float):
+	if sfx_is_timer_playing == false:
+		audio_player_steps.pitch_scale = randf_range(0.8, 1.2)
+		audio_player_steps.play()
+		sfx_is_timer_playing = true
+		timer_sfx_steps.wait_time = time_amount
+		timer_sfx_steps.start()
+
+func _on_timer_sfx_steps_timeout() -> void:
+	sfx_is_timer_playing = false
+	audio_player_steps.play()
+	timer_sfx_steps.stop()
+	
 
 #func _on_overclock_timer_timeout() -> void:
 	#overclock()

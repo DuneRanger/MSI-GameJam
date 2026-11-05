@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dht3x1we320j7" path="res://assets/game/player/player_run.png" id="3_bkoau"]
 [ext_resource type="Texture2D" uid="uid://cmar2vnecw58v" path="res://assets/game/player/player_idle.png" id="3_gmc11"]
 [ext_resource type="Texture2D" uid="uid://cbgusm44gcldp" path="res://assets/game/player/player_overclocked_idle.png" id="5_dqfck"]
+[ext_resource type="AudioStream" uid="uid://duqkutddpton1" path="res://assets/sfx/player/sfx_player_step.mp3" id="8_gdbv0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c7er3"]
 atlas = ExtResource("3_gmc11")
@@ -179,11 +180,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1hta"]
 size = Vector2(16, 4)
 
-[node name="Player" type="CharacterBody2D" unique_id=1893256284]
+[node name="Player" type="CharacterBody2D" unique_id=1893256284 node_paths=PackedStringArray("timer_sfx_steps", "audio_player_steps", "audio_player_sfx")]
 z_index = -2
 scale = Vector2(3, 3)
 collision_layer = 2
 script = ExtResource("1_4m2od")
+timer_sfx_steps = NodePath("TimerSFX-Steps")
+audio_player_steps = NodePath("AudioPlayer-Steps")
+audio_player_sfx = NodePath("AudioPlayer-SFX")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=93510276]
 position = Vector2(0, 11.333333)
@@ -205,5 +209,14 @@ wait_time = 3.0
 [node name="RechargeTimer" type="Timer" parent="." unique_id=687818981]
 wait_time = 5.0
 
+[node name="AudioPlayer-Steps" type="AudioStreamPlayer2D" parent="." unique_id=69668075]
+stream = ExtResource("8_gdbv0")
+bus = &"SFX"
+
+[node name="AudioPlayer-SFX" type="AudioStreamPlayer2D" parent="." unique_id=1258161024]
+
+[node name="TimerSFX-Steps" type="Timer" parent="." unique_id=348999559]
+
 [connection signal="timeout" from="OverclockTimer" to="." method="_on_overclock_timer_timeout"]
 [connection signal="timeout" from="RechargeTimer" to="." method="_on_recharge_timer_timeout"]
+[connection signal="timeout" from="TimerSFX-Steps" to="." method="_on_timer_sfx_steps_timeout"]
