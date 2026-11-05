@@ -30,7 +30,6 @@ func _ready() -> void:
 	interaction_area.body_exited.connect(on_body_exited)
 
 func _process(delta: float) -> void:
-	print(state, " ", temperature)
 	process_state(delta)
 
 func on_body_entered(body: Node2D) -> void:
