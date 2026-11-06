@@ -4,18 +4,26 @@ extends Node
 var chosen_minigame : Minigame = null
 var activated_machine: Machine = null
 
+var machine_idx : int
 var machine_dict : Dictionary[int, Machine] = {}
 
-func _ready() -> void:
-	var machine_idx = 1
-	for node in get_tree().get_nodes_in_group("machines"):
-		var machine := node as Machine
-		machine.id = machine_idx
-		machine_dict.set(machine_idx, machine)
-		machine_idx += 1
-		machine.minigame_requested.connect(_on_minigame_requested)
+func _on_tilemap_machine_enter_tree(new_node : Node):
+	if new_node is Machine:
+		add_machine(new_node as Machine)
 
-func _process(delta: float) -> void:
+func add_machine(new_machine : Machine) -> void:
+	new_machine.id = machine_idx
+	machine_dict.set(machine_idx, new_machine)
+	machine_idx += 1
+	new_machine.minigame_requested.connect(_on_minigame_requested)
+	print("Added machine", new_machine)
+
+func _ready() -> void:
+	machine_idx = 1
+	var machine_layer : TileMapLayer = $Tilemap/TileMapMachineLayer
+	machine_layer.child_entered_tree.connect(add_machine)
+		
+func _process(_delta: float) -> void:
 	$LabelStamina.text = "Stamina : " + str($Player.stamina)
 
 func choose_minigame() -> Minigame:
