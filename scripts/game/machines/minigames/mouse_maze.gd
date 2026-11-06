@@ -36,13 +36,15 @@ func start_minigame() -> void:
 
 func goal_reached(area: Area2D) -> void:
 	if not started: return
-	print("goal reached")
-	minigame_completed.emit()
+	if area == Gear:
+		print("goal reached", started)
+		minigame_completed.emit()
 	
 func wall_entered(area: Area2D) -> void:
 	if not started: return
-	print("body entered")
-	minigame_failed.emit()
+	if area == Gear:
+		print("body entered", started)
+		minigame_failed.emit()
 
 func _physics_process(_delta: float) -> void:
 	if not started: return

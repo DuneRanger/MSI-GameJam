@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b3dlssh62472i"]
+
+[ext_resource type="PackedScene" uid="uid://lvebmnvqwohx" path="res://scenes/game/machines/machine.tscn" id="1_srgot"]
+[ext_resource type="PackedScene" uid="uid://byr0h5hfhqc0w" path="res://scenes/game/machines/minigames/mouse_maze.tscn" id="2_srgot"]
+[ext_resource type="SpriteFrames" uid="uid://cs80mid484no3" path="res://scenes/game/machines/machine_instances/machine_0_spriteframes.tres" id="3_cohdw"]
+
+[node name="MazeMachine" unique_id=964389702 instance=ExtResource("1_srgot")]
+linked_minigame_scene = ExtResource("2_srgot")
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=970174829]
+sprite_frames = ExtResource("3_cohdw")
+animation = &"running"

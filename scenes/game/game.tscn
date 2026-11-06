@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bbxi0vokk4jgr" path="res://scenes/game/tilemap/tilemap.tscn" id="5_bdhmt"]
 [ext_resource type="PackedScene" uid="uid://b0wae3pnq5bxx" path="res://scenes/game/machines/machine_instances/steam_machine.tscn" id="7_bdhmt"]
 [ext_resource type="PackedScene" uid="uid://cqsyyggibtbjm" path="res://scenes/game/machines/machine_instances/color_machine.tscn" id="8_87uf6"]
+[ext_resource type="PackedScene" uid="uid://b3dlssh62472i" path="res://scenes/game/machines/machine_instances/maze_machine.tscn" id="9_2a8rs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w1hta"]
 font_size = 48
@@ -120,6 +121,9 @@ position = Vector2(217.00002, 384)
 
 [node name="ColorMachine" parent="." unique_id=749344749 instance=ExtResource("8_87uf6")]
 position = Vector2(310, 456)
+
+[node name="MazeMachine" parent="." unique_id=1101858923 instance=ExtResource("9_2a8rs")]
+position = Vector2(406, 289)
 
 [connection signal="button_down" from="RandomGameButton" to="." method="_on_random_game_button"]
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]
