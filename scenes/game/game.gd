@@ -38,14 +38,16 @@ func link_chosen_minigame() -> void:
 func _on_minigame_fail() -> void:
 	$Background.color = Color.CRIMSON
 	$MinigameLeaveTimer.start()
-	activated_machine.on_minigame_failed()
-	activated_machine = null
+	if activated_machine != null:
+		activated_machine.on_minigame_failed()
+		activated_machine = null
 
 func _on_minigame_success() -> void:
 	$Background.color = Color.WEB_GREEN
 	$MinigameLeaveTimer.start()
-	activated_machine.on_minigame_success()
-	activated_machine = null
+	if activated_machine != null:
+		activated_machine.on_minigame_success()
+		activated_machine = null
 
 func _on_minigame_leave_timer_timeout() -> void:
 	$Background.color = Color.SKY_BLUE
