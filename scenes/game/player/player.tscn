@@ -1,6 +1,222 @@
 [gd_scene format=3 uid="uid://43qca7aj17a6"]
 
 [ext_resource type="Script" uid="uid://dfkgp13nkw7d8" path="res://scripts/game/player/player.gd" id="1_4m2od"]
+[ext_resource type="Texture2D" uid="uid://broriw44eo85c" path="res://assets/game/player/shadow.png" id="2_prej5"]
+[ext_resource type="Texture2D" uid="uid://jytasmud42ug" path="res://assets/game/player/player.png" id="2_t5cse"]
+[ext_resource type="Texture2D" uid="uid://2k8extvsjstq" path="res://assets/game/player/player_overclocked.png" id="3_abehh"]
+[ext_resource type="Texture2D" uid="uid://dht3x1we320j7" path="res://assets/game/player/player_run.png" id="3_bkoau"]
+[ext_resource type="Texture2D" uid="uid://cmar2vnecw58v" path="res://assets/game/player/player_idle.png" id="3_gmc11"]
+[ext_resource type="Texture2D" uid="uid://cbgusm44gcldp" path="res://assets/game/player/player_overclocked_idle.png" id="5_dqfck"]
+[ext_resource type="AudioStream" uid="uid://duqkutddpton1" path="res://assets/sfx/player/sfx_player_step.mp3" id="8_gdbv0"]
 
-[node name="Player" type="CharacterBody2D" unique_id=1893256284]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7er3"]
+atlas = ExtResource("3_gmc11")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deim3"]
+atlas = ExtResource("3_gmc11")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5pre"]
+atlas = ExtResource("3_gmc11")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1ltw"]
+atlas = ExtResource("3_gmc11")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abehh"]
+atlas = ExtResource("2_t5cse")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prej5"]
+atlas = ExtResource("2_t5cse")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqfck"]
+atlas = ExtResource("2_t5cse")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkoau"]
+atlas = ExtResource("2_t5cse")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxkrj"]
+atlas = ExtResource("3_abehh")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixkur"]
+atlas = ExtResource("3_abehh")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvpd5"]
+atlas = ExtResource("3_abehh")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0dnl"]
+atlas = ExtResource("3_abehh")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5vmf"]
+atlas = ExtResource("5_dqfck")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34lq7"]
+atlas = ExtResource("5_dqfck")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs005"]
+atlas = ExtResource("5_dqfck")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g11kp"]
+atlas = ExtResource("5_dqfck")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bxg8"]
+atlas = ExtResource("3_bkoau")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywish"]
+atlas = ExtResource("3_bkoau")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcwky"]
+atlas = ExtResource("3_bkoau")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdbv0"]
+atlas = ExtResource("3_bkoau")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37tqn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7er3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deim3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5pre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1ltw")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abehh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prej5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqfck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkoau")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxkrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixkur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvpd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0dnl")
+}],
+"loop": 1,
+"name": &"overclocked",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5vmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34lq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs005")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g11kp")
+}],
+"loop": 1,
+"name": &"overclocked_idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bxg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywish")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcwky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdbv0")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1hta"]
+size = Vector2(16, 4)
+
+[node name="Player" type="CharacterBody2D" unique_id=1893256284 node_paths=PackedStringArray("timer_sfx_steps", "audio_player_steps", "audio_player_sfx")]
+z_index = -2
+scale = Vector2(3, 3)
+collision_layer = 2
 script = ExtResource("1_4m2od")
+timer_sfx_steps = NodePath("TimerSFX-Steps")
+audio_player_steps = NodePath("AudioPlayer-Steps")
+audio_player_sfx = NodePath("AudioPlayer-SFX")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=93510276]
+position = Vector2(0, 11.333333)
+scale = Vector2(0.05966278, 0.028534392)
+texture = ExtResource("2_prej5")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=769901604]
+sprite_frames = SubResource("SpriteFrames_37tqn")
+animation = &"overclocked"
+autoplay = "idle"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1157020505]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_w1hta")
+
+[node name="OverclockTimer" type="Timer" parent="." unique_id=626857163]
+wait_time = 3.0
+
+[node name="RechargeTimer" type="Timer" parent="." unique_id=687818981]
+wait_time = 5.0
+
+[node name="AudioPlayer-Steps" type="AudioStreamPlayer2D" parent="." unique_id=69668075]
+stream = ExtResource("8_gdbv0")
+bus = &"SFX"
+
+[node name="AudioPlayer-SFX" type="AudioStreamPlayer2D" parent="." unique_id=1258161024]
+
+[node name="TimerSFX-Steps" type="Timer" parent="." unique_id=348999559]
+
+[connection signal="timeout" from="OverclockTimer" to="." method="_on_overclock_timer_timeout"]
+[connection signal="timeout" from="RechargeTimer" to="." method="_on_recharge_timer_timeout"]
+[connection signal="timeout" from="TimerSFX-Steps" to="." method="_on_timer_sfx_steps_timeout"]

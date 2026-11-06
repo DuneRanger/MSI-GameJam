@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://lvebmnvqwohx"]
+
+[ext_resource type="Script" uid="uid://dujumfyffwvi7" path="res://scripts/game/machines/machine.gd" id="1_gbrlg"]
+[ext_resource type="Resource" uid="uid://b754jhyjl5yjm" path="res://scenes/game/machines/machine_type.tres" id="2_r0leb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yeiif"]
+size = Vector2(48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2cqrr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om7lw"]
+size = Vector2(24, 24)
+
+[node name="Node2D" type="Node2D" unique_id=964389702]
+z_index = 1
+scale = Vector2(3, 3)
+script = ExtResource("1_gbrlg")
+machine_type = ExtResource("2_r0leb")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1954596973]
+visibility_layer = 2
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1147079626]
+shape = SubResource("RectangleShape2D_yeiif")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=970174829]
+sprite_frames = SubResource("SpriteFrames_2cqrr")
+
+[node name="CollisionArea" type="StaticBody2D" parent="." unique_id=1406013370]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=135855517]
+shape = SubResource("RectangleShape2D_om7lw")

@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="MachineType" format=3 uid="uid://cted70u1ayu1e"]
+
+[ext_resource type="Script" uid="uid://cerr72dbriu3h" path="res://scripts/game/machines/machine_type.gd" id="1_ax0ck"]
+[ext_resource type="Texture2D" uid="uid://l3uykewna2vg" path="res://assets/game/machines/machine_1_broken.png" id="2_yuhlk"]
+[ext_resource type="Texture2D" uid="uid://dxnmf2mmqh5u2" path="res://assets/game/machines/machine_1_overheated.png" id="3_3ks6x"]
+[ext_resource type="Texture2D" uid="uid://h0lsdj51pcbp" path="res://assets/game/machines/machine_1_running.png" id="4_cmv3y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsldd"]
+atlas = ExtResource("2_yuhlk")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44mjj"]
+atlas = ExtResource("2_yuhlk")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul2ci"]
+atlas = ExtResource("2_yuhlk")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3mwa"]
+atlas = ExtResource("3_3ks6x")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n7yl"]
+atlas = ExtResource("3_3ks6x")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elycc"]
+atlas = ExtResource("3_3ks6x")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmxm1"]
+atlas = ExtResource("4_cmv3y")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4avd"]
+atlas = ExtResource("4_cmv3y")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0t6g"]
+atlas = ExtResource("4_cmv3y")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_377cd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsldd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44mjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul2ci")
+}],
+"loop": 1,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3mwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n7yl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elycc")
+}],
+"loop": 1,
+"name": &"overheated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmxm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4avd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0t6g")
+}],
+"loop": 1,
+"name": &"running",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_ax0ck")
+sprite_frames = SubResource("SpriteFrames_377cd")
+minigame_id = 1
+metadata/_custom_type_script = "uid://cerr72dbriu3h"

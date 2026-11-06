@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://blx5db6dcf3ky"]
+
+[ext_resource type="Script" uid="uid://byfsee4dd4sbk" path="res://scripts/game/player/player_stamina_bar.gd" id="1_0f4oy"]
+
+[node name="PlayerStaminaBar" type="Node2D" unique_id=1887578587]
+script = ExtResource("1_0f4oy")
+
+[node name="Label" type="Label" parent="." unique_id=441164252]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "100"
