@@ -121,6 +121,7 @@ position = Vector2(217.00002, 384)
 
 [node name="ColorMachine" parent="." unique_id=749344749 instance=ExtResource("8_87uf6")]
 position = Vector2(310, 456)
+linked_minigame_scene = ExtResource("3_lfrn8")
 
 [node name="MazeMachine" parent="." unique_id=1101858923 instance=ExtResource("9_2a8rs")]
 position = Vector2(406, 289)
