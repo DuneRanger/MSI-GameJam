@@ -8,6 +8,8 @@ var walls: Array[Area2D] = []
 var started: bool = false
 var last_mouse_pos: Vector2
 var is_gear_selected: bool = false
+var failed: bool = false
+var was_goal_reached: bool = false
 
 func match_shape_to_rect(collider: CollisionShape2D, color_rect: ColorRect) -> void:
 	var rect_shape = RectangleShape2D.new()
@@ -33,21 +35,24 @@ func _ready() -> void:
 
 func start_minigame() -> void:
 	started = true
+	$Timer.start()
 
 func goal_reached(area: Area2D) -> void:
 	if not started: return
-	if area == Gear:
+	if area == Gear and not failed:
+		was_goal_reached = true
 		print("goal reached", started)
 		minigame_completed.emit()
 	
 func wall_entered(area: Area2D) -> void:
 	if not started: return
-	if area == Gear:
+	if area == Gear and not was_goal_reached:
+		failed = true
 		print("body entered", started)
 		minigame_failed.emit()
 
 func _physics_process(_delta: float) -> void:
-	if not started: return
+	if not started or failed or was_goal_reached: return
 	var mouse_global = get_global_mouse_position()
 	
 	if Input.is_action_just_released("left_click"):
@@ -63,4 +68,8 @@ func _physics_process(_delta: float) -> void:
 	var mouse_diff = mouse_global - last_mouse_pos
 	Gear.translate(mouse_diff)
 	last_mouse_pos = mouse_global
+
+func _on_timer_timout() -> void:
+	if not was_goal_reached:
+		minigame_failed.emit()
 	

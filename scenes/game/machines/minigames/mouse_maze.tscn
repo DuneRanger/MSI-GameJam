@@ -10,7 +10,7 @@
 size = Vector2(14.5, 100)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gedfp"]
-radius = 36.0
+radius = 34.0
 
 [node name="Minigame2" type="Control" unique_id=1172947997]
 layout_mode = 3
