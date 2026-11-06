@@ -309,6 +309,12 @@ visible_ratio = 0.0
 [node name="TextScrollAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1443002231]
 libraries/ = SubResource("AnimationLibrary_tkrjt")
 
+[node name="FullAnimationPlayer" type="AnimationPlayer" parent="." unique_id=2102411896]
+libraries/ = SubResource("AnimationLibrary_gwvcu")
+
+[node name="PortraitAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1345988747]
+libraries/ = SubResource("AnimationLibrary_7kcvn")
+
 [node name="TestButton" type="Button" parent="." unique_id=1252247082]
 layout_mode = 0
 offset_left = 112.0
@@ -317,10 +323,25 @@ offset_right = 301.0
 offset_bottom = 334.0
 text = "test button"
 
-[node name="FullAnimationPlayer" type="AnimationPlayer" parent="." unique_id=2102411896]
-libraries/ = SubResource("AnimationLibrary_gwvcu")
+[node name="dieButton" type="Button" parent="." unique_id=1133150554]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 163.0
+offset_right = 211.0
+offset_bottom = 220.0
+text = "die"
 
-[node name="PortraitAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1345988747]
-libraries/ = SubResource("AnimationLibrary_7kcvn")
+[node name="winButton" type="Button" parent="." unique_id=313425995]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 56.0
+offset_right = 281.0
+offset_bottom = 135.0
+text = "win"
+
+[node name="TextScrollTimer" type="Timer" parent="." unique_id=1532033143]
 
 [connection signal="button_down" from="TestButton" to="." method="_on_test_button_button_down"]
+[connection signal="button_down" from="dieButton" to="." method="_on_die_button_button_down"]
+[connection signal="button_down" from="winButton" to="." method="_on_win_button_button_down"]
+[connection signal="timeout" from="TextScrollTimer" to="." method="_on_text_scroll_timer_timeout"]
