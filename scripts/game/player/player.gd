@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var timer_sfx_steps: Timer
 @export var audio_player_steps: AudioStreamPlayer2D

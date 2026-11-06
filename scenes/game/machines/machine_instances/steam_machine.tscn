@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b0wae3pnq5bxx"]
+
+[ext_resource type="PackedScene" uid="uid://lvebmnvqwohx" path="res://scenes/game/machines/machine.tscn" id="1_1oaxp"]
+[ext_resource type="PackedScene" uid="uid://crwocavy5kif" path="res://scenes/game/machines/minigames/steam_wheel.tscn" id="2_55tnp"]
+[ext_resource type="SpriteFrames" uid="uid://cs80mid484no3" path="res://scenes/game/machines/machine_instances/machine_0_spriteframes.tres" id="2_rq7pc"]
+
+[node name="SteamMachine" unique_id=964389702 instance=ExtResource("1_1oaxp")]
+linked_minigame_scene = ExtResource("2_55tnp")
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=970174829]
+sprite_frames = ExtResource("2_rq7pc")
+animation = &"running"

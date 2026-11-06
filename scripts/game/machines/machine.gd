@@ -3,14 +3,24 @@ extends Node2D
 
 enum State { RUNNING, OVERHEATED, IN_MINIGAME, BROKEN }
 
-@export var machine_type: MachineType
+@export var sprite: AnimatedSprite2D
+@export var linked_minigame_scene : PackedScene
+var linked_minigame : Minigame
+
+# Heat parameters
+@export var spike_chance_per_second: float = 0.05
+@export var spike_multiplier: float = 1.5
+@export var explosion_temperature: float = 250.0
+@export var overheat_temperature: float = 100.0
+@export var heat_rate: float = 5.0
+
+# Minigame
+var minigame_id: int = 1
+@onready var interaction_area: Area2D = $InteractionArea
 
 var state: State = State.RUNNING
 var temperature: float = 0.0
 var player_in_range: bool = false
-
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var interaction_area: Area2D = $InteractionArea
 
 var id: int = 0
 static var next_id: int = 0
@@ -24,23 +34,14 @@ func _init():
 
 func _ready() -> void:
 	add_to_group("machines")
-	sprite.sprite_frames = machine_type.sprite_frames
-	interaction_area.body_entered.connect(on_body_entered)
-	interaction_area.body_exited.connect(on_body_exited)
 	enter_state(State.RUNNING)
+	linked_minigame = linked_minigame_scene.instantiate() as Minigame
 
 func turn_on_glow():
 	is_glowing = true
 
 func turn_off_glow():
 	is_glowing = false
-
-func get_sprite_rect() -> Rect2:
-	var texture = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
-	var size = texture.get_size() * sprite.scale
-	var top_left := sprite.position + sprite.offset * sprite.scale
-	if sprite.centered: top_left -= size / 2.0
-	return Rect2(top_left, size)
 
 func _process(delta: float) -> void:
 	process_state(delta)
@@ -50,15 +51,18 @@ func _process(delta: float) -> void:
 	else:
 		sprite.modulate = Color(1, 1, 1)
 
-func on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
+func _on_interaction_area_body_entered(body: Node2D) -> void:
+	print("Something entered")
+	if body is Player:
 		player_in_range = true
 		body.add_nearby_machine(self)
+		print("Player entered")
 
-func on_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
+func _on_interaction_area_body_exited(body: Node2D) -> void:
+	if body is Player:
 		player_in_range = false
 		body.remove_nearby_machine(self)
+		print("Player exited")
 
 func change_state(new_state: State) -> void:
 	if new_state == state: return
@@ -92,29 +96,27 @@ func process_state(delta: float) -> void:
 	match (state):
 		State.RUNNING:
 			update_temperature(delta)
-			if temperature > machine_type.overheat_temperature:
+			if temperature > overheat_temperature:
 				change_state(State.OVERHEATED)
 		State.OVERHEATED:
 			update_temperature(delta)
-			if temperature > machine_type.explosion_temperature:
+			if temperature > explosion_temperature:
 				change_state(State.BROKEN)
 			pass
 		State.IN_MINIGAME: pass
 		State.BROKEN: pass
 
 func update_temperature(delta: float) -> void:
-	temperature += machine_type.heat_rate * delta
-	if (randf() < machine_type.spike_chance_per_second * delta):
-		temperature *= machine_type.spike_multiplier
+	temperature += heat_rate * delta
+	if (randf() < spike_chance_per_second * delta):
+		temperature *= spike_multiplier
 
 func interact() -> void:
-	#if not player_in_range or state != State.OVERHEATED:
-		#return
 	start_minigame()
 
 func start_minigame() -> void:
 	print("Starting minigame for machine ", id)
-	minigame_requested.emit(self, machine_type.minigame_id)
+	minigame_requested.emit(self, minigame_id)
 	change_state(State.IN_MINIGAME)
 
 func on_minigame_success() -> void:
@@ -123,7 +125,7 @@ func on_minigame_success() -> void:
 	change_state(State.RUNNING)
 	
 func on_minigame_failed() -> void:
-	temperature *= machine_type.spike_multiplier
+	temperature *= spike_multiplier
 	print("Minigame failed, temperature: ", temperature)
 	# change to overheated, because minigames should only run when overheated
 	# but for debugging, they run whenever

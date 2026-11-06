@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cqsyyggibtbjm"]
+
+[ext_resource type="PackedScene" uid="uid://lvebmnvqwohx" path="res://scenes/game/machines/machine.tscn" id="1_qx5l1"]
+[ext_resource type="PackedScene" uid="uid://j4s1r411n22" path="res://scenes/game/machines/minigames/color_find.tscn" id="2_equko"]
+[ext_resource type="SpriteFrames" uid="uid://cs75kifgqknmd" path="res://scenes/game/machines/machine_instances/machine_1_spriteframes.tres" id="3_tabe7"]
+
+[node name="ColorMachine" unique_id=964389702 instance=ExtResource("1_qx5l1")]
+linked_minigame_scene = ExtResource("2_equko")
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=970174829]
+sprite_frames = ExtResource("3_tabe7")
+animation = &"broken"
