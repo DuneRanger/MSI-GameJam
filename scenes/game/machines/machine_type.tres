@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="MachineType" format=3 uid="uid://b754jhyjl5yjm"]
 
 [ext_resource type="Script" uid="uid://cerr72dbriu3h" path="res://scripts/game/machines/machine_type.gd" id="1_d5svg"]
-[ext_resource type="PackedScene" uid="uid://crwocavy5kif" path="res://scenes/game/machines/minigames/steam_wheel.tscn" id="1_f3ilt"]
 [ext_resource type="Texture2D" uid="uid://l3uykewna2vg" path="res://assets/game/machines/machine_1_broken.png" id="3_poc54"]
 [ext_resource type="Texture2D" uid="uid://dxnmf2mmqh5u2" path="res://assets/game/machines/machine_1_overheated.png" id="4_yb6ss"]
 [ext_resource type="Texture2D" uid="uid://h0lsdj51pcbp" path="res://assets/game/machines/machine_1_running.png" id="5_i8o2g"]
@@ -90,5 +89,4 @@ animations = [{
 [resource]
 script = ExtResource("1_d5svg")
 sprite_frames = SubResource("SpriteFrames_377cd")
-minigame_scene = ExtResource("1_f3ilt")
 metadata/_custom_type_script = "uid://cerr72dbriu3h"

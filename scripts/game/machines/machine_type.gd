@@ -12,4 +12,4 @@ extends Resource
 @export var heat_rate: float = 5.0
 
 # Minigame
-@export var minigame_scene: PackedScene
+@export var minigame_id: int = 0

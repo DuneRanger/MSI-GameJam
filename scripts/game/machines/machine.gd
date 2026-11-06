@@ -112,10 +112,9 @@ func interact() -> void:
 		#return
 	start_minigame()
 
-var minigame: Minigame
 func start_minigame() -> void:
 	print("Starting minigame for machine ", id)
-	minigame_requested.emit(self, 1)
+	minigame_requested.emit(self, machine_type.minigame_id)
 	change_state(State.IN_MINIGAME)
 
 func on_minigame_success() -> void:
