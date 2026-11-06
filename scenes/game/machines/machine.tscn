@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://lvebmnvqwohx"]
 
 [ext_resource type="Script" uid="uid://dujumfyffwvi7" path="res://scripts/game/machines/machine.gd" id="1_gbrlg"]
-[ext_resource type="Resource" uid="uid://b754jhyjl5yjm" path="res://scenes/game/machines/machine_type.tres" id="2_r0leb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yeiif"]
 size = Vector2(48, 48)
@@ -11,11 +10,17 @@ size = Vector2(48, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_om7lw"]
 size = Vector2(24, 24)
 
-[node name="Node2D" type="Node2D" unique_id=964389702]
+[node name="Machine" type="Node2D" unique_id=964389702 node_paths=PackedStringArray("sprite") groups=["machines"]]
 z_index = 1
 scale = Vector2(3, 3)
 script = ExtResource("1_gbrlg")
-machine_type = ExtResource("2_r0leb")
+sprite = NodePath("AnimatedSprite2D")
+spike_chance_per_second = null
+spike_multiplier = null
+explosion_temperature = null
+overheat_temperature = null
+heat_rate = null
+minigame_id = null
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=1954596973]
 visibility_layer = 2
@@ -33,3 +38,6 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=135855517]
 shape = SubResource("RectangleShape2D_om7lw")
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

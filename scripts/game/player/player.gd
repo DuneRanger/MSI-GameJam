@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var timer_sfx_steps: Timer
 @export var audio_player_steps: AudioStreamPlayer2D
@@ -41,6 +41,7 @@ func _process(_delta) -> void:
 			if Input.is_action_just_pressed("interact"):
 				machine.interact()
 			break
+
 func _physics_process(delta: float) -> void:
 	character_direction.x = Input.get_axis("move_left", "move_right")
 	character_direction.y = Input.get_axis("move_up", "move_down")

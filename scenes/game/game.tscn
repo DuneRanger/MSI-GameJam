@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://crwocavy5kif" path="res://scenes/game/machines/minigames/steam_wheel.tscn" id="2_kelw5"]
 [ext_resource type="PackedScene" uid="uid://j4s1r411n22" path="res://scenes/game/machines/minigames/color_find.tscn" id="3_lfrn8"]
 [ext_resource type="PackedScene" uid="uid://bbxi0vokk4jgr" path="res://scenes/game/tilemap/tilemap.tscn" id="5_bdhmt"]
-[ext_resource type="PackedScene" uid="uid://lvebmnvqwohx" path="res://scenes/game/machines/machine.tscn" id="6_5i0tg"]
+[ext_resource type="PackedScene" uid="uid://byfs3v1fa8pex" path="res://scenes/game/machines/machine_instances/machine_0.tscn" id="7_bdhmt"]
+[ext_resource type="PackedScene" uid="uid://d31c4ocwxkv7l" path="res://scenes/game/machines/machine_instances/machine_1.tscn" id="8_87uf6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w1hta"]
 font_size = 48
@@ -96,12 +97,15 @@ offset_right = 150.0
 offset_bottom = 620.0
 text = "Colors"
 
-[node name="Node2D" parent="." unique_id=964389702 instance=ExtResource("6_5i0tg")]
-position = Vector2(214, 266)
-
 [node name="Label2" type="Label" parent="." unique_id=932806465]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Machine_0" parent="." unique_id=964389702 instance=ExtResource("7_bdhmt")]
+position = Vector2(330, 469)
+
+[node name="Machine_1" parent="." unique_id=787610846 instance=ExtResource("8_87uf6")]
+position = Vector2(492, 499)
 
 [connection signal="button_down" from="RandomGameButton" to="." method="_on_button_button_down"]
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]

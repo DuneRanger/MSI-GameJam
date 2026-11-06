@@ -1,21 +1,104 @@
 [gd_scene format=3 uid="uid://byfs3v1fa8pex"]
 
 [ext_resource type="Script" uid="uid://dujumfyffwvi7" path="res://scripts/game/machines/machine.gd" id="1_bhkri"]
-[ext_resource type="Resource" uid="uid://b46bwsx1fpkyb" path="res://scenes/game/machines/machine_instances/machine_type_0.tres" id="2_sfpy3"]
+[ext_resource type="PackedScene" uid="uid://j4s1r411n22" path="res://scenes/game/machines/minigames/color_find.tscn" id="2_855kf"]
+[ext_resource type="Texture2D" uid="uid://vrkndcgasfw0" path="res://assets/game/machines/machine_0_broken.png" id="2_sfpy3"]
+[ext_resource type="Texture2D" uid="uid://ctjt8up00y1sf" path="res://assets/game/machines/machine_0_overheated.png" id="3_xum40"]
+[ext_resource type="Texture2D" uid="uid://3x01so6sjh8i" path="res://assets/game/machines/machine_0_running.png" id="4_855kf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yeiif"]
 size = Vector2(48, 48)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2cqrr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lws5"]
+atlas = ExtResource("2_sfpy3")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xum40"]
+atlas = ExtResource("2_sfpy3")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_855kf"]
+atlas = ExtResource("2_sfpy3")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5iq8h"]
+atlas = ExtResource("3_xum40")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_disod"]
+atlas = ExtResource("3_xum40")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl6ee"]
+atlas = ExtResource("3_xum40")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q0ja"]
+atlas = ExtResource("4_855kf")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3j8b"]
+atlas = ExtResource("4_855kf")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0npp4"]
+atlas = ExtResource("4_855kf")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4l3pm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lws5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xum40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_855kf")
+}],
+"loop": 1,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5iq8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_disod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl6ee")
+}],
+"loop": 1,
+"name": &"overheated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q0ja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3j8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0npp4")
+}],
+"loop": 1,
+"name": &"running",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_om7lw"]
 size = Vector2(24, 24)
 
-[node name="Node2D" type="Node2D" unique_id=964389702]
+[node name="Machine_0" type="Node2D" unique_id=964389702 node_paths=PackedStringArray("sprite")]
 z_index = 1
 scale = Vector2(3, 3)
 script = ExtResource("1_bhkri")
-machine_type = ExtResource("2_sfpy3")
+sprite = NodePath("AnimatedSprite2D")
+linked_minigame_scene = ExtResource("2_855kf")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=1954596973]
 visibility_layer = 2
@@ -26,7 +109,8 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_yeiif")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=970174829]
-sprite_frames = SubResource("SpriteFrames_2cqrr")
+sprite_frames = SubResource("SpriteFrames_4l3pm")
+animation = &"running"
 
 [node name="CollisionArea" type="StaticBody2D" parent="." unique_id=1406013370]
 collision_mask = 0
