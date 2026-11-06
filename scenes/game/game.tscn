@@ -6,9 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://crwocavy5kif" path="res://scenes/game/machines/minigames/steam_wheel.tscn" id="2_kelw5"]
 [ext_resource type="PackedScene" uid="uid://j4s1r411n22" path="res://scenes/game/machines/minigames/color_find.tscn" id="3_lfrn8"]
 [ext_resource type="PackedScene" uid="uid://bbxi0vokk4jgr" path="res://scenes/game/tilemap/tilemap.tscn" id="5_bdhmt"]
-[ext_resource type="PackedScene" uid="uid://b0wae3pnq5bxx" path="res://scenes/game/machines/machine_instances/steam_machine.tscn" id="7_bdhmt"]
-[ext_resource type="PackedScene" uid="uid://cqsyyggibtbjm" path="res://scenes/game/machines/machine_instances/color_machine.tscn" id="8_87uf6"]
-[ext_resource type="PackedScene" uid="uid://b3dlssh62472i" path="res://scenes/game/machines/machine_instances/maze_machine.tscn" id="9_2a8rs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w1hta"]
 font_size = 48
@@ -45,10 +42,13 @@ tile_map_data = PackedByteArray("AAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAA
 [node name="TilemapDecorLayer" parent="Tilemap" index="1" unique_id=1888967584]
 tile_map_data = PackedByteArray("AAAFAAcAAgAEAAEAAAAGAAcAAgABAAAAAAAHAAcAAgABAAAAAAAIAAcAAgAEAAAAAwAFAAYAAgAAAAAAAAAFAAUAAgADAAAAAAAEAAUAAgAEAAEABAADAAUAAgACAAAAAAAFAAgAAgAEAAEAAgAEAAcAAgABAAEAAAADAAcAAgACAAEAAAADAAYAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAMAAgAAAAAAAAAEAAIAAgAEAAAAAgAHAAQAAgAFAAAAAAAKAAUAAgAGAAEAAAAGAAIAAgAHAAAAAAALAAcAAgAHAAAAAAACAAgAAgAHAAAAAAAHAAkAAgAFAAAAAAAMAAMAAgAFAAAAAAABAAMAAgAGAAAAAAABAAQAAgAGAAEAAAAMAAkAAgAFAAEAAAAOAAQAAgAHAAEAAAAEAAYAAgAHAAEAAAA=")
 
-[node name="TilemapWallLayer" parent="Tilemap" index="2" unique_id=695297817]
+[node name="TileMapMachineLayer" parent="Tilemap" index="2" unique_id=1793809352]
+tile_map_data = PackedByteArray("AAAEAAYAAAAAAAAAAQADAAIAAAAAAAAAAgA=")
+
+[node name="TilemapWallLayer" parent="Tilemap" index="3" unique_id=695297817]
 tile_map_data = PackedByteArray("AAAAAAAAAwADAAAAAAAAAAEAAwADAAEAAAAAAAIAAwADAAEAAAAAAAMAAwADAAEAAAAAAAQAAwADAAEAAAAAAAUAAwADAAEAAAAAAAYAAwADAAEAAAAAAAcAAwADAAEAAAAAAAgAAwADAAEAAAAAAAkAAwADAAIAAAABAAkAAwAEAAIAAAACAAkAAwAEAAIAAAADAAkAAwAEAAIAAAAEAAkAAwAEAAIAAAAFAAkAAwAEAAIAAAAGAAkAAwAEAAIAAAAHAAkAAwAEAAIAAAAIAAkAAwAEAAIAAAAJAAkAAwAEAAIAAAAKAAkAAwAHAAQAAAALAAkAAwAEAAIAAAAMAAkAAwAEAAIAAAANAAkAAwAEAAIAAAAOAAkAAwAEAAIAAAAPAAkAAwAEAAIAAAAQAAkAAwAEAAIAAAARAAkAAwAFAAIAAAARAAgAAwADAAEAAAARAAcAAwADAAEAAAARAAYAAwADAAEAAAARAAUAAwADAAEAAAARAAQAAwADAAEAAAARAAMAAwADAAMAAAARAAIAAwACAAEAAAARAAEAAwACAAEAAAARAAAAAwACAAAAAAAQAAAAAwABAAAAAAAPAAAAAwABAAAAAAAOAAAAAwAFAAMAAAANAAAAAwAEAAIAAAAMAAAAAwAEAAIAAAALAAAAAwAEAAIAAAAKAAAAAwAEAAIAAAAJAAAAAwAEAAIAAAAIAAAAAwAEAAIAAAAHAAAAAwAEAAIAAAAGAAAAAwAEAAIAAAAFAAAAAwAEAAIAAAAEAAAAAwAEAAIAAAADAAAAAwAEAAIAAAACAAAAAwAEAAIAAAABAAAAAwAEAAIAAAAKAAgAAwADAAEAAAAKAAcAAwADAAEAAAAKAAYAAwAGAAAAAAAGAAMAAwAHAAIAAAAHAAMAAwAEAAIAAAAIAAMAAwAEAAIAAAAJAAMAAwAIAAIAAAAQAAMAAwABAAIAAAAPAAMAAwABAAIAAAAOAAMAAwAAAAIAAAAOAAIAAwAAAAEAAAANAAYAAwAHAAIAAAAOAAYAAwAIAAIAAAAOAAEAAwAAAAEAAAAPAAEAAwABAAEAAAAPAAIAAwABAAEAAAAQAAIAAwABAAEAAAAQAAEAAwABAAEAAAA=")
 
-[node name="TilemapSideWallLayer" parent="Tilemap" index="3" unique_id=1769598380]
+[node name="TilemapSideWallLayer" parent="Tilemap" index="4" unique_id=1769598380]
 tile_map_data = PackedByteArray("AAABAAEAAwAHAAAAAAACAAEAAwAHAAAAAAADAAEAAwAHAAAAAAAEAAEAAwAHAAAAAAAFAAEAAwAHAAAAAAAGAAEAAwAHAAAAAAAHAAEAAwAHAAAAAAAIAAEAAwAHAAAAAAAJAAEAAwAHAAAAAAAKAAEAAwAHAAAAAAALAAEAAwAHAAAAAAAMAAEAAwAHAAAAAAANAAEAAwAHAAAAAAANAAcAAwAHAAAAAAAOAAcAAwAHAAAAAAAOAAQAAwAHAAAAAAAPAAQAAwAHAAAAAAAQAAQAAwAHAAAAAAAJAAQAAwAHAAAAAAAIAAQAAwAHAAAAAAAHAAQAAwAHAAAAAAAGAAQAAwAHAAAAAAA=")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1505231274]
@@ -115,16 +115,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="SteamMachine" parent="." unique_id=964389702 instance=ExtResource("7_bdhmt")]
-position = Vector2(217.00002, 384)
-
-[node name="ColorMachine" parent="." unique_id=749344749 instance=ExtResource("8_87uf6")]
-position = Vector2(310, 456)
-linked_minigame_scene = ExtResource("3_lfrn8")
-
-[node name="MazeMachine" parent="." unique_id=1101858923 instance=ExtResource("9_2a8rs")]
-position = Vector2(406, 289)
 
 [connection signal="button_down" from="RandomGameButton" to="." method="_on_random_game_button"]
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]

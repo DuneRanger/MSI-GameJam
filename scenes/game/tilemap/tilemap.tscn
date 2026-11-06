@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://dl2quq5xcqhx6" path="res://assets/game/tiles/floor.png" id="1_fysb2"]
 [ext_resource type="Texture2D" uid="uid://2ys0ti5ccxeb" path="res://assets/game/tiles/floor_decor.png" id="2_ahxvp"]
 [ext_resource type="Texture2D" uid="uid://bfndwk48cax5h" path="res://assets/game/tiles/tileset.png" id="3_6myvc"]
+[ext_resource type="PackedScene" uid="uid://b0wae3pnq5bxx" path="res://scenes/game/machines/machine_instances/steam_machine.tscn" id="4_a4bj7"]
+[ext_resource type="PackedScene" uid="uid://cqsyyggibtbjm" path="res://scenes/game/machines/machine_instances/color_machine.tscn" id="5_auq54"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3aos4"]
 texture = ExtResource("1_fysb2")
@@ -522,7 +524,16 @@ sources/1 = SubResource("TileSetAtlasSource_3aos4")
 sources/2 = SubResource("TileSetAtlasSource_a4bj7")
 sources/3 = SubResource("TileSetAtlasSource_auq54")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_hjhdi"]
+scenes/1/scene = ExtResource("4_a4bj7")
+scenes/2/scene = ExtResource("5_auq54")
+
+[sub_resource type="TileSet" id="TileSet_m0ah8"]
+tile_size = Vector2i(24, 24)
+sources/0 = SubResource("TileSetScenesCollectionSource_hjhdi")
+
 [node name="Tilemap" type="Node2D" unique_id=1355390431]
+y_sort_enabled = true
 scale = Vector2(3, 3)
 
 [node name="TilemapFloorLayer" type="TileMapLayer" parent="." unique_id=588901160]
@@ -532,6 +543,10 @@ tile_set = SubResource("TileSet_w1hta")
 [node name="TilemapDecorLayer" type="TileMapLayer" parent="." unique_id=1888967584]
 z_index = -4
 tile_set = SubResource("TileSet_w1hta")
+
+[node name="TileMapMachineLayer" type="TileMapLayer" parent="." unique_id=1793809352]
+z_index = -3
+tile_set = SubResource("TileSet_m0ah8")
 
 [node name="TilemapWallLayer" type="TileMapLayer" parent="." unique_id=695297817]
 z_index = -1
