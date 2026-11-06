@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://crwocavy5kif" path="res://scenes/game/machines/minigames/steam_wheel.tscn" id="2_kelw5"]
 [ext_resource type="PackedScene" uid="uid://j4s1r411n22" path="res://scenes/game/machines/minigames/color_find.tscn" id="3_lfrn8"]
 [ext_resource type="PackedScene" uid="uid://bbxi0vokk4jgr" path="res://scenes/game/tilemap/tilemap.tscn" id="5_bdhmt"]
-[ext_resource type="PackedScene" uid="uid://lvebmnvqwohx" path="res://scenes/game/machines/machine.tscn" id="6_5i0tg"]
+[ext_resource type="PackedScene" uid="uid://b0wae3pnq5bxx" path="res://scenes/game/machines/machine_instances/steam_machine.tscn" id="7_bdhmt"]
+[ext_resource type="PackedScene" uid="uid://cqsyyggibtbjm" path="res://scenes/game/machines/machine_instances/color_machine.tscn" id="8_87uf6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w1hta"]
 font_size = 48
@@ -96,14 +97,31 @@ offset_right = 150.0
 offset_bottom = 620.0
 text = "Colors"
 
-[node name="Node2D" parent="." unique_id=964389702 instance=ExtResource("6_5i0tg")]
-position = Vector2(214, 266)
-
 [node name="Label2" type="Label" parent="." unique_id=932806465]
 offset_right = 40.0
 offset_bottom = 23.0
 
-[connection signal="button_down" from="RandomGameButton" to="." method="_on_button_button_down"]
+[node name="MinigameHUD" type="CanvasLayer" parent="." unique_id=1928487069]
+offset = Vector2(128, 80)
+scale = Vector2(0.8, 0.8)
+transform = Transform2D(0.8, 0, 0, 0.8, 128, 80)
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="MinigameHUD" unique_id=1086004116]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SteamMachine" parent="." unique_id=964389702 instance=ExtResource("7_bdhmt")]
+position = Vector2(217.00002, 384)
+
+[node name="ColorMachine" parent="." unique_id=749344749 instance=ExtResource("8_87uf6")]
+position = Vector2(310, 456)
+
+[connection signal="button_down" from="RandomGameButton" to="." method="_on_random_game_button"]
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]
 [connection signal="button_down" from="WheelButton" to="." method="_on_wheel_button_button_down"]
 [connection signal="button_down" from="ColorButton" to="." method="_on_color_button_button_down"]

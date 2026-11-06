@@ -4,9 +4,15 @@ extends Node
 var chosen_minigame : Minigame = null
 var activated_machine: Machine = null
 
+var machine_dict : Dictionary[int, Machine] = {}
+
 func _ready() -> void:
+	var machine_idx = 1
 	for node in get_tree().get_nodes_in_group("machines"):
 		var machine := node as Machine
+		machine.id = machine_idx
+		machine_dict.set(machine_idx, machine)
+		machine_idx += 1
 		machine.minigame_requested.connect(_on_minigame_requested)
 
 func _process(delta: float) -> void:
@@ -25,14 +31,14 @@ func _on_random_game_button() -> void:
 	link_chosen_minigame()
 
 func _on_minigame_requested(machine: Machine, minigame_id: int) -> void:
-	chosen_minigame = minigame_scenes[minigame_id].instantiate() as Minigame
+	chosen_minigame = machine.linked_minigame_scene.instantiate() as Minigame
 	activated_machine = machine
 	link_chosen_minigame()
 
 func link_chosen_minigame() -> void:
 	chosen_minigame.minigame_completed.connect(_on_minigame_success)
 	chosen_minigame.minigame_failed.connect(_on_minigame_fail)
-	$Control.add_child(chosen_minigame)
+	$MinigameHUD.add_child(chosen_minigame)
 	chosen_minigame.start_minigame()
 
 func _on_minigame_fail() -> void:
@@ -51,7 +57,7 @@ func _on_minigame_success() -> void:
 
 func _on_minigame_leave_timer_timeout() -> void:
 	$Background.color = Color.SKY_BLUE
-	$Control.remove_child(chosen_minigame)
+	$MinigameHUD.remove_child(chosen_minigame)
 	chosen_minigame.queue_free()
 	chosen_minigame = null
 

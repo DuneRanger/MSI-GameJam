@@ -1,0 +1,86 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cs75kifgqknmd"]
+
+[ext_resource type="Texture2D" uid="uid://l3uykewna2vg" path="res://assets/game/machines/machine_1_broken.png" id="1_ddkym"]
+[ext_resource type="Texture2D" uid="uid://dxnmf2mmqh5u2" path="res://assets/game/machines/machine_1_overheated.png" id="2_e6d27"]
+[ext_resource type="Texture2D" uid="uid://h0lsdj51pcbp" path="res://assets/game/machines/machine_1_running.png" id="3_hnoqy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7crf"]
+atlas = ExtResource("1_ddkym")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvsmj"]
+atlas = ExtResource("1_ddkym")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbcl3"]
+atlas = ExtResource("1_ddkym")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc8dh"]
+atlas = ExtResource("2_e6d27")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1nkf"]
+atlas = ExtResource("2_e6d27")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq6dh"]
+atlas = ExtResource("2_e6d27")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3k1ty"]
+atlas = ExtResource("3_hnoqy")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3io4"]
+atlas = ExtResource("3_hnoqy")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54gqr"]
+atlas = ExtResource("3_hnoqy")
+region = Rect2(48, 0, 24, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7crf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvsmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbcl3")
+}],
+"loop": 1,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc8dh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1nkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq6dh")
+}],
+"loop": 1,
+"name": &"overheated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3k1ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3io4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54gqr")
+}],
+"loop": 1,
+"name": &"running",
+"speed": 5.0
+}]
