@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://df7k01fldw4a7"]
+
+[ext_resource type="Texture2D" uid="uid://bqs23ybprlwa5" path="res://assets/game/lucky/lucky_sitting.png" id="1_mci2t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh1ki"]
+atlas = ExtResource("1_mci2t")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1riix"]
+atlas = ExtResource("1_mci2t")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7why"]
+atlas = ExtResource("1_mci2t")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgxkv"]
+atlas = ExtResource("1_mci2t")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orkqd"]
+atlas = ExtResource("1_mci2t")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhjfo"]
+atlas = ExtResource("1_mci2t")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71xyo"]
+atlas = ExtResource("1_mci2t")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pfbmt"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_yh1ki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1riix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7why")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgxkv")
+}, {
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_orkqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhjfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71xyo")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfbmt"]
+size = Vector2(47, 14)
+
+[node name="LuckySitting" type="Node2D" unique_id=1024362817]
+scale = Vector2(3, 3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=781333755]
+z_index = -2
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_pfbmt")
+autoplay = "default"
+frame_progress = 0.97839874
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1728104002]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1889654690]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_pfbmt")

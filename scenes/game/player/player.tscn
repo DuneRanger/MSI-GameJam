@@ -182,6 +182,7 @@ size = Vector2(20, 4)
 
 [node name="Player" type="CharacterBody2D" unique_id=1893256284 node_paths=PackedStringArray("timer_sfx_steps", "audio_player_steps", "audio_player_sfx")]
 z_index = -2
+y_sort_enabled = true
 scale = Vector2(3, 3)
 collision_layer = 2
 script = ExtResource("1_4m2od")

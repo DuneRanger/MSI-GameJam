@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://3pqpok6jkxky"]
 
 [ext_resource type="Script" uid="uid://dvgpsgqi2s213" path="res://scripts/game/dialog_manager/dialog_manager.gd" id="1_mesoi"]
-[ext_resource type="Texture2D" uid="uid://dobi5vp3lx52v" path="res://assets/game/lucky/dialog_actions/temp_action_smiling.png" id="2_2b4pd"]
+[ext_resource type="Texture2D" uid="uid://cmbqqkq3uog38" path="res://assets/game/lucky/dialog_actions/luck_portrait_test.png" id="2_2b4pd"]
 
 [sub_resource type="Animation" id="Animation_fbuma"]
 length = 0.001
@@ -269,7 +269,7 @@ offset_bottom = 40.0
 pivot_offset = Vector2(942, 465)
 
 [node name="CharacterPortrait" type="Sprite2D" parent="Portrait" unique_id=561843359]
-position = Vector2(942, 243)
+position = Vector2(853, 327)
 scale = Vector2(3, 3)
 texture = ExtResource("2_2b4pd")
 
