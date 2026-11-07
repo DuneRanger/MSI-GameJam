@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b0wae3pnq5bxx" path="res://scenes/game/machines/machine_instances/steam_machine.tscn" id="4_a4bj7"]
 [ext_resource type="PackedScene" uid="uid://cqsyyggibtbjm" path="res://scenes/game/machines/machine_instances/color_machine.tscn" id="5_auq54"]
 [ext_resource type="PackedScene" uid="uid://b3dlssh62472i" path="res://scenes/game/machines/machine_instances/maze_machine.tscn" id="6_auq54"]
+[ext_resource type="PackedScene" uid="uid://cgwrmolbassw2" path="res://scenes/game/machines/machine_instances/fishing_machine.tscn" id="7_hjhdi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3aos4"]
 texture = ExtResource("1_fysb2")
@@ -529,6 +530,7 @@ sources/3 = SubResource("TileSetAtlasSource_auq54")
 scenes/1/scene = ExtResource("4_a4bj7")
 scenes/2/scene = ExtResource("5_auq54")
 scenes/3/scene = ExtResource("6_auq54")
+scenes/4/scene = ExtResource("7_hjhdi")
 
 [sub_resource type="TileSet" id="TileSet_m0ah8"]
 tile_size = Vector2i(24, 24)
