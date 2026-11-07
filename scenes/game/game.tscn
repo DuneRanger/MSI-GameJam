@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://bgsom0lqbhodk"]
 
 [ext_resource type="Script" uid="uid://w0dugvbnw26x" path="res://scenes/game/game.gd" id="1_0sr1o"]
-[ext_resource type="Texture2D" uid="uid://bq2gvbgqjc7o2" path="res://assets/game/player/icon.svg" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://43qca7aj17a6" path="res://scenes/game/player/player.tscn" id="2_7h61r"]
 [ext_resource type="PackedScene" uid="uid://crwocavy5kif" path="res://scenes/game/machines/minigames/steam_wheel.tscn" id="2_kelw5"]
 [ext_resource type="PackedScene" uid="uid://j4s1r411n22" path="res://scenes/game/machines/minigames/color_find.tscn" id="3_lfrn8"]
@@ -13,26 +12,6 @@ font_size = 48
 [node name="Game" type="Node" unique_id=1830910457]
 script = ExtResource("1_0sr1o")
 minigame_scenes = Array[PackedScene]([ExtResource("3_lfrn8"), ExtResource("2_kelw5")])
-
-[node name="Background" type="ColorRect" parent="." unique_id=199252895]
-visible = false
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0.5294118, 0.80784315, 0.92156863, 1)
-
-[node name="Label" type="Label" parent="." unique_id=491539224]
-visible = false
-offset_left = 174.0
-offset_top = 132.0
-offset_right = 955.0
-offset_bottom = 270.64398
-theme_override_font_sizes/font_size = 50
-text = "t he awesomest text to EVER live"
-
-[node name="godot icon" type="Sprite2D" parent="." unique_id=328246183]
-position = Vector2(1018, 445)
-scale = Vector2(2, 2)
-texture = ExtResource("1_sul5r")
 
 [node name="Tilemap" parent="." unique_id=1355390431 instance=ExtResource("5_bdhmt")]
 
@@ -70,16 +49,6 @@ offset_right = 150.0
 offset_bottom = 460.0
 text = "random"
 
-[node name="Control" type="Control" parent="." unique_id=588512325]
-layout_mode = 3
-anchor_left = 0.2
-anchor_top = 0.2
-anchor_right = 0.8
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-
 [node name="MinigameLeaveTimer" type="Timer" parent="." unique_id=1064770068]
 wait_time = 0.5
 one_shot = true
@@ -107,14 +76,6 @@ offset = Vector2(128, 80)
 scale = Vector2(0.8, 0.8)
 transform = Transform2D(0.8, 0, 0, 0.8, 128, 80)
 follow_viewport_enabled = true
-
-[node name="ColorRect" type="ColorRect" parent="MinigameHUD" unique_id=1086004116]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [connection signal="button_down" from="RandomGameButton" to="." method="_on_random_game_button"]
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]

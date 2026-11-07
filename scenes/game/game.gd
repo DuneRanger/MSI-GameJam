@@ -50,21 +50,18 @@ func link_chosen_minigame() -> void:
 	chosen_minigame.start_minigame()
 
 func _on_minigame_fail() -> void:
-	$Background.color = Color.CRIMSON
 	$MinigameLeaveTimer.start()
 	if activated_machine != null:
 		activated_machine.on_minigame_failed()
 		activated_machine = null
 
 func _on_minigame_success() -> void:
-	$Background.color = Color.WEB_GREEN
 	$MinigameLeaveTimer.start()
 	if activated_machine != null:
 		activated_machine.on_minigame_success()
 		activated_machine = null
 
 func _on_minigame_leave_timer_timeout() -> void:
-	$Background.color = Color.SKY_BLUE
 	$MinigameHUD.remove_child(chosen_minigame)
 	chosen_minigame.queue_free()
 	chosen_minigame = null
