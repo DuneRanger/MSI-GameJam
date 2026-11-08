@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://lvebmnvqwohx" path="res://scenes/game/machines/machine.tscn" id="1_wn05d"]
 [ext_resource type="PackedScene" uid="uid://c4t41snuefl6o" path="res://scenes/game/machines/minigames/epic_fishing.tscn" id="2_ukxlr"]
-[ext_resource type="SpriteFrames" uid="uid://cs80mid484no3" path="res://scenes/game/machines/machine_instances/machine_0_spriteframes.tres" id="3_2qanh"]
+[ext_resource type="SpriteFrames" uid="uid://dd8l58u2ae0i4" path="res://scenes/game/machines/machine_instances/steam_machine_spriteframes.tres" id="3_2qanh"]
 
 [node name="FishingMachine" unique_id=964389702 instance=ExtResource("1_wn05d")]
 linked_minigame_scene = ExtResource("2_ukxlr")
