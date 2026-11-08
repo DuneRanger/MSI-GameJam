@@ -9,7 +9,7 @@ var linked_minigame : Minigame
 
 # Heat parameters
 @export var spike_chance_per_second: float = 0.05
-@export var spike_multiplier: float = 1.5
+@export var spike_multiplier: float = 1.2
 @export var explosion_temperature: float = 250.0
 @export var overheat_temperature: float = 100.0
 @export var heat_rate: float = 5.0
@@ -31,6 +31,7 @@ var is_glowing: bool = false
 func _init():
 	id = next_id
 	next_id += 1
+	temperature = (randf() / 2) * overheat_temperature
 
 func _ready() -> void:
 	add_to_group("machines")
