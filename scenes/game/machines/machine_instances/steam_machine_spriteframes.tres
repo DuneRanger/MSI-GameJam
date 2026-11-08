@@ -8,10 +8,6 @@
 atlas = ExtResource("1_wo368")
 region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wvsmj"]
-atlas = ExtResource("1_wo368")
-region = Rect2(24, 0, 24, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbcl3"]
 atlas = ExtResource("1_wo368")
 region = Rect2(48, 0, 24, 24)
@@ -47,14 +43,11 @@ animations = [{
 "texture": SubResource("AtlasTexture_e7crf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wvsmj")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_tbcl3")
 }],
 "loop": 1,
 "name": &"broken",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -68,7 +61,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"overheated",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
