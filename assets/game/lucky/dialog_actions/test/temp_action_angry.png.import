@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dobi5vp3lx52v"
-path="res://.godot/imported/temp_action_smiling.png-ebc590a86dbff872d188ae4b99f4ed6b.ctex"
+uid="uid://dst41qnx5esr8"
+path="res://.godot/imported/temp_action_angry.png-2fdb035d77fd4d14b1d8d382390f4e6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/game/lucky/dialog_actions/temp_action_smiling.png"
-dest_files=["res://.godot/imported/temp_action_smiling.png-ebc590a86dbff872d188ae4b99f4ed6b.ctex"]
+source_file="res://assets/game/lucky/dialog_actions/test/temp_action_angry.png"
+dest_files=["res://.godot/imported/temp_action_angry.png-2fdb035d77fd4d14b1d8d382390f4e6f.ctex"]
 
 [params]
 
