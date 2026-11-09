@@ -68,5 +68,6 @@ offset_right = 618.31824
 offset_bottom = 333.09143
 theme_override_font_sizes/font_size = 30
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="start" to="." method="_on_start_button_down"]
 [connection signal="button_down" from="fish" to="." method="_on_fish_button_down"]

@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
 	wheel_scene.rotation = total_rotation
 	
 	if total_rotation >= total_rotation_needed:
+		play_success_sound()
 		minigame_over = true
 		minigame_completed.emit()
 
@@ -47,5 +48,6 @@ func get_current_wheel_rotation(delta : float) -> float:
 
 func _on_timer_timeout() -> void:
 	if total_rotation < total_rotation_needed:
+		play_failure_sound()
 		minigame_failed.emit()
 		minigame_over = true

@@ -50,6 +50,8 @@ func _on_fish_button_down() -> void:
 		$Label.text = "Success, bottom bar"
 	else:
 		$Label.text = "no"
+		play_failure_sound()
 		minigame_failed.emit()
 		return
 	minigame_completed.emit()
+	play_success_sound()

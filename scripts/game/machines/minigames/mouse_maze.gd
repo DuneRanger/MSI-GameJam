@@ -49,6 +49,7 @@ func wall_entered(area: Area2D) -> void:
 	if area == Gear and not was_goal_reached:
 		failed = true
 		print("body entered", started)
+		play_failure_sound()
 		minigame_failed.emit()
 
 func _physics_process(_delta: float) -> void:
@@ -72,4 +73,4 @@ func _physics_process(_delta: float) -> void:
 func _on_timer_timout() -> void:
 	if not was_goal_reached:
 		minigame_failed.emit()
-	
+		play_failure_sound()

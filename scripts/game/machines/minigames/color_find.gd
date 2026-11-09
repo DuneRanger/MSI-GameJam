@@ -36,6 +36,7 @@ func _on_different_button_press() -> void:
 
 func _on_timer_timeout() -> void:
 	if !different_button_found:
+		play_failure_sound()
 		minigame_failed.emit()
 
 func _on_other_button_press() -> void:
