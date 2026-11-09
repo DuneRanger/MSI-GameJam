@@ -4,6 +4,9 @@ class_name Player extends CharacterBody2D
 @export var audio_player_steps: AudioStreamPlayer2D
 @export var audio_player_sfx: AudioStreamPlayer2D
 
+enum player_states {IN_MINIGAME, WALKING}
+var player_state : player_states
+
 var sfx_steps_normal_time = 0.33
 var sfx_steps_overclock_time = 0.66
 var sfx_steps_sprint_time = 0.2
@@ -30,16 +33,20 @@ var nearby_machines: Array[Machine] = []
 
 func _ready() -> void:
 	add_to_group("player")
+	player_state = player_states.WALKING
 
 var glowing_machine: Machine = null
 func _process(_delta) -> void:
 	if glowing_machine != null: glowing_machine.turn_off_glow()
+	if player_state == player_states.IN_MINIGAME: return
+	
 	nearby_machines.sort_custom(_sort_by_distance_desc)
 	for machine in nearby_machines:
 		#if machine.state == Machine.State.OVERHEATED:
 			machine.turn_on_glow()
 			if Input.is_action_just_pressed("interact"):
 				machine.interact()
+				player_state = player_states.IN_MINIGAME
 			break
 func _physics_process(delta: float) -> void:
 	character_direction.x = Input.get_axis("move_left", "move_right")
