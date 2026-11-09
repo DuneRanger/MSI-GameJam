@@ -20,7 +20,7 @@ func add_machine(new_machine : Machine) -> void:
 
 func _ready() -> void:
 	machine_idx = 1
-	var machine_layer : TileMapLayer = $Tilemap/TileMapMachineLayer
+	var machine_layer : TileMapLayer = $YSortNode/Tilemap/TileMapMachineLayer
 	machine_layer.child_entered_tree.connect(add_machine)
 		
 func _process(_delta: float) -> void:
@@ -65,7 +65,7 @@ func _on_minigame_leave_timer_timeout() -> void:
 	$MinigameHUD.remove_child(chosen_minigame)
 	chosen_minigame.queue_free()
 	chosen_minigame = null
-	$Player.player_state = Player.player_states.WALKING
+	$YSortNode/Player.player_state = Player.player_states.WALKING
 
 func _on_wheel_button_button_down() -> void:
 	if chosen_minigame != null:

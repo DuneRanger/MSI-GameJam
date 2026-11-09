@@ -21,7 +21,7 @@ func add_machine(new_machine : Machine) -> void:
 
 func _ready() -> void:
 	machine_idx = 1
-	var machine_layer : TileMapLayer = $Tilemap/TileMapMachineLayer
+	var machine_layer : TileMapLayer = $YSortNode/Tilemap/TileMapMachineLayer
 	machine_layer.child_entered_tree.connect(add_machine)
 	start_level()
 
