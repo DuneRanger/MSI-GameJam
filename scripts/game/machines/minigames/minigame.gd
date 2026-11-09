@@ -9,8 +9,8 @@ signal minigame_failed
 @abstract func start_minigame() -> void
 
 func _process(_delta: float) -> void:
-	$ProgressBar.value = $Timer.time_left
-	$ProgressBar.max_value = $Timer.wait_time
+	$TextureProgressBar.value = $Timer.time_left
+	$TextureProgressBar.max_value = $Timer.wait_time
 
 func play_failure_sound() -> void:
 	$AudioStreamPlayer.stream = failure_sound
