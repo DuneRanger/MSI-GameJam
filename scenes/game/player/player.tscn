@@ -178,10 +178,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1hta"]
-size = Vector2(16, 4)
+size = Vector2(20, 4)
 
 [node name="Player" type="CharacterBody2D" unique_id=1893256284 node_paths=PackedStringArray("timer_sfx_steps", "audio_player_steps", "audio_player_sfx")]
 z_index = -2
+y_sort_enabled = true
 scale = Vector2(3, 3)
 collision_layer = 2
 script = ExtResource("1_4m2od")
@@ -196,7 +197,7 @@ texture = ExtResource("2_prej5")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=769901604]
 sprite_frames = SubResource("SpriteFrames_37tqn")
-animation = &"overclocked"
+animation = &"move"
 autoplay = "idle"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1157020505]

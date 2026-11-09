@@ -69,11 +69,11 @@ func _physics_process(delta: float) -> void:
 				#the start of the sprint takes away more stamina
 				#this is so the player wont just press shift repeatedly to try and outsmart the stamina system
 				if is_sprinting == false:
-					change_stamina("-", 10)
+					change_stamina(-10 * delta)
 				
 				is_sprinting = true
 				animation_name = "run"
-				change_stamina("-", 1)
+				change_stamina(-1 * delta)
 				movement_speed = movement_speed_sprint
 				if stamina <= 0:
 					overclock()
@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_sprinting == false:
 		if stamina != max_stamina:
-			change_stamina("+", 0.5)
+			change_stamina(0.5 * delta)
 	
 	#nastavení animace a velocity
 	if character_direction:
@@ -124,18 +124,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func change_stamina(sign: String , amount: float):
-	match sign:
-		"+":
-			if stamina + amount > max_stamina:
-				stamina = 100
-			else:
-				stamina += amount
-		"-":
-			if stamina - amount < 0:
-				stamina = 0
-			else:
-				stamina -= amount
+func change_stamina(amount: float):
+	stamina = clamp(stamina + amount * 60, 0, max_stamina)
 	emit_signal("signal_player_stamina_change", stamina)
 
 func overclock() -> void:
