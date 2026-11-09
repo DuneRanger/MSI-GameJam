@@ -12,7 +12,7 @@ var global_top_bound : float
 var global_bottom_bound : float
 
 var full_distance : float 
-const speed_per_pixel : float = 300
+const speed_per_pixel : float = 800
 
 func _ready() -> void:	
 	full_distance = full_bar.size.y - rod.size.y
@@ -29,6 +29,7 @@ func _ready() -> void:
 
 func start_minigame() -> void:
 	rod_tween.play()
+	$Timer.start()
 
 func link_remaining_tween() -> void:
 	rod_tween = create_tween()
@@ -36,7 +37,6 @@ func link_remaining_tween() -> void:
 	rod_tween.chain().tween_property(rod, "position", Vector2(0,0), full_distance / speed_per_pixel)
 	rod_tween.set_ease(Tween.EASE_IN_OUT)
 	rod_tween.set_loops()
-	
 
 func _on_start_button_down() -> void:
 	start_minigame()
@@ -55,3 +55,8 @@ func _on_fish_button_down() -> void:
 		return
 	minigame_completed.emit()
 	play_success_sound()
+
+
+func _on_timer_timeout() -> void:
+	play_failure_sound()
+	minigame_failed.emit()
