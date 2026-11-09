@@ -191,6 +191,7 @@ audio_player_steps = NodePath("AudioPlayer-Steps")
 audio_player_sfx = NodePath("AudioPlayer-SFX")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=93510276]
+z_index = -3
 position = Vector2(0, 11.333333)
 scale = Vector2(0.05966278, 0.028534392)
 texture = ExtResource("2_prej5")

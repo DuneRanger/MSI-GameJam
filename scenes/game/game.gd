@@ -24,7 +24,7 @@ func _ready() -> void:
 	machine_layer.child_entered_tree.connect(add_machine)
 		
 func _process(_delta: float) -> void:
-	$LabelStamina.text = "Stamina : " + str($Player.stamina)
+	$LabelStamina.text = "Stamina : " + str($YSortNode/Player.stamina)
 
 func choose_minigame() -> Minigame:
 	var chosen_scene = minigame_scenes.pick_random()

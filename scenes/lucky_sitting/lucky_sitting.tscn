@@ -59,9 +59,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfbmt"]
-size = Vector2(47, 14)
-
 [node name="LuckySitting" type="Node2D" unique_id=1024362817]
 scale = Vector2(3, 3)
 
@@ -74,6 +71,5 @@ frame_progress = 0.97839874
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1728104002]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1889654690]
-position = Vector2(-0.5, 2)
-shape = SubResource("RectangleShape2D_pfbmt")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=502548481]
+polygon = PackedVector2Array(-2.6666667, 16, -18.666668, 5.3333335, -18.666668, 0, -13.333334, -5.3333335, 18.666668, 0, 18.666668, 10.666667)
