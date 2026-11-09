@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l3uykewna2vg"
-path="res://.godot/imported/machine_1_broken.png-97d70dfdb7582aacc54c9e804f23f5de.ctex"
+uid="uid://h0lsdj51pcbp"
+path="res://.godot/imported/steam_machine_running.png-66b86cd456a43cdf3d1873c6f872c198.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/game/machines/machine_1_broken.png"
-dest_files=["res://.godot/imported/machine_1_broken.png-97d70dfdb7582aacc54c9e804f23f5de.ctex"]
+source_file="res://assets/game/machines/steam_machine_running.png"
+dest_files=["res://.godot/imported/steam_machine_running.png-66b86cd456a43cdf3d1873c6f872c198.ctex"]
 
 [params]
 
