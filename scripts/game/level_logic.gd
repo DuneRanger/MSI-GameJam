@@ -1,6 +1,7 @@
 extends Node
 
 @export var minigame_scenes : Array[PackedScene]
+@export var difficulty = 0
 var chosen_minigame : Minigame = null
 var activated_machine: Machine = null
 
