@@ -1,146 +1,103 @@
 [gd_scene format=3 uid="uid://byr0h5hfhqc0w"]
 
-[ext_resource type="Script" uid="uid://dsww3dg7wcjop" path="res://scripts/game/machines/minigames/mouse_maze.gd" id="1_3fvyu"]
+[ext_resource type="PackedScene" uid="uid://b0xkp06e6vrlk" path="res://scenes/game/machines/minigames/minigame.tscn" id="1_3fvyu"]
 [ext_resource type="Texture2D" uid="uid://65oy1frjmm3k" path="res://assets/game/minigames/finish_line.png" id="1_37sjx"]
+[ext_resource type="Script" uid="uid://dsww3dg7wcjop" path="res://scripts/game/machines/minigames/mouse_maze.gd" id="2_jhvot"]
 [ext_resource type="Texture2D" uid="uid://c0jenskabf5yc" path="res://assets/game/minigames/gear.png" id="3_jhvot"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnn0b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhvot"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_om7lw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rwby"]
 size = Vector2(14.5, 100)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gedfp"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7g4ot"]
 radius = 34.0
 
-[node name="Minigame2" type="Control" unique_id=1172947997]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_3fvyu")
+[node name="MouseMaze" unique_id=1172947997 instance=ExtResource("1_3fvyu")]
+script = ExtResource("2_jhvot")
 
-[node name="BackgroundBorder" type="ColorRect" parent="." unique_id=1137607859]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.2, 0.2, 0.2, 1)
+[node name="Walls" type="CanvasGroup" parent="." index="3" unique_id=734779772]
 
-[node name="Background" type="ColorRect" parent="BackgroundBorder" unique_id=116716831]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.35, 0.35, 0.35, 1)
+[node name="Area1" type="Area2D" parent="Walls" index="0" unique_id=623991360 groups=["maze_wall"]]
 
-[node name="Timer" type="Timer" parent="." unique_id=323906846]
-wait_time = 3.0
-one_shot = true
-
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1709221549]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.12
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_bottom = -20.0
-grow_vertical = 2
-value = 30.0
-fill_mode = 3
-show_percentage = false
-
-[node name="Walls" type="CanvasGroup" parent="." unique_id=562527072]
-
-[node name="Area1" type="Area2D" parent="Walls" unique_id=148361584 groups=["maze_wall"]]
-
-[node name="ColorRect" type="ColorRect" parent="Walls/Area1" unique_id=234146012]
-offset_left = 154.0
+[node name="ColorRect" type="ColorRect" parent="Walls/Area1" index="0" unique_id=1752888716]
+offset_left = 22.0
 offset_top = 20.0
 offset_right = 794.0
 offset_bottom = 390.0
 color = Color(0.10524044, 0.10524041, 0.10524035, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area1" unique_id=715481041]
-shape = SubResource("RectangleShape2D_vnn0b")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area1" index="1" unique_id=456241783]
+shape = SubResource("RectangleShape2D_jhvot")
 
-[node name="Area2" type="Area2D" parent="Walls" unique_id=1989689068 groups=["maze_wall"]]
+[node name="Area2" type="Area2D" parent="Walls" index="1" unique_id=933258867 groups=["maze_wall"]]
 
-[node name="ColorRect" type="ColorRect" parent="Walls/Area2" unique_id=523636594]
-offset_left = 155.0
+[node name="ColorRect" type="ColorRect" parent="Walls/Area2" index="0" unique_id=913403591]
+offset_left = 21.0
 offset_top = 492.0
 offset_right = 1260.0
 offset_bottom = 699.0
 color = Color(0.10524044, 0.10524041, 0.10524035, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area2" unique_id=806494998]
-shape = SubResource("RectangleShape2D_vnn0b")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area2" index="1" unique_id=234128755]
+shape = SubResource("RectangleShape2D_jhvot")
 
-[node name="Area3" type="Area2D" parent="Walls" unique_id=444794676 groups=["maze_wall"]]
+[node name="Area3" type="Area2D" parent="Walls" index="2" unique_id=1528158863 groups=["maze_wall"]]
 
-[node name="ColorRect" type="ColorRect" parent="Walls/Area3" unique_id=1712240576]
+[node name="ColorRect" type="ColorRect" parent="Walls/Area3" index="0" unique_id=1191450475]
 offset_left = 794.0
 offset_top = 20.0
 offset_right = 1260.0
 offset_bottom = 109.0
 color = Color(0.10524044, 0.10524041, 0.10524035, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area3" unique_id=342641981]
-shape = SubResource("RectangleShape2D_vnn0b")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area3" index="1" unique_id=1772655770]
+shape = SubResource("RectangleShape2D_jhvot")
 
-[node name="Area4" type="Area2D" parent="Walls" unique_id=959542786 groups=["maze_wall"]]
+[node name="Area4" type="Area2D" parent="Walls" index="3" unique_id=819736281 groups=["maze_wall"]]
 
-[node name="ColorRect" type="ColorRect" parent="Walls/Area4" unique_id=956758832]
+[node name="ColorRect" type="ColorRect" parent="Walls/Area4" index="0" unique_id=820980623]
 offset_left = 902.0
 offset_top = 209.0
 offset_right = 1260.0
 offset_bottom = 492.0
 color = Color(0.10524044, 0.10524041, 0.10524035, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area4" unique_id=1323589231]
-shape = SubResource("RectangleShape2D_vnn0b")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area4" index="1" unique_id=673025482]
+shape = SubResource("RectangleShape2D_jhvot")
 
-[node name="Area5" type="Area2D" parent="Walls" unique_id=736351494 groups=["maze_wall"]]
+[node name="Area5" type="Area2D" parent="Walls" index="4" unique_id=576243015 groups=["maze_wall"]]
 
-[node name="ColorRect" type="ColorRect" parent="Walls/Area5" unique_id=680521318]
-visible = false
+[node name="ColorRect" type="ColorRect" parent="Walls/Area5" index="0" unique_id=194699412]
 offset_left = 21.0
 offset_top = 21.0
-offset_right = 155.0
+offset_right = 102.0
 offset_bottom = 696.0
 color = Color(0.10524044, 0.10524041, 0.10524035, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area5" unique_id=1280187489]
-shape = SubResource("RectangleShape2D_vnn0b")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area5" index="1" unique_id=953426694]
+shape = SubResource("RectangleShape2D_jhvot")
 
-[node name="Goal" type="Area2D" parent="." unique_id=428161878]
+[node name="Goal" type="Area2D" parent="." index="4" unique_id=1334350612]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal" unique_id=1726884232]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal" index="0" unique_id=269506771]
 position = Vector2(1209, 159)
-shape = SubResource("RectangleShape2D_om7lw")
+shape = SubResource("RectangleShape2D_3rwby")
 
-[node name="Sprite2D" type="Sprite2D" parent="Goal" unique_id=509848384]
+[node name="Sprite2D" type="Sprite2D" parent="Goal" index="1" unique_id=872890277]
 position = Vector2(1180.55, 159)
 scale = Vector2(0.5, 0.49999997)
 texture = ExtResource("1_37sjx")
 
-[node name="Gear" type="Area2D" parent="." unique_id=1012561344]
+[node name="Gear" type="Area2D" parent="." index="5" unique_id=639399436]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gear" unique_id=1731616443]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gear" index="0" unique_id=1463518949]
 position = Vector2(210, 438)
-shape = SubResource("CircleShape2D_gedfp")
+shape = SubResource("CircleShape2D_7g4ot")
 
-[node name="Sprite2D" type="Sprite2D" parent="Gear" unique_id=472181078]
+[node name="Sprite2D" type="Sprite2D" parent="Gear" index="1" unique_id=433695281]
 position = Vector2(210, 438)
 scale = Vector2(2, 2)
 texture = ExtResource("3_jhvot")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timout"]
