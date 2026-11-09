@@ -46,3 +46,7 @@ grow_vertical = 2
 value = 30.0
 fill_mode = 3
 show_percentage = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=531980497]
+volume_db = -10.0
+bus = &"SFX"
