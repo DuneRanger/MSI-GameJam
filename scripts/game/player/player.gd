@@ -48,6 +48,7 @@ func _process(_delta) -> void:
 				machine.interact()
 				player_state = player_states.IN_MINIGAME
 			break
+
 func _physics_process(delta: float) -> void:
 	character_direction.x = Input.get_axis("move_left", "move_right")
 	character_direction.y = Input.get_axis("move_up", "move_down")

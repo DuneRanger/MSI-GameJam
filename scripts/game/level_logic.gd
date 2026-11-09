@@ -62,6 +62,7 @@ func _on_minigame_leave_timer_timeout() -> void:
 	$MinigameHUD.remove_child(chosen_minigame)
 	chosen_minigame.queue_free()
 	chosen_minigame = null
+	$Player.player_state = Player.player_states.WALKING
 
 func _on_wheel_button_button_down() -> void:
 	if chosen_minigame != null:
