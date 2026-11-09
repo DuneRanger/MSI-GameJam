@@ -1,8 +1,8 @@
 extends Minigame
 
 @onready var Goal: Area2D = $Goal
-@onready var Gear: Area2D = $Gear
-@onready var gear_coll = $Gear/CollisionShape2D
+@onready var Battery: Area2D = $Battery
+@onready var gear_coll = $Battery/CollisionShape2D
 var walls: Array[Area2D] = []
 
 var started: bool = false
@@ -39,14 +39,14 @@ func start_minigame() -> void:
 
 func goal_reached(area: Area2D) -> void:
 	if not started: return
-	if area == Gear and not failed:
+	if area == Battery and not failed:
 		was_goal_reached = true
 		print("goal reached", started)
 		minigame_completed.emit()
 	
 func wall_entered(area: Area2D) -> void:
 	if not started: return
-	if area == Gear and not was_goal_reached:
+	if area == Battery and not was_goal_reached:
 		failed = true
 		print("body entered", started)
 		play_failure_sound()
@@ -60,14 +60,16 @@ func _physics_process(_delta: float) -> void:
 		is_gear_selected = false
 	
 	if Input.is_action_just_pressed("left_click"):
-		var mouse_to_centre_dist: float = mouse_global.distance_to(gear_coll.global_position)
-		is_gear_selected = mouse_to_centre_dist < gear_coll.shape.radius
+		var shape: RectangleShape2D = gear_coll.shape
+		var x_dist = Vector2(mouse_global.x, 0).distance_to(Vector2(gear_coll.global_position.x, 0))
+		var y_dist = Vector2(0, mouse_global.y).distance_to(Vector2(0, gear_coll.global_position.y))
+		is_gear_selected = x_dist < shape.size.x and y_dist < shape.size.y
 	elif not is_gear_selected:
 		last_mouse_pos = mouse_global
 	if not is_gear_selected: return
 	
 	var mouse_diff = mouse_global - last_mouse_pos
-	Gear.translate(mouse_diff)
+	Battery.translate(mouse_diff)
 	last_mouse_pos = mouse_global
 
 func _on_timer_timout() -> void:

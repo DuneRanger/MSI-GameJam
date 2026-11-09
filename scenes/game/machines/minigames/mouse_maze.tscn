@@ -3,15 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://b0xkp06e6vrlk" path="res://scenes/game/machines/minigames/minigame.tscn" id="1_3fvyu"]
 [ext_resource type="Texture2D" uid="uid://65oy1frjmm3k" path="res://assets/game/minigames/finish_line.png" id="1_37sjx"]
 [ext_resource type="Script" uid="uid://dsww3dg7wcjop" path="res://scripts/game/machines/minigames/mouse_maze.gd" id="2_jhvot"]
-[ext_resource type="Texture2D" uid="uid://c0jenskabf5yc" path="res://assets/game/minigames/gear.png" id="3_jhvot"]
+[ext_resource type="Texture2D" uid="uid://b81cbiwypr6oc" path="res://assets/game/minigames/battery.png" id="4_jhvot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhvot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rwby"]
 size = Vector2(14.5, 100)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7g4ot"]
-radius = 34.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g4ot"]
+size = Vector2(42, 61)
 
 [node name="MouseMaze" unique_id=1172947997 instance=ExtResource("1_3fvyu")]
 script = ExtResource("2_jhvot")
@@ -89,15 +89,15 @@ position = Vector2(1180.55, 159)
 scale = Vector2(0.5, 0.49999997)
 texture = ExtResource("1_37sjx")
 
-[node name="Gear" type="Area2D" parent="." index="5" unique_id=639399436]
+[node name="Battery" type="Area2D" parent="." index="5" unique_id=639399436]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gear" index="0" unique_id=1463518949]
-position = Vector2(210, 438)
-shape = SubResource("CircleShape2D_7g4ot")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battery" index="0" unique_id=1463518949]
+position = Vector2(210, 438.5)
+shape = SubResource("RectangleShape2D_7g4ot")
 
-[node name="Sprite2D" type="Sprite2D" parent="Gear" index="1" unique_id=433695281]
+[node name="Sprite2D" type="Sprite2D" parent="Battery" index="1" unique_id=433695281]
 position = Vector2(210, 438)
 scale = Vector2(2, 2)
-texture = ExtResource("3_jhvot")
+texture = ExtResource("4_jhvot")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timout"]
