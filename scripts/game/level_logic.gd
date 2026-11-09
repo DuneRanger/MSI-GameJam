@@ -22,18 +22,14 @@ func _ready() -> void:
 	machine_idx = 1
 	var machine_layer : TileMapLayer = $Tilemap/TileMapMachineLayer
 	machine_layer.child_entered_tree.connect(add_machine)
+	start_level()
 
-func choose_minigame() -> Minigame:
-	var chosen_scene = minigame_scenes.pick_random()
-	var out = chosen_scene.instantiate()
-	return out as Minigame
+func start_level() -> void:
+	$LevelTimer.start()
 
-func _on_random_game_button() -> void:
-	if chosen_minigame != null:
-		print("Game is not null")
-		return
-	chosen_minigame = choose_minigame()
-	link_chosen_minigame()
+func _process(_delta: float) -> void:
+	$LevelTimerProgressBar.value = $LevelTimer.wait_time - $LevelTimer.time_left
+	$LevelTimerProgressBar.max_value = $LevelTimer.wait_time
 
 func _on_minigame_requested(machine: Machine, minigame_id: int) -> void:
 	chosen_minigame = machine.linked_minigame_scene.instantiate() as Minigame
@@ -64,16 +60,7 @@ func _on_minigame_leave_timer_timeout() -> void:
 	chosen_minigame = null
 	$Player.player_state = Player.player_states.WALKING
 
-func _on_wheel_button_button_down() -> void:
-	if chosen_minigame != null:
-		print("Game is not null")
-		return
-	chosen_minigame = minigame_scenes[1].instantiate()
-	link_chosen_minigame()
-
-func _on_color_button_button_down() -> void:
-	if chosen_minigame != null:
-		print("Game is not null")
-		return
-	chosen_minigame = minigame_scenes[0].instantiate()
-	link_chosen_minigame()
+func _on_timer_timeout() -> void:
+	# trigger loss and Lucky dialogue
+	print("Level timer ran out!!")
+	pass
