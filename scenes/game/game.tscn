@@ -33,11 +33,6 @@ offset_bottom = 270.64398
 theme_override_font_sizes/font_size = 50
 text = "t he awesomest text to EVER live"
 
-[node name="godot icon" type="Sprite2D" parent="." unique_id=328246183]
-position = Vector2(1018, 445)
-scale = Vector2(2, 2)
-texture = ExtResource("1_sul5r")
-
 [node name="Tilemap" parent="." unique_id=1355390431 instance=ExtResource("5_bdhmt")]
 
 [node name="TilemapFloorLayer" parent="Tilemap" index="0" unique_id=588901160]
