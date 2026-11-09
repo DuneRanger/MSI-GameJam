@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://3pqpok6jkxky" path="res://scenes/dialog_manager/dialog_manager.tscn" id="4_2a8rs"]
 [ext_resource type="PackedScene" uid="uid://bbxi0vokk4jgr" path="res://scenes/game/tilemap/tilemap.tscn" id="5_bdhmt"]
 [ext_resource type="PackedScene" uid="uid://df7k01fldw4a7" path="res://scenes/lucky_sitting/lucky_sitting.tscn" id="7_87uf6"]
+[ext_resource type="AudioStream" uid="uid://bfa1tc6i3lrm3" path="res://assets/sfx/ambient/ambience.ogg" id="8_87uf6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w1hta"]
 font_size = 48
@@ -109,6 +110,11 @@ offset = Vector2(128, 80)
 scale = Vector2(0.8, 0.8)
 transform = Transform2D(0.8, 0, 0, 0.8, 128, 80)
 follow_viewport_enabled = true
+
+[node name="AmbiencePlayer" type="AudioStreamPlayer2D" parent="." unique_id=912784979]
+stream = ExtResource("8_87uf6")
+autoplay = true
+bus = &"Ambience"
 
 [connection signal="button_down" from="RandomGameButton" to="." method="_on_random_game_button"]
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]

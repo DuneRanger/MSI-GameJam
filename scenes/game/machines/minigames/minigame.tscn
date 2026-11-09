@@ -1,7 +1,12 @@
 [gd_scene format=3 uid="uid://b0xkp06e6vrlk"]
 
+[ext_resource type="Texture2D" uid="uid://6x01m3tetqva" path="res://assets/game/minigames/UI_details/UI_detail2.png" id="1_1w73n"]
 [ext_resource type="Texture2D" uid="uid://l50xootn3mfo" path="res://assets/game/minigames/clock_empty.png" id="1_g7a4n"]
+[ext_resource type="Texture2D" uid="uid://kx7o57gsv4lw" path="res://assets/game/minigames/UI_details/UI_detail4.png" id="2_gjtjh"]
 [ext_resource type="Texture2D" uid="uid://b2bsdm0w5pqnd" path="res://assets/game/minigames/clock_full.png" id="2_i7u5t"]
+[ext_resource type="Texture2D" uid="uid://ptji4i1iq4ft" path="res://assets/game/minigames/UI_details/UI_detail6.png" id="3_g4o3h"]
+[ext_resource type="Texture2D" uid="uid://bhchunn1hrkjs" path="res://assets/game/minigames/UI_details/UI_detail5.png" id="4_xhop3"]
+[ext_resource type="Texture2D" uid="uid://cwiuxe3qmxffy" path="res://assets/game/minigames/UI_details/UI_detail3.png" id="5_dxcp6"]
 
 [node name="Minigame" type="Control" unique_id=1172947997]
 layout_mode = 3
@@ -32,6 +37,69 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.35, 0.35, 0.35, 1)
+
+[node name="UI_details" type="Node2D" parent="BackgroundBorder" unique_id=1556363393]
+modulate = Color(1, 1, 1, 0.19607843)
+
+[node name="DetailSprite12" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=1563831008]
+position = Vector2(504, 624)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("2_gjtjh")
+
+[node name="DetailSprite11" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=1696605248]
+position = Vector2(800, 352)
+rotation = 3.1415927
+scale = Vector2(4, 4)
+texture = ExtResource("4_xhop3")
+
+[node name="DetailSprite10" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=166486330]
+position = Vector2(760, 312)
+rotation = 4.712389
+scale = Vector2(4, 4)
+texture = ExtResource("3_g4o3h")
+
+[node name="DetailSprite9" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=723290464]
+position = Vector2(128, 240)
+rotation = 4.712389
+scale = Vector2(4, 4)
+texture = ExtResource("4_xhop3")
+
+[node name="DetailSprite8" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=1616626357]
+position = Vector2(64, 64)
+texture = ExtResource("1_1w73n")
+
+[node name="DetailSprite7" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=1379817664]
+position = Vector2(64, 656)
+texture = ExtResource("1_1w73n")
+
+[node name="DetailSprite6" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=1099331324]
+position = Vector2(1216, 656)
+texture = ExtResource("1_1w73n")
+
+[node name="DetailSprite5" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=1091525134]
+position = Vector2(1216, 64)
+texture = ExtResource("1_1w73n")
+
+[node name="DetailSprite4" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=1395077628]
+position = Vector2(1152, 520)
+scale = Vector2(4, 4)
+texture = ExtResource("2_gjtjh")
+
+[node name="DetailSprite3" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=1651288865]
+position = Vector2(1032, 152)
+scale = Vector2(4, 4)
+texture = ExtResource("3_g4o3h")
+
+[node name="DetailSprite2" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=711875443]
+position = Vector2(176, 520)
+scale = Vector2(4, 4)
+texture = ExtResource("4_xhop3")
+
+[node name="DetailSprite" type="Sprite2D" parent="BackgroundBorder/UI_details" unique_id=1414809612]
+position = Vector2(384, 128)
+scale = Vector2(4, 4)
+texture = ExtResource("5_dxcp6")
 
 [node name="Timer" type="Timer" parent="." unique_id=323906846]
 wait_time = 3.0

@@ -72,6 +72,10 @@ func _physics_process(delta: float) -> void:
 				if is_sprinting == false:
 					change_stamina(-10 * delta)
 				
+				if is_sprinting == false:
+					audio_player_sfx.stream = load("res://assets/sfx/player/player_dash.mp3")
+					audio_player_sfx.play()
+				
 				is_sprinting = true
 				animation_name = "run"
 				change_stamina(-1 * delta)
