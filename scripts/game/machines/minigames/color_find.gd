@@ -4,8 +4,7 @@ var button_count : int
 @export var button_scene : PackedScene
 var button_array : Array[Button] = []
 
-
-@export var wrong_button_theme : StyleBoxFlat
+@export var different_button_color : Color
 
 var different_button : Button
 var different_button_found : bool
@@ -25,7 +24,10 @@ func start_minigame() -> void:
 	different_button_found = false
 	$Timer.start()
 	different_button = button_array.pick_random()
-	different_button.add_theme_stylebox_override("normal", wrong_button_theme)
+	var new_style_box : StyleBoxFlat = StyleBoxFlat.new()
+	new_style_box.copy_from_resource(different_button.get_theme_stylebox("normal") as StyleBoxFlat)
+	new_style_box.bg_color = different_button_color
+	different_button.add_theme_stylebox_override("normal", new_style_box)
 	different_button.button_down.disconnect(_on_other_button_press)
 	different_button.button_down.connect(_on_different_button_press)
 

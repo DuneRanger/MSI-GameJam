@@ -4,19 +4,10 @@
 [ext_resource type="Script" uid="uid://cpk46bvsywjea" path="res://scripts/game/machines/minigames/color_find.gd" id="2_xu43s"]
 [ext_resource type="PackedScene" uid="uid://cajpb17ecv1w7" path="res://scenes/game/machines/minigames/color_find_button.tscn" id="3_i6kbu"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kl53k"]
-bg_color = Color(1, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-corner_detail = 12
-
 [node name="ColorFind" unique_id=1172947997 instance=ExtResource("1_ts2xa")]
 script = ExtResource("2_xu43s")
 button_scene = ExtResource("3_i6kbu")
-wrong_button_theme = SubResource("StyleBoxFlat_kl53k")
+different_button_color = Color(0.8509804, 0.627451, 0.4, 1)
 
 [node name="GridContainer" type="GridContainer" parent="." index="3" unique_id=1635588790]
 layout_mode = 1
