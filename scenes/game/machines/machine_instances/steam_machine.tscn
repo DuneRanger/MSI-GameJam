@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://crwocavy5kif" path="res://scenes/game/machines/minigames/steam_wheel.tscn" id="2_55tnp"]
 [ext_resource type="SpriteFrames" uid="uid://dd8l58u2ae0i4" path="res://scenes/game/machines/machine_instances/steam_machine_spriteframes.tres" id="3_55tnp"]
 
-[node name="SteamMachine" unique_id=964389702 instance=ExtResource("1_1oaxp")]
+[node name="SteamMachine" unique_id=964389702 node_paths=PackedStringArray("machine_sprite") instance=ExtResource("1_1oaxp")]
+machine_sprite = NodePath("MachineAnimatedSprite")
 linked_minigame_scene = ExtResource("2_55tnp")
 
-[node name="AnimatedSprite2D" parent="." index="1" unique_id=970174829]
+[node name="MachineAnimatedSprite" parent="." index="1" unique_id=970174829]
 sprite_frames = ExtResource("3_55tnp")
 animation = &"running"

@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://lvebmnvqwohx"]
 
 [ext_resource type="Script" uid="uid://dujumfyffwvi7" path="res://scripts/game/machines/machine.gd" id="1_gbrlg"]
+[ext_resource type="Texture2D" uid="uid://cfok4it0i7v7w" path="res://assets/game/machines/debris and explosion/machine_debris1.png" id="2_s4dqq"]
+[ext_resource type="Texture2D" uid="uid://dtscrxyemf38i" path="res://assets/game/machines/debris and explosion/machine_debris2.png" id="3_k452h"]
+[ext_resource type="Texture2D" uid="uid://c18d478vqw3oc" path="res://assets/game/machines/debris and explosion/machine_debris3.png" id="4_xv1ll"]
+[ext_resource type="Texture2D" uid="uid://c0sewdlhbi76h" path="res://assets/game/machines/debris and explosion/machine_explosion.png" id="5_41onj"]
+[ext_resource type="AudioStream" uid="uid://beby8cj0ice0m" path="res://assets/sfx/machines/machine_explosion.mp3" id="6_k452h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yeiif"]
 size = Vector2(48, 48)
@@ -10,10 +15,87 @@ size = Vector2(48, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_om7lw"]
 size = Vector2(24, 18)
 
-[node name="Machine" type="Node2D" unique_id=964389702 node_paths=PackedStringArray("sprite") groups=["machines"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dih23"]
+atlas = ExtResource("2_s4dqq")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv7rd"]
+atlas = ExtResource("3_k452h")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gere"]
+atlas = ExtResource("4_xv1ll")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj0xf"]
+atlas = ExtResource("5_41onj")
+region = Rect2(0, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vswqi"]
+atlas = ExtResource("5_41onj")
+region = Rect2(28, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ox28l"]
+atlas = ExtResource("5_41onj")
+region = Rect2(56, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1q21"]
+atlas = ExtResource("5_41onj")
+region = Rect2(84, 0, 28, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yeiif"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dih23")
+}],
+"loop": 1,
+"name": &"debris1",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mv7rd")
+}],
+"loop": 1,
+"name": &"debris2",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gere")
+}],
+"loop": 1,
+"name": &"debris3",
+"speed": 1.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj0xf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vswqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ox28l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1q21")
+}],
+"loop": 0,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[node name="Machine" type="Node2D" unique_id=964389702 node_paths=PackedStringArray("machine_sprite") groups=["machines"]]
 z_index = 1
 script = ExtResource("1_gbrlg")
-sprite = NodePath("AnimatedSprite2D")
+machine_sprite = NodePath("MachineAnimatedSprite")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=1954596973]
 visibility_layer = 2
@@ -23,7 +105,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1147079626]
 shape = SubResource("RectangleShape2D_yeiif")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=970174829]
+[node name="MachineAnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=970174829]
 sprite_frames = SubResource("SpriteFrames_2cqrr")
 
 [node name="CollisionArea" type="StaticBody2D" parent="." unique_id=1406013370]
@@ -32,6 +114,14 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=135855517]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_om7lw")
+
+[node name="ExplosionAnimationSprite" type="AnimatedSprite2D" parent="." unique_id=1644810903]
+sprite_frames = SubResource("SpriteFrames_yeiif")
+animation = &"empty"
+autoplay = "empty"
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="." unique_id=1629860069]
+stream = ExtResource("6_k452h")
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

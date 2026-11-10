@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://j4s1r411n22" path="res://scenes/game/machines/minigames/color_find.tscn" id="2_equko"]
 [ext_resource type="SpriteFrames" uid="uid://cv1q54j0xrlmh" path="res://scenes/game/machines/machine_instances/color_machine_spriteframes.tres" id="3_tabe7"]
 
-[node name="ColorMachine" unique_id=964389702 instance=ExtResource("1_qx5l1")]
+[node name="ColorMachine" unique_id=964389702 node_paths=PackedStringArray("machine_sprite") instance=ExtResource("1_qx5l1")]
+machine_sprite = NodePath("MachineAnimatedSprite")
 linked_minigame_scene = ExtResource("2_equko")
 
-[node name="AnimatedSprite2D" parent="." index="1" unique_id=970174829]
+[node name="MachineAnimatedSprite" parent="." index="1" unique_id=970174829]
 sprite_frames = ExtResource("3_tabe7")
 animation = &"broken"

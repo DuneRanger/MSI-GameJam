@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://c4t41snuefl6o" path="res://scenes/game/machines/minigames/epic_fishing.tscn" id="2_ukxlr"]
 [ext_resource type="SpriteFrames" uid="uid://b7xt6sjso2uge" path="res://scenes/game/machines/machine_instances/fishing_machine_spriteframes.tres" id="3_2qanh"]
 
-[node name="FishingMachine" unique_id=964389702 instance=ExtResource("1_wn05d")]
+[node name="FishingMachine" unique_id=964389702 node_paths=PackedStringArray("machine_sprite") instance=ExtResource("1_wn05d")]
+machine_sprite = NodePath("MachineAnimatedSprite")
 linked_minigame_scene = ExtResource("2_ukxlr")
 
-[node name="AnimatedSprite2D" parent="." index="1" unique_id=970174829]
+[node name="MachineAnimatedSprite" parent="." index="1" unique_id=970174829]
 sprite_frames = ExtResource("3_2qanh")
 animation = &"broken"

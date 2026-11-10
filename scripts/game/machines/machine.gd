@@ -3,7 +3,7 @@ extends Node2D
 
 enum State { RUNNING, OVERHEATED, IN_MINIGAME, BROKEN }
 
-@export var sprite: AnimatedSprite2D
+@export var machine_sprite: AnimatedSprite2D
 @export var linked_minigame_scene : PackedScene
 var linked_minigame : Minigame
 
@@ -37,6 +37,7 @@ func _ready() -> void:
 	add_to_group("machines")
 	enter_state(State.RUNNING)
 	linked_minigame = linked_minigame_scene.instantiate() as Minigame
+	$ExplosionAnimationSprite.stop()
 
 func turn_on_glow():
 	is_glowing = true
@@ -44,13 +45,21 @@ func turn_on_glow():
 func turn_off_glow():
 	is_glowing = false
 
+func play_explosion() -> void:
+	var explosion_sprite: AnimatedSprite2D = $ExplosionAnimationSprite
+	explosion_sprite.play("explosion")
+	$ExplosionSound.play()
+	await  explosion_sprite.animation_finished
+	explosion_sprite.hide()
+	#explosion_sprite.play("debris" + str(randi_range(1, 3)))
+
 func _process(delta: float) -> void:
 	process_state(delta)
 	if is_glowing:
-		sprite.modulate = Color(1.5, 1.4, 0.8)
+		machine_sprite.modulate = Color(1.5, 1.4, 0.8)
 		is_glowing = false
 	else:
-		sprite.modulate = Color(1, 1, 1)
+		machine_sprite.modulate = Color(1, 1, 1)
 
 func _on_interaction_area_body_entered(body: Node2D) -> void:
 	print("Something entered")
@@ -76,14 +85,15 @@ func enter_state(new_state: State) -> void:
 	print("Machine ", id, " entered state ", str(new_state))
 	match (new_state):
 		State.RUNNING:
-			sprite.play("running")
+			machine_sprite.play("running")
 		State.OVERHEATED:
-			sprite.play("overheated")
+			machine_sprite.play("overheated")
 		State.IN_MINIGAME:
 			# Freeze all machines?, or just don't update this machine?
 			pass
 		State.BROKEN:
-			sprite.play("broken")
+			play_explosion()
+			machine_sprite.play("broken")
 
 func exit_state(old_state: State) -> void:
 	print("Machine ", id, " exited state ", str(old_state))
