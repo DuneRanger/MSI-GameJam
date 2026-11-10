@@ -44,11 +44,13 @@ func turn_off_glow():
 
 func play_explosion() -> void:
 	var explosion_sprite: AnimatedSprite2D = $ExplosionAnimationSprite
+	explosion_sprite.z_index = machine_sprite.z_index + 1
 	explosion_sprite.play("explosion")
 	$ExplosionSound.play()
 	await  explosion_sprite.animation_finished
-	explosion_sprite.hide()
-	#explosion_sprite.play("debris" + str(randi_range(1, 3)))
+	explosion_sprite.z_index = machine_sprite.z_index - 1
+	explosion_sprite.scale = Vector2(1.4, 1.4)
+	explosion_sprite.play("debris" + str(randi_range(1, 3)))
 
 func _process(delta: float) -> void:
 	process_state(delta)
