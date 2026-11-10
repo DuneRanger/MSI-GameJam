@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvgpsgqi2s213" path="res://scripts/game/dialog_manager/dialog_manager.gd" id="1_mesoi"]
 [ext_resource type="Texture2D" uid="uid://cmbqqkq3uog38" path="res://assets/game/lucky/dialog_actions/test/luck_portrait_test.png" id="2_2b4pd"]
+[ext_resource type="FontFile" uid="uid://ddta4e3wqpdr4" path="res://assets/fonts/PixeloidSans.otf" id="3_bi0f3"]
 
 [sub_resource type="Animation" id="Animation_fbuma"]
 length = 0.001
@@ -461,6 +462,7 @@ offset_left = 186.0
 offset_top = 490.0
 offset_right = 1094.0
 offset_bottom = 646.0
+theme_override_fonts/normal_font = ExtResource("3_bi0f3")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -473,6 +475,7 @@ offset_left = 168.0
 offset_top = 432.0
 offset_right = 318.0
 offset_bottom = 455.0
+theme_override_fonts/font = ExtResource("3_bi0f3")
 text = "Press SPACE"
 
 [node name="TextScrollAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1443002231]

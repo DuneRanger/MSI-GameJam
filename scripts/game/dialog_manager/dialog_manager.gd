@@ -19,7 +19,7 @@ var tutorial_lines = [
 	[portraits.explaining, "You're like the 57th model they sent here so i'll make it quick"],
 	[portraits.smiling, "My names is Lucky by the way"],
 	[portraits.smiling2, "Because its lucky to keep me around,"],
-	[portraits.grumpy, "or something..."],
+	[portraits.grumpy, "...or something..."],
 	[portraits.explaining, "I'm your manager and we're in a factory"],
 	[portraits.weird, "Don't really know what we're producing, actually..."],
 	[portraits.annoyed, "But that doesn't matter, what matters is that we're producing A LOT of things and stuff"],
@@ -31,12 +31,11 @@ var tutorial_lines = [
 	[portraits.button_grumpy, "If you let too many machines overheat and explode..."],
 	[portraits.button_press_laughing, "Then I'll explode you by pressing this!"],
 	[portraits.excited, "Yeah that's about it"],
+	[portraits.explaining, "Be careful when running, so you yourself wont overheat"],
 	[portraits.grumpy, "My boss also said that I was supposed to tell you... what was it?"],
-	[portraits.explaining, "WASD to move, E to interact, mouse to solve puzzles"],
+	[portraits.explaining, "WASD to move, E to interact, SHIFT to run, mouse to solve puzzles"],
 	[portraits.grumpy, "Whatever that means..."],
 	[portraits.greeting, "Ok now go do your job robot person"],
-	
-	
 ]
 
 var defeat_lines = [

@@ -28,8 +28,21 @@ func _ready() -> void:
 	machine_layer.child_entered_tree.connect(add_machine)
 		
 func _process(_delta: float) -> void:
-	$LabelStamina.text = "Stamina : " + str($YSortNode/Player.stamina)
+	if $YSortNode/Player.stamina == 100:
+		$YSortNode/Player/LabelStamina.text = ""
+	else:
+		$YSortNode/Player/LabelStamina.text = str($YSortNode/Player.stamina)
 
+	if $YSortNode/Player.stamina < 100 and $YSortNode/Player.stamina > 60:
+		$YSortNode/Player/LabelStamina.add_theme_color_override("font_color", Color.WEB_GREEN)
+		print("green")
+	elif $YSortNode/Player.stamina > 40 and $YSortNode/Player.stamina <= 60:
+		$YSortNode/Player/LabelStamina.add_theme_color_override("font_color", Color.ORANGE)
+		print("orange")
+	elif $YSortNode/Player.stamina > 0 and $YSortNode/Player.stamina < 40:
+		$YSortNode/Player/LabelStamina.add_theme_color_override("font_color", Color.RED)
+		print("red")
+		
 func choose_minigame() -> Minigame:
 	var chosen_scene = minigame_scenes.pick_random()
 	var out = chosen_scene.instantiate()
