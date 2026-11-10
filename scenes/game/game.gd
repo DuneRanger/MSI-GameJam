@@ -42,7 +42,7 @@ func _on_random_game_button() -> void:
 	chosen_minigame = choose_minigame()
 	link_chosen_minigame()
 
-func _on_minigame_requested(machine: Machine, minigame_id: int) -> void:
+func _on_minigame_requested(machine: Machine) -> void:
 	chosen_minigame = machine.linked_minigame_scene.instantiate() as Minigame
 	activated_machine = machine
 	link_chosen_minigame()

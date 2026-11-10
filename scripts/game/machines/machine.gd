@@ -5,7 +5,6 @@ enum State { RUNNING, OVERHEATED, IN_MINIGAME, BROKEN }
 
 @export var machine_sprite: AnimatedSprite2D
 @export var linked_minigame_scene : PackedScene
-var linked_minigame : Minigame
 
 # Heat parameters
 @export var spike_chance_per_second: float = 0.05
@@ -15,7 +14,6 @@ var linked_minigame : Minigame
 @export var heat_rate: float = 5.0
 
 # Minigame
-var minigame_id: int = 1
 @onready var interaction_area: Area2D = $InteractionArea
 
 var state: State = State.RUNNING
@@ -25,7 +23,7 @@ var player_in_range: bool = false
 var id: int = 0
 static var next_id: int = 0
 
-signal minigame_requested(machine: Machine, minigame_id: int)
+signal minigame_requested(machine: Machine)
 var is_glowing: bool = false
 
 func _init():
@@ -36,7 +34,6 @@ func _init():
 func _ready() -> void:
 	add_to_group("machines")
 	enter_state(State.RUNNING)
-	linked_minigame = linked_minigame_scene.instantiate() as Minigame
 	$ExplosionAnimationSprite.stop()
 
 func turn_on_glow():
@@ -62,17 +59,14 @@ func _process(delta: float) -> void:
 		machine_sprite.modulate = Color(1, 1, 1)
 
 func _on_interaction_area_body_entered(body: Node2D) -> void:
-	print("Something entered")
 	if body is Player:
 		player_in_range = true
 		body.add_nearby_machine(self)
-		print("Player entered")
 
 func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_in_range = false
 		body.remove_nearby_machine(self)
-		print("Player exited")
 
 func change_state(new_state: State) -> void:
 	if new_state == state: return
@@ -127,7 +121,7 @@ func interact() -> void:
 
 func start_minigame() -> void:
 	print("Starting minigame for machine ", id)
-	minigame_requested.emit(self, minigame_id)
+	minigame_requested.emit(self)
 	change_state(State.IN_MINIGAME)
 
 func on_minigame_success() -> void:
@@ -136,7 +130,7 @@ func on_minigame_success() -> void:
 	change_state(State.RUNNING)
 	
 func on_minigame_failed() -> void:
-	temperature *= spike_multiplier
+	temperature *= spike_multiplier + 0.1
 	print("Minigame failed, temperature: ", temperature)
 	# change to overheated, because minigames should only run when overheated
 	# but for debugging, they run whenever
