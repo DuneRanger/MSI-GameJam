@@ -45,16 +45,15 @@ func _on_fish_button_down() -> void:
 	var global_top_rod : float = rod.global_position.y
 	var global_bottom_rod : float = rod.global_position.y + rod.size.y
 	if (global_top_rod > global_top_bound) and (global_top_rod < global_bottom_bound):
-		$Label.text = "Success, top bar"
+		pass
 	elif (global_bottom_rod > global_top_bound) and (global_bottom_rod < global_bottom_bound):
-		$Label.text = "Success, bottom bar"
+		pass
 	else:
-		$Label.text = "no"
 		play_failure_sound()
 		minigame_failed.emit()
 		return
-	minigame_completed.emit()
 	play_success_sound()
+	minigame_completed.emit()
 
 
 func _on_timer_timeout() -> void:
