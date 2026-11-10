@@ -473,7 +473,7 @@ offset_left = 168.0
 offset_top = 432.0
 offset_right = 318.0
 offset_bottom = 455.0
-text = "Press SPACE to skip"
+text = "Press SPACE"
 
 [node name="TextScrollAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1443002231]
 libraries/ = SubResource("AnimationLibrary_tkrjt")
