@@ -219,6 +219,10 @@ bus = &"SFX"
 
 [node name="TimerSFX-Steps" type="Timer" parent="." unique_id=348999559]
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=923601593]
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
+
 [connection signal="timeout" from="OverclockTimer" to="." method="_on_overclock_timer_timeout"]
 [connection signal="timeout" from="RechargeTimer" to="." method="_on_recharge_timer_timeout"]
 [connection signal="timeout" from="TimerSFX-Steps" to="." method="_on_timer_sfx_steps_timeout"]

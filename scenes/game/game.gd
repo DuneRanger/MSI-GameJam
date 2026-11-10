@@ -51,10 +51,8 @@ func _ready() -> void:
 	load_level()
 
 func _process(_delta: float) -> void:
-	if current_level != null:
-		$LabelStamina.text = "Stamina : " + str(current_level.player.stamina)
-	$LevelTimerProgressBar.value = $LevelTimer.wait_time - $LevelTimer.time_left
-	$LevelTimerProgressBar.max_value = $LevelTimer.wait_time
+	$HUD/LevelTimerProgressBar.value = $LevelTimer.wait_time - $LevelTimer.time_left
+	$HUD/LevelTimerProgressBar.max_value = $LevelTimer.wait_time
 
 func _on_minigame_requested(machine: Machine) -> void:
 	chosen_minigame = machine.linked_minigame_scene.instantiate() as Minigame
@@ -64,7 +62,7 @@ func _on_minigame_requested(machine: Machine) -> void:
 func link_chosen_minigame() -> void:
 	chosen_minigame.minigame_completed.connect(_on_minigame_success)
 	chosen_minigame.minigame_failed.connect(_on_minigame_fail)
-	$MinigameHUD.add_child(chosen_minigame)
+	$HUD/MinigameHUD.add_child(chosen_minigame)
 	minigame_result = false
 	chosen_minigame.start_minigame()
 
@@ -95,7 +93,7 @@ func _on_minigame_success() -> void:
 		activated_machine = null
 
 func _on_minigame_leave_timer_timeout() -> void:
-	$MinigameHUD.remove_child(chosen_minigame)
+	$HUD/MinigameHUD.remove_child(chosen_minigame)
 	chosen_minigame.queue_free()
 	chosen_minigame = null
 	current_level.player.player_state = Player.player_states.WALKING

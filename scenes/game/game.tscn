@@ -10,9 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://b1aqw4stficvv" path="res://assets/game/levels/clock_full.png" id="7_4j704"]
 [ext_resource type="AudioStream" uid="uid://bfa1tc6i3lrm3" path="res://assets/sfx/ambient/ambience.ogg" id="8_87uf6"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_w1hta"]
-font_size = 48
-
 [node name="Game2" type="Node" unique_id=1830910457]
 script = ExtResource("1_0sr1o")
 levels = Array[PackedScene]([ExtResource("5_87uf6"), ExtResource("3_2a8rs")])
@@ -20,12 +17,6 @@ minigame_scenes = Array[PackedScene]([ExtResource("3_lfrn8"), ExtResource("2_kel
 
 [node name="DialogueManager" parent="." unique_id=1484026495 instance=ExtResource("4_2a8rs")]
 z_index = 20
-
-[node name="LabelStamina" type="Label" parent="." unique_id=1477753677]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Stamina: "
-label_settings = SubResource("LabelSettings_w1hta")
 
 [node name="LevelContainer" type="Node2D" parent="." unique_id=1127513561]
 
@@ -37,24 +28,6 @@ one_shot = true
 volume_db = -10.0
 bus = &"SFX"
 
-[node name="MinigameHUD" type="CanvasLayer" parent="." unique_id=1928487069]
-offset = Vector2(128, 80)
-scale = Vector2(0.8, 0.8)
-transform = Transform2D(0.8, 0, 0, 0.8, 128, 80)
-follow_viewport_enabled = true
-
-[node name="LevelTimerProgressBar" type="TextureProgressBar" parent="." unique_id=2034526518]
-anchors_preset = -1
-offset_left = 1187.0
-offset_top = 20.0
-offset_right = 1260.0
-offset_bottom = 93.0
-step = 0.01
-fill_mode = 4
-nine_patch_stretch = true
-texture_under = ExtResource("6_2a8rs")
-texture_progress = ExtResource("7_4j704")
-
 [node name="LevelTimer" type="Timer" parent="." unique_id=1387333720]
 wait_time = 120.0
 one_shot = true
@@ -63,6 +36,28 @@ one_shot = true
 stream = ExtResource("8_87uf6")
 autoplay = true
 bus = &"Ambience"
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=807513950]
+
+[node name="MinigameHUD" type="CanvasLayer" parent="HUD" unique_id=1928487069]
+offset = Vector2(128, 80)
+scale = Vector2(0.8, 0.8)
+transform = Transform2D(0.8, 0, 0, 0.8, 128, 80)
+
+[node name="LevelTimerProgressBar" type="TextureProgressBar" parent="HUD" unique_id=2034526518]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 7.0
+offset_right = -7.0
+offset_bottom = 80.0
+grow_horizontal = 0
+step = 0.01
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("6_2a8rs")
+texture_progress = ExtResource("7_4j704")
 
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
