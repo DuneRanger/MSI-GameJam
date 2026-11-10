@@ -7,6 +7,10 @@ var activated_machine: Machine = null
 var machine_idx : int
 var machine_dict : Dictionary[int, Machine] = {}
 
+@onready var minigame_failure_sound : AudioStream = load("res://assets/sfx/machines/failure.mp3")
+@onready var minigame_success_sound : AudioStream = load("res://assets/sfx/machines/success.wav")
+var minigame_result : bool = false
+
 func _on_tilemap_machine_enter_tree(new_node : Node):
 	if new_node is Machine:
 		add_machine(new_node as Machine)
@@ -47,16 +51,31 @@ func link_chosen_minigame() -> void:
 	chosen_minigame.minigame_completed.connect(_on_minigame_success)
 	chosen_minigame.minigame_failed.connect(_on_minigame_fail)
 	$MinigameHUD.add_child(chosen_minigame)
+	minigame_result = false
 	chosen_minigame.start_minigame()
 
+func play_minigame_failure_sound() -> void:
+	$MinigameResultPlayer.stream = minigame_failure_sound
+	$MinigameResultPlayer.play()
+
+func play_minigame_success_sound() -> void:
+	$MinigameResultPlayer.stream = minigame_success_sound
+	$MinigameResultPlayer.play()
+
 func _on_minigame_fail() -> void:
+	if minigame_result: return
 	$MinigameLeaveTimer.start()
+	minigame_result = true
+	play_minigame_failure_sound()
 	if activated_machine != null:
 		activated_machine.on_minigame_failed()
 		activated_machine = null
 
 func _on_minigame_success() -> void:
+	if minigame_result: return
 	$MinigameLeaveTimer.start()
+	minigame_result = true
+	play_minigame_success_sound()
 	if activated_machine != null:
 		activated_machine.on_minigame_success()
 		activated_machine = null

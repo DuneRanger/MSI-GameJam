@@ -105,10 +105,6 @@ texture = ExtResource("5_dxcp6")
 wait_time = 3.0
 one_shot = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=531980497]
-volume_db = -10.0
-bus = &"SFX"
-
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=704876294]
 layout_mode = 1
 anchors_preset = -1

@@ -16,7 +16,7 @@ size = Vector2(42, 61)
 [node name="MouseMaze" unique_id=1172947997 instance=ExtResource("1_3fvyu")]
 script = ExtResource("2_jhvot")
 
-[node name="Walls" type="CanvasGroup" parent="." index="3" unique_id=734779772]
+[node name="Walls" type="CanvasGroup" parent="." index="1" unique_id=734779772]
 
 [node name="Area1" type="Area2D" parent="Walls" index="0" unique_id=623991360 groups=["maze_wall"]]
 
@@ -78,7 +78,7 @@ color = Color(0.10524044, 0.10524041, 0.10524035, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area5" index="1" unique_id=953426694]
 shape = SubResource("RectangleShape2D_jhvot")
 
-[node name="Goal" type="Area2D" parent="." index="4" unique_id=1334350612]
+[node name="Goal" type="Area2D" parent="." index="2" unique_id=1334350612]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal" index="0" unique_id=269506771]
 position = Vector2(1209, 159)
@@ -89,7 +89,7 @@ position = Vector2(1180.55, 159)
 scale = Vector2(0.5, 0.49999997)
 texture = ExtResource("1_37sjx")
 
-[node name="Battery" type="Area2D" parent="." index="5" unique_id=639399436]
+[node name="Battery" type="Area2D" parent="." index="3" unique_id=639399436]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battery" index="0" unique_id=1463518949]
 position = Vector2(210, 438.5)

@@ -7,7 +7,6 @@ var button_array : Array[Button] = []
 @export var different_button_color : Color
 
 var different_button : Button
-var different_button_found : bool
 
 func _ready() -> void:
 	button_count = $GridContainer.columns * $GridContainer.columns
@@ -21,7 +20,6 @@ func _ready() -> void:
 		button_array.push_back(new_button)
 
 func start_minigame() -> void:
-	different_button_found = false
 	$Timer.start()
 	different_button = button_array.pick_random()
 	var new_style_box : StyleBoxFlat = StyleBoxFlat.new()
@@ -32,14 +30,10 @@ func start_minigame() -> void:
 	different_button.button_down.connect(_on_different_button_press)
 
 func _on_different_button_press() -> void:
-	play_success_sound()
-	different_button_found = true
 	minigame_completed.emit()
 
 func _on_timer_timeout() -> void:
-	if !different_button_found:
-		play_failure_sound()
-		minigame_failed.emit()
+	minigame_failed.emit()
 
 func _on_other_button_press() -> void:
-	play_failure_sound()
+	minigame_failed.emit()

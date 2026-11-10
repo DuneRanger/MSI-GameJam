@@ -87,6 +87,10 @@ text = "random"
 wait_time = 0.5
 one_shot = true
 
+[node name="MinigameResultPlayer" type="AudioStreamPlayer" parent="." unique_id=489351757]
+volume_db = -10.0
+bus = &"SFX"
+
 [node name="WheelButton" type="Button" parent="." unique_id=1218415246]
 offset_left = 50.0
 offset_top = 480.0

@@ -49,13 +49,10 @@ func _on_fish_button_down() -> void:
 	elif (global_bottom_rod > global_top_bound) and (global_bottom_rod < global_bottom_bound):
 		pass
 	else:
-		play_failure_sound()
 		minigame_failed.emit()
 		return
-	play_success_sound()
 	minigame_completed.emit()
 
 
 func _on_timer_timeout() -> void:
-	play_failure_sound()
 	minigame_failed.emit()
