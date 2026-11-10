@@ -1,11 +1,14 @@
 extends Node
 
+@export var levels: Array[PackedScene] = []
+@onready var level_container = $LevelContainer
+var current_level: Node = null
+var current_difficulty : int = 0
+var levels_finished : int = 0
+
 @export var minigame_scenes : Array[PackedScene]
 var chosen_minigame : Minigame = null
 var activated_machine: Machine = null
-
-var machine_idx : int
-var machine_dict : Dictionary[int, Machine] = {}
 
 @onready var minigame_failure_sound : AudioStream = load("res://assets/sfx/machines/failure.mp3")
 @onready var minigame_success_sound : AudioStream = load("res://assets/sfx/machines/success.wav")
@@ -16,31 +19,35 @@ func _on_tilemap_machine_enter_tree(new_node : Node):
 		add_machine(new_node as Machine)
 
 func add_machine(new_machine : Machine) -> void:
-	new_machine.id = machine_idx
-	machine_dict.set(machine_idx, new_machine)
-	machine_idx += 1
 	new_machine.minigame_requested.connect(_on_minigame_requested)
 	print("Added machine", new_machine)
 
+func load_level() -> void:
+	if current_level:
+		levels_finished += 1
+		current_level.queue_free()
+		await current_level.tree_exited
+	current_level = levels[levels_finished].instantiate()
+	level_container.add_child(current_level)
+	current_level.machine_layer.child_entered_tree.connect(add_machine)
+	start_level()
+
+func start_level() -> void:
+	$LevelTimer.start()
+
+func _on_level_timer_timeout() -> void:
+	# trigger loss and Lucky dialogue
+	print("Level timer ran out!!")
+	load_level()
+
 func _ready() -> void:
-	machine_idx = 1
-	var machine_layer : TileMapLayer = $YSortNode/Tilemap/TileMapMachineLayer
-	machine_layer.child_entered_tree.connect(add_machine)
-		
+	load_level()
+
 func _process(_delta: float) -> void:
-	$LabelStamina.text = "Stamina : " + str($YSortNode/Player.stamina)
-
-func choose_minigame() -> Minigame:
-	var chosen_scene = minigame_scenes.pick_random()
-	var out = chosen_scene.instantiate()
-	return out as Minigame
-
-func _on_random_game_button() -> void:
-	if chosen_minigame != null:
-		print("Game is not null")
-		return
-	chosen_minigame = choose_minigame()
-	link_chosen_minigame()
+	if current_level != null:
+		$LabelStamina.text = "Stamina : " + str(current_level.player.stamina)
+	$LevelTimerProgressBar.value = $LevelTimer.wait_time - $LevelTimer.time_left
+	$LevelTimerProgressBar.max_value = $LevelTimer.wait_time
 
 func _on_minigame_requested(machine: Machine) -> void:
 	chosen_minigame = machine.linked_minigame_scene.instantiate() as Minigame
@@ -84,19 +91,4 @@ func _on_minigame_leave_timer_timeout() -> void:
 	$MinigameHUD.remove_child(chosen_minigame)
 	chosen_minigame.queue_free()
 	chosen_minigame = null
-	$YSortNode/Player.player_state = Player.player_states.WALKING
-
-func _on_wheel_button_button_down() -> void:
-	if chosen_minigame != null:
-		print("Game is not null")
-		return
-	chosen_minigame = minigame_scenes[1].instantiate()
-	link_chosen_minigame()
-
-
-func _on_color_button_button_down() -> void:
-	if chosen_minigame != null:
-		print("Game is not null")
-		return
-	chosen_minigame = minigame_scenes[0].instantiate()
-	link_chosen_minigame()
+	current_level.player.player_state = Player.player_states.WALKING
