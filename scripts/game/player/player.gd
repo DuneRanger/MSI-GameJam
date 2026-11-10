@@ -187,3 +187,10 @@ func remove_nearby_machine(machine: Machine) -> void:
 func _sort_by_distance_desc(a: Machine, b: Machine) -> bool:
 	var pos = global_position
 	return a.global_position.distance_squared_to(pos) < b.global_position.distance_squared_to(pos)
+
+func force_idle_anim() -> void:
+	if is_overclocked:
+		animation_name = "overclocked_idle"
+	else:
+		animation_name = "idle"
+	$PlayerSprite.animation = animation_name

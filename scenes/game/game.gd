@@ -6,6 +6,12 @@ var current_level: Node = null
 var current_difficulty : int = 0
 var levels_finished : int = 0
 
+@export var level_end_delay : float = 5
+@export var level_start_delay : float = 5
+
+var max_lives : int = 3
+var lives : int = 0
+
 @export var minigame_scenes : Array[PackedScene]
 var chosen_minigame : Minigame = null
 var activated_machine: Machine = null
@@ -14,13 +20,8 @@ var activated_machine: Machine = null
 @onready var minigame_success_sound : AudioStream = load("res://assets/sfx/machines/success.wav")
 var minigame_result : bool = false
 
-func _on_tilemap_machine_enter_tree(new_node : Node):
-	if new_node is Machine:
-		add_machine(new_node as Machine)
-
 func add_machine(new_machine : Machine) -> void:
 	new_machine.minigame_requested.connect(_on_minigame_requested)
-	print("Added machine", new_machine)
 
 func load_level() -> void:
 	if current_level:
@@ -29,15 +30,21 @@ func load_level() -> void:
 		await current_level.tree_exited
 	current_level = levels[levels_finished].instantiate()
 	level_container.add_child(current_level)
+	
 	current_level.machine_layer.child_entered_tree.connect(add_machine)
+	current_level.player.set_physics_process(false)
 	start_level()
 
 func start_level() -> void:
+	lives = max_lives
 	$LevelTimer.start()
+	current_level.player.set_physics_process(true)
 
 func _on_level_timer_timeout() -> void:
-	# trigger loss and Lucky dialogue
 	print("Level timer ran out!!")
+	current_level.player.force_idle_anim()
+	current_level.player.set_physics_process(false)
+	await get_tree().create_timer(level_end_delay).timeout
 	load_level()
 
 func _ready() -> void:
