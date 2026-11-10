@@ -53,6 +53,20 @@ func _physics_process(delta: float) -> void:
 	character_direction.x = Input.get_axis("move_left", "move_right")
 	character_direction.y = Input.get_axis("move_up", "move_down")
 	
+	if stamina == 100:
+		$StaminaRect.visible = false
+	else:
+		$StaminaRect.visible = true
+
+	$StaminaRect.scale = Vector2(stamina/100, 1)
+	if stamina < 100 and stamina > 80:
+		$StaminaRect.modulate = Color.WEB_GREEN
+	elif stamina > 30 and stamina <= 60:
+		$StaminaRect.modulate = Color.ORANGE
+	elif stamina > 0 and stamina < 30:
+		$StaminaRect.modulate = Color.RED
+	
+	
 	#horizontální flipování spritu
 	if character_direction.x > 0:
 		$PlayerSprite.flip_h = false
