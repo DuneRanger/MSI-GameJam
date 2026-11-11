@@ -6,6 +6,7 @@ var levels_by_difficulty = {}
 var current_level: Node = null
 var current_difficulty : int = 0
 var levels_finished : int = 0
+var level_lost : bool = false
 
 static var played_tutorial : bool = false
 
@@ -69,6 +70,7 @@ func load_level() -> void:
 func start_level() -> void:
 	$HUD.visible = true
 	update_lives(max_lives)
+	level_lost = false
 	$LevelTimer.start()
 	current_level.player.set_physics_process(true)
 	current_level.start_level()
@@ -110,9 +112,11 @@ func _on_minigame_requested(machine: Machine) -> void:
 	link_chosen_minigame()
 	
 func _on_machine_exploded(_explode_machine: Machine) -> void:
+	if level_lost: return
 	update_lives(lives-1)
 	if lives == 0:
 		$HUD.visible = false
+		level_lost = true
 		if current_level != null: #just to be sure idfk
 			current_level.level_over()
 		force_end_current_minigame()
