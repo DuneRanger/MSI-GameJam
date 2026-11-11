@@ -35,6 +35,7 @@ func _ready() -> void:
 	add_to_group("machines")
 	enter_state(State.RUNNING)
 	$ExplosionAnimationSprite.stop()
+	$MachineLight.visible = false
 
 func turn_on_glow():
 	is_glowing = true
@@ -49,8 +50,13 @@ func play_explosion() -> void:
 	var explosion_sprite: AnimatedSprite2D = $ExplosionAnimationSprite
 	explosion_sprite.z_index = machine_sprite.z_index + 1
 	explosion_sprite.play("explosion")
-	$ExplosionSound.play()
+	$MachineSFX.pitch_scale = 1
+	$MachineSFX.stream = load("res://assets/sfx/machines/machine_explosion.mp3")
+	$MachineSFX.play()
+	$MachineLight.visible = true
+	$MachineLight.self_modulate = Color.ORANGE
 	await  explosion_sprite.animation_finished
+	$MachineLight.visible = false
 	explosion_sprite.z_index = machine_sprite.z_index - 1
 	explosion_sprite.scale = Vector2(1.4, 1.4)
 	explosion_sprite.play("debris" + str(randi_range(1, 3)))
@@ -80,8 +86,15 @@ func enter_state(new_state: State) -> void:
 	match (new_state):
 		State.RUNNING:
 			machine_sprite.play("running")
+			$MachineLight.visible = false
 		State.OVERHEATED:
 			machine_sprite.play("overheated")
+			
+			$MachineSFX.stream = load("res://assets/sfx/machines/sfx_overheat_start.mp3")
+			$MachineSFX.pitch_scale = randf_range(0.8,1.2)
+			$MachineSFX.play()
+			$MachineLight.visible = true
+			$MachineLight.self_modulate = Color.RED
 		State.IN_MINIGAME:
 			pass
 		State.BROKEN:
