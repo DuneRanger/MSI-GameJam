@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dtpdbgukr4v2j" path="res://scenes/game/levels/level_2.tscn" id="3_2a8rs"]
 [ext_resource type="PackedScene" uid="uid://j4s1r411n22" path="res://scenes/game/machines/minigames/color_find.tscn" id="3_lfrn8"]
 [ext_resource type="PackedScene" uid="uid://3pqpok6jkxky" path="res://scenes/dialog_manager/dialog_manager.tscn" id="4_2a8rs"]
+[ext_resource type="PackedScene" uid="uid://nspjmntmiqjj" path="res://scenes/game/levels/level_3.tscn" id="4_kp23o"]
 [ext_resource type="PackedScene" uid="uid://d0xvt7ih8ak8q" path="res://scenes/game/levels/level_1.tscn" id="5_87uf6"]
 [ext_resource type="Texture2D" uid="uid://5l4bsiiaeu53" path="res://assets/game/levels/clock_empty.png" id="6_2a8rs"]
 [ext_resource type="Shader" uid="uid://cwr1ovub2hmsc" path="res://assets/game/FX/vignette.gdshader" id="6_4j704"]
@@ -45,12 +46,19 @@ shader_parameter/vignette_opacity = 0.3310000157225
 
 [node name="Game2" type="Node" unique_id=1830910457]
 script = ExtResource("1_0sr1o")
-levels = Array[PackedScene]([ExtResource("5_87uf6"), ExtResource("3_2a8rs")])
+levels = Array[PackedScene]([ExtResource("5_87uf6"), ExtResource("3_2a8rs"), ExtResource("4_kp23o")])
 minigame_scenes = Array[PackedScene]([ExtResource("3_lfrn8"), ExtResource("2_kelw5")])
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1839143896]
 
 [node name="DialogueManager" parent="CanvasLayer2" unique_id=1484026495 instance=ExtResource("4_2a8rs")]
+
+[node name="Button" type="Button" parent="CanvasLayer2" unique_id=2139162572]
+offset_left = 26.0
+offset_top = 17.0
+offset_right = 155.0
+offset_bottom = 63.0
+text = "Next level"
 
 [node name="PostProcessing" type="Node" parent="." unique_id=525483226]
 
@@ -120,5 +128,6 @@ nine_patch_stretch = true
 texture_under = ExtResource("6_2a8rs")
 texture_progress = ExtResource("7_4j704")
 
+[connection signal="pressed" from="CanvasLayer2/Button" to="." method="_on_level_timer_timeout"]
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

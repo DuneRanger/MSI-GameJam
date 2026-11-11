@@ -2,6 +2,7 @@ extends Node
 
 @export var levels: Array[PackedScene] = []
 @onready var level_container = $LevelContainer
+var levels_by_difficulty = {}
 var current_level: Node = null
 var current_difficulty : int = 0
 var levels_finished : int = 0
@@ -28,7 +29,14 @@ func load_level() -> void:
 		levels_finished += 1
 		current_level.queue_free()
 		await current_level.tree_exited
-	current_level = levels[levels_finished].instantiate()
+		const level_count_per_difficulty = 1
+		if levels_finished % level_count_per_difficulty == 0:
+			current_difficulty += 1
+	
+	if current_difficulty not in levels_by_difficulty:
+		current_difficulty -= 1
+	
+	current_level = levels_by_difficulty[current_difficulty].pick_random().instantiate()
 	level_container.add_child(current_level)
 	
 	current_level.machine_layer.child_entered_tree.connect(add_machine)
@@ -43,14 +51,20 @@ func start_level() -> void:
 
 func _on_level_timer_timeout() -> void:	
 	$CanvasLayer2/DialogueManager.play_win_dialogue(level_end_delay)
-	
-	print("Level timer ran out!!")
 	current_level.player.force_idle_anim()
 	current_level.player.set_physics_process(false)
 	await get_tree().create_timer(level_end_delay).timeout
 	load_level()
 
 func _ready() -> void:
+	for level in levels:
+		var inst = level.instantiate()
+		var d = inst.difficulty
+		inst.free()
+		levels_by_difficulty.get_or_add(d, []).append(level)
+	
+	for diff in levels_by_difficulty:
+		print(diff)
 	load_level()
 
 func _process(_delta: float) -> void:
