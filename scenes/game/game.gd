@@ -7,6 +7,8 @@ var current_level: Node = null
 var current_difficulty : int = 0
 var levels_finished : int = 0
 
+static var played_tutorial : bool = false
+
 @export var progress_timer_hud : TextureProgressBar
 @export var lives_left_label : RichTextLabel
 @export var level_num_label : RichTextLabel
@@ -31,6 +33,7 @@ func add_machine(new_machine : Machine) -> void:
 
 func start_new_game() -> void:
 	update_levels_finished(0)
+	$CanvasLayer2/DialogueManager.playing_total_victory_screen = false
 	current_difficulty = 0
 	if (current_level != null):
 		current_level.queue_free()
@@ -168,3 +171,6 @@ func _on_minigame_leave_timer_timeout() -> void:
 
 func _on_dialogue_manager_retry_round() -> void:
 	start_level()
+
+func _on_dialogue_manager_total_victory() -> void:
+	pass # Replace with function body.
