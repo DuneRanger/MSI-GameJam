@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://6daaqrnsu1ft"]
 
-[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_mykxm"]
 [ext_resource type="PackedScene" uid="uid://bbxi0vokk4jgr" path="res://scenes/game/tilemap/tilemap.tscn" id="1_s4lrb"]
 [ext_resource type="Shader" uid="uid://cwr1ovub2hmsc" path="res://assets/game/FX/vignette.gdshader" id="1_sa3yf"]
 [ext_resource type="FontFile" uid="uid://b08cs88egoh1y" path="res://assets/fonts/PixeloidSans-Bold.otf" id="2_s4lrb"]
@@ -271,7 +270,6 @@ _data = {
 }
 
 [node name="TitleScreen" type="Node2D" unique_id=1669698504]
-script = ExtResource("1_mykxm")
 
 [node name="Tilemap" parent="." unique_id=1355390431 instance=ExtResource("1_s4lrb")]
 
@@ -296,7 +294,6 @@ layer = 2
 environment = SubResource("Environment_mgrm8")
 
 [node name="CRT filter" type="ColorRect" parent="PostProcessing/CanvasLayer" unique_id=1039185524]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_dc4i4")
 anchors_preset = 8

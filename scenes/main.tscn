@@ -301,7 +301,6 @@ layer = 2
 environment = SubResource("Environment_mgrm8")
 
 [node name="CRT filter" type="ColorRect" parent="TitleScreen/PostProcessing/CanvasLayer" unique_id=1039185524]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_dc4i4")
 anchors_preset = 8
