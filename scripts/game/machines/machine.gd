@@ -82,7 +82,6 @@ func change_state(new_state: State) -> void:
 	enter_state(new_state)
 
 func enter_state(new_state: State) -> void:
-	print("Machine ", id, " entered state ", str(new_state))
 	match (new_state):
 		State.RUNNING:
 			machine_sprite.play("running")
@@ -103,7 +102,6 @@ func enter_state(new_state: State) -> void:
 			machine_sprite.modulate = Color(0.4, 0.4, 0.4, 1)
 
 func exit_state(old_state: State) -> void:
-	print("Machine ", id, " exited state ", str(old_state))
 	match (old_state):
 		State.RUNNING: pass
 		State.OVERHEATED: pass
@@ -133,16 +131,13 @@ func interact() -> void:
 	start_minigame()
 
 func start_minigame() -> void:
-	print("Starting minigame for machine ", id)
 	minigame_requested.emit(self)
 	change_state(State.IN_MINIGAME)
 
 func on_minigame_success() -> void:
 	temperature = 0
-	print("Minigame success, temperature: ", temperature)
 	change_state(State.RUNNING)
 	
 func on_minigame_failed() -> void:
 	temperature *= spike_multiplier + 0.1
-	print("Minigame failed, temperature: ", temperature)
 	change_state(State.OVERHEATED)

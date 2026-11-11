@@ -18,7 +18,7 @@ var sfx_is_timer_playing = false
 var movement_speed = movement_speed_default
 var character_direction : Vector2
 var animation_name = "move"
-#var overclock_timer_started = false
+
 var is_overclocked = false ##if the player has depleted the stamina bar and is now recharging
 var is_moving = false ## if the player is moving in any velocity (overclocked, normal and sprinting)
 var is_sprinting = false ## if the player is sprinting (moving and holding shift and not overclocked)
@@ -102,16 +102,12 @@ func _physics_process(delta: float) -> void:
 				movement_speed = movement_speed_sprint
 				if stamina <= 0:
 					overclock()
-				#if overclock_timer_started == false:
-					#overclock_timer_started = true
-					#$OverclockTimer.start()
+
 	if Input.is_action_just_released("sprint"):
 		if is_overclocked == false:
 			is_sprinting = false
 			animation_name = "move"
 			movement_speed = movement_speed_default
-			#$OverclockTimer.stop()
-			#overclock_timer_started = false
 	
 	if is_sprinting == false:
 		if stamina != max_stamina:
@@ -119,9 +115,6 @@ func _physics_process(delta: float) -> void:
 	
 	#nastavení animace a velocity
 	if character_direction:
-		
-		#audio_player_steps.stream_paused = false
-		
 		if is_sprinting == true:
 			play_step_sfx(sfx_steps_sprint_time)
 		elif is_overclocked == true:
@@ -134,7 +127,6 @@ func _physics_process(delta: float) -> void:
 		$PlayerSprite.animation = animation_name
 	else:
 		
-		#audio_player_steps.stream_paused = true
 		timer_sfx_steps.stop()
 		sfx_is_timer_playing = false
 		
@@ -184,24 +176,11 @@ func _on_timer_sfx_steps_timeout() -> void:
 	sfx_is_timer_playing = false
 	audio_player_steps.play()
 	timer_sfx_steps.stop()
-	
-
-#func _on_overclock_timer_timeout() -> void:
-	#overclock()
-	#$OverclockTimer.stop()
-	#$RechargeTimer.start()
-
-#func _on_recharge_timer_timeout() -> void:
-	#is_overclocked = false
-	#animation_name = "move"
-	#movement_speed = movement_speed_default
 
 func add_nearby_machine(machine: Machine) -> void:
-	print("added machine ", machine.id)
 	nearby_machines.append(machine)
 	
 func remove_nearby_machine(machine: Machine) -> void:
-	print("removed machine ", machine.id)
 	nearby_machines.erase(machine)
 
 func _sort_by_distance_desc(a: Machine, b: Machine) -> bool:

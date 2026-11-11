@@ -10,7 +10,6 @@ var different_button : Button
 
 func _ready() -> void:
 	button_count = $GridContainer.columns * $GridContainer.columns
-	print(button_count)
 	for i in button_count:
 		var new_button : Button = button_scene.instantiate()
 		$GridContainer.add_child(new_button)
