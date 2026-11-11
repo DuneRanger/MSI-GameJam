@@ -490,7 +490,6 @@ libraries/ = SubResource("AnimationLibrary_gwvcu")
 libraries/ = SubResource("AnimationLibrary_7kcvn")
 
 [node name="TestButton" type="Button" parent="." unique_id=1252247082]
-visible = false
 layout_mode = 0
 offset_left = 504.0
 offset_top = 24.0
@@ -499,7 +498,6 @@ offset_bottom = 64.0
 text = "play tutorial"
 
 [node name="dieButton" type="Button" parent="." unique_id=1133150554]
-visible = false
 layout_mode = 0
 offset_left = 432.0
 offset_top = 24.0
@@ -508,7 +506,6 @@ offset_bottom = 61.0
 text = "die"
 
 [node name="winButton" type="Button" parent="." unique_id=313425995]
-visible = false
 layout_mode = 0
 offset_left = 328.0
 offset_top = 16.0
