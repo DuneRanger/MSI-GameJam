@@ -78,5 +78,8 @@ offset_bottom = 595.88635
 theme = ExtResource("3_rqvgd")
 text = "FISH !"
 
+[node name="Label" parent="." index="5" unique_id=732899116]
+text = "Catch the fish!"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="ReelButton" to="." method="_on_fish_button_down"]

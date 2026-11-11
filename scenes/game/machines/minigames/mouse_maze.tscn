@@ -100,4 +100,12 @@ position = Vector2(210, 438)
 scale = Vector2(2, 2)
 texture = ExtResource("4_jhvot")
 
+[node name="Label" parent="." index="6" unique_id=732899116]
+offset_left = 328.0
+offset_top = 144.0
+offset_right = 759.0
+offset_bottom = 265.0
+text = "Get the battery out of there!"
+autowrap_mode = 2
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timout"]

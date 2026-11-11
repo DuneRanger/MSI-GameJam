@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://6x01m3tetqva" path="res://assets/game/minigames/UI_details/UI_detail2.png" id="1_1w73n"]
 [ext_resource type="Texture2D" uid="uid://l50xootn3mfo" path="res://assets/game/minigames/clock_empty.png" id="1_g7a4n"]
+[ext_resource type="FontFile" uid="uid://ddta4e3wqpdr4" path="res://assets/fonts/PixeloidSans.otf" id="1_gjtjh"]
 [ext_resource type="Texture2D" uid="uid://kx7o57gsv4lw" path="res://assets/game/minigames/UI_details/UI_detail4.png" id="2_gjtjh"]
 [ext_resource type="Texture2D" uid="uid://b2bsdm0w5pqnd" path="res://assets/game/minigames/clock_full.png" id="2_i7u5t"]
 [ext_resource type="Texture2D" uid="uid://ptji4i1iq4ft" path="res://assets/game/minigames/UI_details/UI_detail6.png" id="3_g4o3h"]
@@ -117,3 +118,17 @@ fill_mode = 5
 nine_patch_stretch = true
 texture_under = ExtResource("1_g7a4n")
 texture_progress = ExtResource("2_i7u5t")
+
+[node name="Label" type="Label" parent="." unique_id=732899116]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 42.0
+offset_right = 792.0
+offset_bottom = 159.0
+theme_override_colors/font_color = Color(0.83137256, 0.7529412, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.11764706)
+theme_override_fonts/font = ExtResource("1_gjtjh")
+theme_override_font_sizes/font_size = 48
+text = "Top Text"
+horizontal_alignment = 1
+vertical_alignment = 1

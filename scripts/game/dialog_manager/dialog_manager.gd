@@ -14,7 +14,10 @@ var i : int = 0
 var is_defeated = false
 var is_end_of_level = false
 
+var playing_total_victory_screen : bool = false
+
 signal retry_round
+signal total_victory
 
 var tutorial_lines = [
 	[portraits.greeting, "Oh, hello little robot person"],
@@ -74,6 +77,12 @@ var victory_lines = [
 	[portraits.sad, "Noo, I really wanted to press the button today..."],
 ]
 
+var total_victory_lines = [	
+	[portraits.weird, "You did it all??"],
+	[portraits.weird, "This vexes me"],
+	[portraits.weird, "Here, go to the main menu"],
+]
+
 var active_text_lines
 
 enum portraits {
@@ -110,6 +119,9 @@ func _process(_delta: float) -> void:
 					$DeathTimer.start()
 					$AudioPlayer.stream = load("res://assets/sfx/button-press-382713.mp3")
 					$AudioPlayer.play()
+				elif playing_total_victory_screen == true:
+					total_victory.emit()
+					pass
 				else:
 					if $TextScrollTimer.is_stopped():
 						text_label.text = ""
@@ -125,8 +137,18 @@ func _process(_delta: float) -> void:
 func play_tutorial():
 	i = 0
 	is_loaded_dialogue_continuous = true
-	dialogue_text = tutorial_lines[i][1]
-	dialogue_portrait = tutorial_lines[i][0]
+	active_text_lines = tutorial_lines
+	dialogue_text = active_text_lines[i][1]
+	dialogue_portrait = active_text_lines[i][0]
+	display_dialogue(dialogue_portrait, dialogue_text)
+
+func play_total_victory():
+	i = 0
+	is_loaded_dialogue_continuous = true
+	playing_total_victory_screen = true
+	active_text_lines = total_victory_lines
+	dialogue_text = active_text_lines[i][1]
+	dialogue_portrait = active_text_lines[i][0]
 	display_dialogue(dialogue_portrait, dialogue_text)
 
 func play_random_dialogue(dialogue_array):
@@ -138,7 +160,6 @@ func play_random_dialogue(dialogue_array):
 
 func display_dialogue(portrait: portraits, dialogue : String):
 	$AudioPlayer.stop()
-	active_text_lines = tutorial_lines
 	if is_displaying_dialogue == false:
 		is_displaying_dialogue = true
 		full_animation_player.play("dialogue_system_show")
@@ -219,7 +240,6 @@ func play_win_dialogue(level_end_delay : float): ##plays random dialogue if play
 func _on_test_button_button_down() -> void:
 	play_tutorial()
 	$TestButton.visible = false
-
 
 func _on_die_button_button_down() -> void:
 	play_lose_dialogue()
