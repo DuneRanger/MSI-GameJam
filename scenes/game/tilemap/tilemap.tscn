@@ -600,3 +600,7 @@ tile_set = SubResource("TileSet_w1hta")
 [node name="TilemapSideWallLayer" type="TileMapLayer" parent="." unique_id=1769598380]
 z_index = -3
 tile_set = SubResource("TileSet_w1hta")
+
+[node name="TilemapWallDecorLayer" type="TileMapLayer" parent="." unique_id=1202652508]
+z_index = -3
+tile_set = SubResource("TileSet_w1hta")
