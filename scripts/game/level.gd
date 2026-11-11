@@ -31,7 +31,6 @@ func start_level() -> void:
 	player.player_state = Player.player_states.WALKING
 	for m in machine_layer.get_children():
 		if m is Machine:
-			print("Starting machine ", m.id)
 			m.start_machine()
 
 func level_over() -> void:

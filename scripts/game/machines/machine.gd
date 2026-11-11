@@ -22,6 +22,7 @@ var player_in_range: bool = false
 
 var id: int = 0
 static var next_id: int = 0
+var started : bool = false
 
 signal minigame_requested(machine: Machine)
 signal machine_exploded(machine: Machine)
@@ -34,15 +35,17 @@ func _init():
 
 func _ready() -> void:
 	add_to_group("machines")
-	enter_state(State.NOT_STARTED)
+	change_state(State.NOT_STARTED)
 	$ExplosionAnimationSprite.stop()
 	$MachineLight.visible = false
 
 func start_machine() -> void:
+	if started: return
 	temperature = (randf() * randf()) * overheat_temperature
-	enter_state(State.RUNNING)
+	change_state(State.RUNNING)
 	$ExplosionAnimationSprite.stop()
 	$MachineLight.visible = false
+	started = true
 
 func turn_on_glow():
 	is_glowing = true
@@ -69,7 +72,6 @@ func play_explosion() -> void:
 	explosion_sprite.play("debris" + str(randi_range(1, 3)))
 
 func _process(delta: float) -> void:
-	#print(temperature)
 	process_state(delta)
 
 func _on_interaction_area_body_entered(body: Node2D) -> void:
@@ -109,6 +111,7 @@ func enter_state(new_state: State) -> void:
 			machine_exploded.emit(self)
 			machine_sprite.play("broken")
 			machine_sprite.modulate = Color(0.4, 0.4, 0.4, 1)
+		State.NOT_STARTED: pass
 
 func exit_state(old_state: State) -> void:
 	match (old_state):
@@ -116,6 +119,7 @@ func exit_state(old_state: State) -> void:
 		State.OVERHEATED: pass
 		State.IN_MINIGAME: pass
 		State.BROKEN: pass
+		State.NOT_STARTED: pass
 
 func process_state(delta: float) -> void:
 	match (state):
