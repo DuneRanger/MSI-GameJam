@@ -92,7 +92,7 @@ enum portraits {
 	weird
 	}
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_displaying_dialogue == true:
 		if Input.is_action_just_pressed("dialogue_skip"):
 			if i != active_text_lines.size() - 1 and is_loaded_dialogue_continuous == true:
