@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b1aqw4stficvv" path="res://assets/game/levels/clock_full.png" id="7_4j704"]
 [ext_resource type="PackedScene" uid="uid://b3qa25re4t71u" path="res://scenes/game/levels/level_6.tscn" id="8_5v6r0"]
 [ext_resource type="AudioStream" uid="uid://bfa1tc6i3lrm3" path="res://assets/sfx/ambient/ambience.ogg" id="8_87uf6"]
+[ext_resource type="PackedScene" uid="uid://bvb43was5ahc0" path="res://scenes/game/levels/level_67.tscn" id="9_uyinl"]
 [ext_resource type="Theme" uid="uid://d0hf7wudlkptc" path="res://scenes/game/machines/minigames/fishing_theme.tres" id="10_5jirj"]
 [ext_resource type="Texture2D" uid="uid://dym2xxi476jag" path="res://assets/game/hud/heart.png" id="11_kp23o"]
 
@@ -52,7 +53,7 @@ shader_parameter/vignette_opacity = 0.3310000157225
 
 [node name="Game2" type="Node" unique_id=1830910457 node_paths=PackedStringArray("progress_timer_hud", "lives_left_label", "level_num_label")]
 script = ExtResource("1_0sr1o")
-levels = Array[PackedScene]([ExtResource("5_87uf6"), ExtResource("3_otnwt"), ExtResource("6_vaxfo"), ExtResource("3_2a8rs"), ExtResource("4_kp23o"), ExtResource("7_3xj4h"), ExtResource("8_5v6r0")])
+levels = Array[PackedScene]([ExtResource("5_87uf6"), ExtResource("3_otnwt"), ExtResource("6_vaxfo"), ExtResource("3_2a8rs"), ExtResource("4_kp23o"), ExtResource("7_3xj4h"), ExtResource("8_5v6r0"), ExtResource("9_uyinl")])
 progress_timer_hud = NodePath("HUD/HBoxContainer/AspectRatioContainer/LevelTimerProgressBar")
 lives_left_label = NodePath("HUD/HBoxContainer/VBoxContainer/HBoxContainer/LivesLeftLabel")
 level_num_label = NodePath("HUD/HBoxContainer/VBoxContainer/LevelNumberLabel")
