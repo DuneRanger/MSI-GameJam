@@ -24,6 +24,7 @@ var id: int = 0
 static var next_id: int = 0
 
 signal minigame_requested(machine: Machine)
+signal machine_exploded(machine: Machine)
 var is_glowing: bool = false
 
 func _init():
@@ -99,6 +100,7 @@ func enter_state(new_state: State) -> void:
 			pass
 		State.BROKEN:
 			play_explosion()
+			machine_exploded.emit(self)
 			machine_sprite.play("broken")
 			machine_sprite.modulate = Color(0.4, 0.4, 0.4, 1)
 

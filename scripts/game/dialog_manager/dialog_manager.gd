@@ -14,6 +14,7 @@ var i : int = 0
 var is_defeated = false
 var is_end_of_level = false
 
+signal retry_round
 
 var tutorial_lines = [
 	[portraits.greeting, "Oh, hello little robot person"],
@@ -243,4 +244,8 @@ func _on_death_timer_timeout() -> void:
 	full_animation_player.play("explosion")
 	is_displaying_dialogue = false
 	print("lucky pressed the button")
-	
+
+func _on_full_animation_player_animation_finished(anim_name: StringName) -> void:
+	if (anim_name == "explosion"):
+		retry_round.emit()
+	print("animation : %s ended" % anim_name)

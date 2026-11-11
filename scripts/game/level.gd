@@ -8,6 +8,8 @@ extends Node2D
 @onready var floor_layer: TileMapLayer = $Tilemap/TilemapFloorLayer
 @onready var machine_layer = $Tilemap/TileMapMachineLayer
 
+@onready var initial_player_pos : Vector2 = $Player.position
+
 func _ready() -> void:
 	for node in get_children():
 		if node is Node2D:
@@ -21,3 +23,11 @@ func _ready() -> void:
 	camera.limit_right = bottom_right.x
 	camera.limit_bottom = bottom_right.y
 	camera.reset_smoothing()
+
+func start_level() -> void:
+	player.position = initial_player_pos
+	player.player_state = Player.player_states.WALKING
+
+func level_over() -> void:
+	player.player_state = Player.player_states.IN_DIALOGUE
+	

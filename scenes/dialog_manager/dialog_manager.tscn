@@ -545,6 +545,7 @@ offset_bottom = 864.0
 [node name="DeathTimer" type="Timer" parent="." unique_id=1089400493]
 wait_time = 1.2
 
+[connection signal="animation_finished" from="FullAnimationPlayer" to="." method="_on_full_animation_player_animation_finished"]
 [connection signal="button_down" from="TestButton" to="." method="_on_test_button_button_down"]
 [connection signal="button_down" from="dieButton" to="." method="_on_die_button_button_down"]
 [connection signal="button_down" from="winButton" to="." method="_on_win_button_button_down"]

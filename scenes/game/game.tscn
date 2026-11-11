@@ -66,6 +66,7 @@ layer = 2
 environment = SubResource("Environment_w1hta")
 
 [node name="CRT filter" type="ColorRect" parent="PostProcessing/CanvasLayer" unique_id=787995438]
+visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_4j704")
 anchors_preset = 8
@@ -174,5 +175,6 @@ nine_patch_stretch = true
 texture_under = ExtResource("6_2a8rs")
 texture_progress = ExtResource("7_4j704")
 
+[connection signal="retry_round" from="CanvasLayer2/DialogueManager" to="." method="_on_dialogue_manager_retry_round"]
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

@@ -4,7 +4,7 @@ class_name Player extends CharacterBody2D
 @export var audio_player_steps: AudioStreamPlayer2D
 @export var audio_player_sfx: AudioStreamPlayer2D
 
-enum player_states {IN_MINIGAME, WALKING}
+enum player_states {IN_MINIGAME, WALKING, IN_DIALOGUE}
 var player_state : player_states
 
 var sfx_steps_normal_time = 0.33
@@ -39,7 +39,7 @@ func _ready() -> void:
 var glowing_machine: Machine = null
 func _process(_delta) -> void:
 	if glowing_machine != null: glowing_machine.turn_off_glow()
-	if player_state == player_states.IN_MINIGAME: return
+	if player_state == player_states.IN_MINIGAME or player_state == player_states.IN_DIALOGUE: return
 	
 	nearby_machines.sort_custom(_sort_by_distance_desc)
 	for machine in nearby_machines:
@@ -145,7 +145,6 @@ func _physics_process(delta: float) -> void:
 			$PlayerSprite.animation = "idle"
 		else:
 			$PlayerSprite.animation = "overclocked_idle"
-
 	move_and_slide()
 
 func change_stamina(amount: float):
