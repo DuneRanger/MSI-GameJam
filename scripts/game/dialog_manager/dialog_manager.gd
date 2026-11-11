@@ -246,6 +246,7 @@ func play_speech_sfx():
 
 func play_lose_dialogue(): ##plays random dialogue if player loses and blows up the screen
 	play_random_dialogue(defeat_lines)
+	MusicAndAmbiencePlayer.fade_out()
 	is_defeated = true
 
 func play_win_dialogue(level_end_delay : float): ##plays random dialogue if player wins and automatically disappears

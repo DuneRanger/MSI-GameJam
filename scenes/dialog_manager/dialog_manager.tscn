@@ -118,6 +118,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Blackout:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_xvf6k"]
 resource_name = "dialogue_system_hide"
@@ -268,6 +280,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Blackout:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_7kcvn"]
 resource_name = "explosion_"
@@ -368,6 +392,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Blackout:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.6666666, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gwvcu"]
 _data = {
@@ -428,7 +464,7 @@ script = ExtResource("1_mesoi")
 [node name="Portrait" type="Control" parent="." unique_id=1260083061]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 0
-offset_right = 39.999924
+offset_right = 39.99991
 offset_bottom = 40.0
 pivot_offset = Vector2(942, 465)
 
@@ -523,13 +559,23 @@ attenuation = 0.0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1796185997]
 visible = false
-modulate = Color(1, 1, 1, 0.4705882)
+modulate = Color(1, 1, 1, 0)
 z_index = -1
 layout_mode = 0
 offset_left = -102.0
 offset_top = -61.0
 offset_right = 1370.0
 offset_bottom = 1309.0
+color = Color(0, 0, 0, 1)
+
+[node name="Blackout" type="ColorRect" parent="." unique_id=1064863837]
+visible = false
+layout_mode = 0
+offset_left = -160.0
+offset_top = -128.0
+offset_right = 1536.0
+offset_bottom = 936.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ExplosionColorRect" type="ColorRect" parent="." unique_id=1408211750]

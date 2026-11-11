@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://j4s1r411n22" path="res://scenes/game/machines/minigames/color_find.tscn" id="3_lfrn8"]
 [ext_resource type="PackedScene" uid="uid://dgt5wonqifjn8" path="res://scenes/game/levels/level_1.tscn" id="3_otnwt"]
 [ext_resource type="PackedScene" uid="uid://3pqpok6jkxky" path="res://scenes/dialog_manager/dialog_manager.tscn" id="4_2a8rs"]
-[ext_resource type="PackedScene" uid="uid://nspjmntmiqjj" path="res://scenes/game/levels/level_10.tscn" id="4_kp23o"]
+[ext_resource type="PackedScene" uid="uid://la47e6sbnret" path="res://scenes/game/levels/level_4.tscn" id="4_kp23o"]
 [ext_resource type="PackedScene" uid="uid://jsn2uxwrgdv2" path="res://scenes/game/levels/level_0.tscn" id="5_87uf6"]
 [ext_resource type="Texture2D" uid="uid://5l4bsiiaeu53" path="res://assets/game/levels/clock_empty.png" id="6_2a8rs"]
 [ext_resource type="Shader" uid="uid://cwr1ovub2hmsc" path="res://assets/game/FX/vignette.gdshader" id="6_4j704"]
@@ -68,13 +68,11 @@ minigame_scenes = Array[PackedScene]([ExtResource("3_lfrn8"), ExtResource("2_kel
 
 [node name="CanvasLayer" type="CanvasLayer" parent="PostProcessing" unique_id=690934362]
 layer = 2
-visible = false
 
 [node name="PostProcessingFX" type="WorldEnvironment" parent="PostProcessing/CanvasLayer" unique_id=1540551880]
 environment = SubResource("Environment_w1hta")
 
 [node name="CRT filter" type="ColorRect" parent="PostProcessing/CanvasLayer" unique_id=787995438]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_4j704")
 anchors_preset = 8
