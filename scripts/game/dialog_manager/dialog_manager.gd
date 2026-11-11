@@ -12,6 +12,7 @@ var dialogue_portrait : portraits
 var is_loaded_dialogue_continuous = false
 var i : int = 0 
 var is_defeated = false
+var is_end_of_level = false
 
 
 var tutorial_lines = [
@@ -101,7 +102,9 @@ func _process(delta: float) -> void:
 					dialogue_portrait = active_text_lines[i][0]
 					display_dialogue(dialogue_portrait ,dialogue_text)
 			else:
-				if is_defeated == true:
+				if is_end_of_level == true:
+					pass
+				elif is_defeated == true:
 					play_random_dialogue(button_press_face)
 					$DeathTimer.start()
 					$AudioPlayer.stream = load("res://assets/sfx/button-press-382713.mp3")
@@ -138,6 +141,13 @@ func display_dialogue(portrait: portraits, dialogue : String):
 	if is_displaying_dialogue == false:
 		is_displaying_dialogue = true
 		full_animation_player.play("dialogue_system_show")
+	
+	match is_end_of_level:
+		true:
+			$Textbox/Tip.text = ""
+		false:
+			$Textbox/Tip.text = "Press SPACE"
+	
 	$PortraitAnimationPlayer.play("portrait_wobble")
 	load_portrait(portrait)
 	text_label.text = dialogue
@@ -193,12 +203,17 @@ func play_speech_sfx():
 		$AudioPlayer.play()
 
 
-func play_lose_dialogue():
+func play_lose_dialogue(): ##plays random dialogue if player loses and blows up the screen
 	play_random_dialogue(defeat_lines)
 	is_defeated = true
 
-func play_win_dialogue():
+func play_win_dialogue(level_end_delay : float): ##plays random dialogue if player wins and automatically disappears
+	is_end_of_level = true
 	play_random_dialogue(victory_lines)
+	await get_tree().create_timer(level_end_delay - 1).timeout
+	$FullAnimationPlayer.play("dialogue_system_hide")
+	is_end_of_level = false
+	is_displaying_dialogue = false
 
 func _on_test_button_button_down() -> void:
 	play_tutorial()
@@ -211,7 +226,7 @@ func _on_die_button_button_down() -> void:
 
 
 func _on_win_button_button_down() -> void:
-	play_win_dialogue()
+	play_win_dialogue(5)
 	$winButton.visible = false
 
 func _on_text_scroll_timer_timeout() -> void:
