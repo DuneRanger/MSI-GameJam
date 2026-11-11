@@ -125,8 +125,6 @@ func _ready() -> void:
 	
 	for diff in levels_by_difficulty:
 		print(diff)
-	start_new_game()
-	#TODO REMOVE
 
 func _process(_delta: float) -> void:
 	progress_timer_hud.value = $LevelTimer.wait_time - $LevelTimer.time_left

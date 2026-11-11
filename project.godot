@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Robot Person Goes to Work"
 config/description="For the 2026 MSI Game Jam"
-run/main_scene="uid://bgsom0lqbhodk"
+run/main_scene="uid://cqvyp4v243dtu"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://d1u7nep52bxrc"
 
@@ -91,3 +91,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+lightmapping/stretch/aspect="keep"

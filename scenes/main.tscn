@@ -1,14 +1,15 @@
 [gd_scene format=4 uid="uid://cqvyp4v243dtu"]
 
-[ext_resource type="Script" uid="uid://d3mn3pmmyqxkt" path="res://scripts/title_screen.gd" id="1_mykxm"]
-[ext_resource type="PackedScene" uid="uid://bbxi0vokk4jgr" path="res://scenes/game/tilemap/tilemap.tscn" id="1_s4lrb"]
-[ext_resource type="Shader" uid="uid://cwr1ovub2hmsc" path="res://assets/game/FX/vignette.gdshader" id="1_sa3yf"]
-[ext_resource type="FontFile" uid="uid://b08cs88egoh1y" path="res://assets/fonts/PixeloidSans-Bold.otf" id="2_s4lrb"]
-[ext_resource type="Texture2D" uid="uid://dht3x1we320j7" path="res://assets/game/player/player_run.png" id="4_mgrm8"]
-[ext_resource type="Texture2D" uid="uid://cbgusm44gcldp" path="res://assets/game/player/player_overclocked_idle.png" id="5_3yumr"]
-[ext_resource type="Texture2D" uid="uid://jytasmud42ug" path="res://assets/game/player/player.png" id="5_dc4i4"]
-[ext_resource type="Script" uid="uid://db3108e5jbbch" path="res://scripts/title_screen_little_guy.gd" id="6_e54dn"]
-[ext_resource type="Theme" uid="uid://d0hf7wudlkptc" path="res://scenes/game/machines/minigames/fishing_theme.tres" id="8_cs5ya"]
+[ext_resource type="Script" uid="uid://d3mn3pmmyqxkt" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://bgsom0lqbhodk" path="res://scenes/game/game.tscn" id="2_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://bbxi0vokk4jgr" path="res://scenes/game/tilemap/tilemap.tscn" id="3_eb6dy"]
+[ext_resource type="Theme" uid="uid://d0hf7wudlkptc" path="res://scenes/game/machines/minigames/fishing_theme.tres" id="3_sugp2"]
+[ext_resource type="Shader" uid="uid://cwr1ovub2hmsc" path="res://assets/game/FX/vignette.gdshader" id="4_trceg"]
+[ext_resource type="FontFile" uid="uid://b08cs88egoh1y" path="res://assets/fonts/PixeloidSans-Bold.otf" id="5_a8y0u"]
+[ext_resource type="Script" uid="uid://db3108e5jbbch" path="res://scripts/title_screen_little_guy.gd" id="6_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://cbgusm44gcldp" path="res://assets/game/player/player_overclocked_idle.png" id="7_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://dht3x1we320j7" path="res://assets/game/player/player_run.png" id="8_muem4"]
+[ext_resource type="Texture2D" uid="uid://jytasmud42ug" path="res://assets/game/player/player.png" id="9_dp3eg"]
 
 [sub_resource type="Environment" id="Environment_mgrm8"]
 background_mode = 3
@@ -19,7 +20,7 @@ adjustment_contrast = 1.035
 adjustment_saturation = 1.19
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dc4i4"]
-shader = ExtResource("1_sa3yf")
+shader = ExtResource("4_trceg")
 shader_parameter/overlay = false
 shader_parameter/resolution = Vector2(320, 180)
 shader_parameter/brightness = 1.02
@@ -47,7 +48,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Label:position")
+tracks/0/path = NodePath("TitleScreen/CanvasLayer/Label:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -64,7 +65,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Label:position")
+tracks/0/path = NodePath("TitleScreen/CanvasLayer/Label:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -81,51 +82,51 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_frs5l"]
-atlas = ExtResource("5_3yumr")
+atlas = ExtResource("7_jbj1t")
 region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mynnq"]
-atlas = ExtResource("5_3yumr")
+atlas = ExtResource("7_jbj1t")
 region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8tpv"]
-atlas = ExtResource("5_3yumr")
+atlas = ExtResource("7_jbj1t")
 region = Rect2(48, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4qe4i"]
-atlas = ExtResource("5_3yumr")
+atlas = ExtResource("7_jbj1t")
 region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dc4i4"]
-atlas = ExtResource("4_mgrm8")
+atlas = ExtResource("8_muem4")
 region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e54dn"]
-atlas = ExtResource("4_mgrm8")
+atlas = ExtResource("8_muem4")
 region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3yumr"]
-atlas = ExtResource("4_mgrm8")
+atlas = ExtResource("8_muem4")
 region = Rect2(48, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs5ya"]
-atlas = ExtResource("4_mgrm8")
+atlas = ExtResource("8_muem4")
 region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mykxm"]
-atlas = ExtResource("5_dc4i4")
+atlas = ExtResource("9_dp3eg")
 region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tklts"]
-atlas = ExtResource("5_dc4i4")
+atlas = ExtResource("9_dp3eg")
 region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u26n3"]
-atlas = ExtResource("5_dc4i4")
+atlas = ExtResource("9_dp3eg")
 region = Rect2(48, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ib7db"]
-atlas = ExtResource("5_dc4i4")
+atlas = ExtResource("9_dp3eg")
 region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s4lrb"]
@@ -270,32 +271,36 @@ _data = {
 &"walk": SubResource("Animation_3yumr")
 }
 
-[node name="TitleScreen" type="Node2D" unique_id=1669698504]
-script = ExtResource("1_mykxm")
+[node name="Main" type="Node" unique_id=2145208402 node_paths=PackedStringArray("title_screen")]
+script = ExtResource("1_o5qli")
+title_screen = NodePath("TitleScreen")
+game_scene = ExtResource("2_ya4ey")
 
-[node name="Tilemap" parent="." unique_id=1355390431 instance=ExtResource("1_s4lrb")]
+[node name="TitleScreen" type="Node2D" parent="." unique_id=2101782694]
 
-[node name="TilemapFloorLayer" parent="Tilemap" index="0" unique_id=588901160]
+[node name="Tilemap" parent="TitleScreen" unique_id=1355390431 instance=ExtResource("3_eb6dy")]
+
+[node name="TilemapFloorLayer" parent="TitleScreen/Tilemap" index="0" unique_id=588901160]
 tile_map_data = PackedByteArray("AAD//wgAAQAAAAAAAAAAAAgAAQAAAAAAAAABAAgAAQAAAAAAAAACAAgAAQAAAAAAAAADAAgAAQAAAAAAAAAEAAgAAQAAAAAAAAAFAAgAAQAAAAAAAAAGAAgAAQAAAAAAAAAHAAgAAQAAAAAAAAAIAAgAAQAAAAAAAAAJAAgAAQAAAAAAAAAKAAgAAQAAAAAAAAALAAgAAQAAAAAAAAAMAAgAAQAAAAAAAAANAAgAAQAAAAAAAAAOAAgAAQAAAAAAAAAPAAgAAQAAAAAAAAAQAAgAAQAAAAAAAAARAAgAAQAAAAAAAAASAAgAAQAAAAAAAAATAAgAAQAAAAAAAAA=")
 
-[node name="TilemapDecorLayer" parent="Tilemap" index="1" unique_id=1888967584]
+[node name="TilemapDecorLayer" parent="TitleScreen/Tilemap" index="1" unique_id=1888967584]
 tile_map_data = PackedByteArray("AAD//wgAAgABAAEAAAAAAAgAAgABAAAAAAABAAgAAgADAAEAAAA=")
 
-[node name="TilemapWallLayer" parent="Tilemap" index="4" unique_id=695297817]
+[node name="TilemapWallLayer" parent="TitleScreen/Tilemap" index="4" unique_id=695297817]
 tile_map_data = PackedByteArray("AAALAAgAAgAGAAEAAAAEAAgAAgAHAAEAAAARAAgAAgAHAAAAAAAAAAgAAgAGAAAAAAAIAAgAAgAFAAEAAAAGAAgAAgAFAAAAAAAOAAgAAgAFAAAAAAD//wYAAwAHAAIAAAAAAAYAAwAEAAIAAAABAAYAAwAEAAIAAAACAAYAAwAEAAIAAAADAAYAAwAEAAIAAAAEAAYAAwAEAAIAAAAFAAYAAwAEAAIAAAAGAAYAAwAEAAIAAAAHAAYAAwAEAAIAAAAIAAYAAwAEAAIAAAAJAAYAAwAEAAIAAAAKAAYAAwAEAAIAAAALAAYAAwAEAAIAAAAMAAYAAwAEAAIAAAANAAYAAwAEAAIAAAAOAAYAAwAEAAIAAAAPAAYAAwAEAAIAAAAQAAYAAwAEAAIAAAARAAYAAwAEAAIAAAASAAYAAwAIAAIAAAA=")
 
-[node name="TilemapSideWallLayer" parent="Tilemap" index="5" unique_id=1769598380]
+[node name="TilemapSideWallLayer" parent="TitleScreen/Tilemap" index="5" unique_id=1769598380]
 tile_map_data = PackedByteArray("AAD//wcAAwAHAAAAAAD//wkAAwAHAAAAAAAAAAcAAwAHAAAAAAAAAAkAAwAIAAAAAAABAAcABAAEAAAAAAABAAkAAwAIAAAAAAACAAcAAwAIAAAAAAACAAkAAwAHAAAAAAADAAcAAwAHAAAAAAADAAkAAwAHAAAAAAAEAAcABAABAAAAAAAEAAkAAwAHAAAAAAAFAAcABAAAAAAAAAAFAAkAAwAHAAAAAAAGAAcAAwAHAAAAAAAGAAkAAwAHAAAAAAAHAAcAAwAHAAAAAAAHAAkAAwAHAAAAAAAIAAcAAwAHAAAAAAAIAAkAAwAIAAAAAAAJAAcABAACAAAAAAAJAAkAAwAIAAAAAAAKAAcAAwAHAAAAAAAKAAkAAwAIAAAAAAALAAcAAwAHAAEAAAALAAkAAwAIAAAAAAAMAAcABAAAAAAAAAAMAAkAAwAHAAAAAAANAAcAAwAHAAAAAAANAAkAAwAHAAAAAAAOAAcAAwAIAAAAAAAOAAkAAwAHAAEAAAAPAAcABAADAAAAAAAPAAkAAwAHAAAAAAAQAAcAAwAIAAAAAAAQAAkAAwAHAAAAAAARAAcAAwAHAAAAAAARAAkAAwAHAAAAAAASAAcAAwAHAAAAAAASAAkAAwAHAAAAAAATAAkAAwAHAAAAAAA=")
 
-[node name="PostProcessing" type="Node" parent="." unique_id=1221978577]
+[node name="PostProcessing" type="Node" parent="TitleScreen" unique_id=1221978577]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="PostProcessing" unique_id=462227972]
+[node name="CanvasLayer" type="CanvasLayer" parent="TitleScreen/PostProcessing" unique_id=462227972]
 layer = 2
 
-[node name="PostProcessingFX" type="WorldEnvironment" parent="PostProcessing/CanvasLayer" unique_id=1606332357]
+[node name="PostProcessingFX" type="WorldEnvironment" parent="TitleScreen/PostProcessing/CanvasLayer" unique_id=1606332357]
 environment = SubResource("Environment_mgrm8")
 
-[node name="CRT filter" type="ColorRect" parent="PostProcessing/CanvasLayer" unique_id=1039185524]
+[node name="CRT filter" type="ColorRect" parent="TitleScreen/PostProcessing/CanvasLayer" unique_id=1039185524]
 visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_dc4i4")
@@ -314,9 +319,9 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1766131504]
+[node name="CanvasLayer" type="CanvasLayer" parent="TitleScreen" unique_id=1766131504]
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=750469016]
+[node name="Label" type="Label" parent="TitleScreen/CanvasLayer" unique_id=750469016]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -327,17 +332,18 @@ offset_bottom = 271.002
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.78039217, 0.23529412, 0.23529412, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8117647)
-theme_override_fonts/font = ExtResource("2_s4lrb")
+theme_override_fonts/font = ExtResource("5_a8y0u")
 theme_override_font_sizes/font_size = 64
 text = "ROBOT PERSON
 GOES TO WORK"
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=145635717]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleScreen" unique_id=145635717]
+root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_3yumr")
 autoplay = &"TextMove"
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=324780024]
+[node name="ColorRect" type="ColorRect" parent="TitleScreen" unique_id=324780024]
 z_index = -9
 offset_left = -105.0
 offset_top = -57.0
@@ -345,40 +351,40 @@ offset_right = 1331.0
 offset_bottom = 767.0
 color = Color(0, 0, 0, 1)
 
-[node name="LittleGuy" type="Node2D" parent="." unique_id=1494353312]
+[node name="LittleGuy" type="Node2D" parent="TitleScreen" unique_id=1494353312]
 position = Vector2(-102.115, 581.94)
-script = ExtResource("6_e54dn")
+script = ExtResource("6_jkv2x")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="LittleGuy" unique_id=1518813154]
+[node name="Sprite" type="AnimatedSprite2D" parent="TitleScreen/LittleGuy" unique_id=1518813154]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_s4lrb")
 animation = &"overclock_idle"
 autoplay = "walk"
 
-[node name="LittleGuyAnim" type="AnimationPlayer" parent="." unique_id=1652843442]
+[node name="LittleGuyAnim" type="AnimationPlayer" parent="TitleScreen" unique_id=1652843442]
 root_node = NodePath("../LittleGuy/Sprite")
 libraries/ = SubResource("AnimationLibrary_cs5ya")
 autoplay = &"walk"
 
-[node name="ExitButton" type="Button" parent="." unique_id=833095689]
+[node name="ExitButton" type="Button" parent="TitleScreen" unique_id=833095689]
 offset_left = 712.0
 offset_top = 320.0
 offset_right = 832.0
 offset_bottom = 382.886
-theme = ExtResource("8_cs5ya")
+theme = ExtResource("3_sugp2")
 theme_override_font_sizes/font_size = 24
 text = "EXIT"
 
-[node name="PlayButton" type="Button" parent="." unique_id=2138152836]
+[node name="PlayButton" type="Button" parent="TitleScreen" unique_id=2138152836]
 offset_left = 448.0
 offset_top = 320.0
 offset_right = 568.0
 offset_bottom = 382.886
-theme = ExtResource("8_cs5ya")
+theme = ExtResource("3_sugp2")
 theme_override_font_sizes/font_size = 24
 text = "PLAY"
 
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="TitleScreen/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="TitleScreen/PlayButton" to="." method="_on_play_button_pressed"]
 
-[editable path="Tilemap"]
+[editable path="TitleScreen/Tilemap"]
