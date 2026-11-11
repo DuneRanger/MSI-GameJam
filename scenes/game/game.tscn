@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://w0dugvbnw26x" path="res://scenes/game/game.gd" id="1_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://crwocavy5kif" path="res://scenes/game/machines/minigames/steam_wheel.tscn" id="2_kelw5"]
+[ext_resource type="PackedScene" uid="uid://d2q6bu7w2lex4" path="res://scenes/game/levels/level_3.tscn" id="3_2a8rs"]
 [ext_resource type="PackedScene" uid="uid://j4s1r411n22" path="res://scenes/game/machines/minigames/color_find.tscn" id="3_lfrn8"]
+[ext_resource type="PackedScene" uid="uid://dgt5wonqifjn8" path="res://scenes/game/levels/level_1.tscn" id="3_otnwt"]
 [ext_resource type="PackedScene" uid="uid://3pqpok6jkxky" path="res://scenes/dialog_manager/dialog_manager.tscn" id="4_2a8rs"]
-[ext_resource type="PackedScene" uid="uid://nspjmntmiqjj" path="res://scenes/game/levels/level_4.tscn" id="4_kp23o"]
-[ext_resource type="PackedScene" uid="uid://dgt5wonqifjn8" path="res://scenes/game/levels/level_1.tscn" id="5_87uf6"]
+[ext_resource type="PackedScene" uid="uid://b5mn7ruhwjiun" path="res://scenes/game/levels/level_4.tscn" id="4_kp23o"]
+[ext_resource type="PackedScene" uid="uid://p8iorcdjgmai" path="res://scenes/game/levels/level_0.tscn" id="5_87uf6"]
 [ext_resource type="Texture2D" uid="uid://5l4bsiiaeu53" path="res://assets/game/levels/clock_empty.png" id="6_2a8rs"]
 [ext_resource type="Shader" uid="uid://cwr1ovub2hmsc" path="res://assets/game/FX/vignette.gdshader" id="6_4j704"]
 [ext_resource type="PackedScene" uid="uid://bcd1yojcuv8kb" path="res://scenes/game/levels/level_2.tscn" id="6_vaxfo"]
@@ -48,7 +50,7 @@ shader_parameter/vignette_opacity = 0.3310000157225
 
 [node name="Game2" type="Node" unique_id=1830910457 node_paths=PackedStringArray("progress_timer_hud", "lives_left_label", "level_num_label")]
 script = ExtResource("1_0sr1o")
-levels = Array[PackedScene]([ExtResource("5_87uf6"), ExtResource("6_vaxfo"), ExtResource("4_kp23o"), ExtResource("5_87uf6"), ExtResource("6_vaxfo")])
+levels = Array[PackedScene]([ExtResource("5_87uf6"), ExtResource("3_otnwt"), ExtResource("6_vaxfo"), ExtResource("3_2a8rs"), ExtResource("4_kp23o")])
 progress_timer_hud = NodePath("HUD/HBoxContainer/AspectRatioContainer/LevelTimerProgressBar")
 lives_left_label = NodePath("HUD/HBoxContainer/VBoxContainer/HBoxContainer/LivesLeftLabel")
 level_num_label = NodePath("HUD/HBoxContainer/VBoxContainer/LevelNumberLabel")

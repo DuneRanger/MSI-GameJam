@@ -46,10 +46,15 @@ func load_level() -> void:
 		if levels_finished % level_count_per_difficulty == 0:
 			current_difficulty += 1
 	
+	# Sets the difficulty to either the next difficulty higher than `current_difficulty`, or max difficulty
 	if current_difficulty not in levels_by_difficulty:
 		var difficulties = levels_by_difficulty.keys() as Array[int]
-		current_difficulty = difficulties.pick_random()
-		#TODO fix this fuckass
+		difficulties.sort()
+		for diff in difficulties:
+			var old_diff = current_difficulty
+			current_difficulty = diff
+			if diff > old_diff:
+				break
 	
 	current_level = levels_by_difficulty.get(current_difficulty).pick_random().instantiate()
 	level_container.add_child(current_level)
@@ -79,9 +84,11 @@ func _on_level_timer_timeout() -> void:
 		load_level()
 
 func _ready() -> void:
+	current_difficulty = 999999
 	for level in levels:
 		var inst = level.instantiate()
 		var d = inst.difficulty
+		current_difficulty = min(current_difficulty, d)
 		inst.free()
 		levels_by_difficulty.get_or_add(d, []).append(level)
 	
