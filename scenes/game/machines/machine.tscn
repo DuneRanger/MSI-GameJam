@@ -121,13 +121,16 @@ sprite_frames = SubResource("SpriteFrames_yeiif")
 animation = &"empty"
 autoplay = "empty"
 
-[node name="MachineSFX" type="AudioStreamPlayer" parent="." unique_id=1629860069]
-stream = ExtResource("6_k452h")
-
 [node name="MachineLight" type="Sprite2D" parent="." unique_id=1865683169]
 modulate = Color(1, 1, 1, 0.019607844)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("7_xv1ll")
+
+[node name="MachineSFX" type="AudioStreamPlayer2D" parent="." unique_id=1446842379]
+stream = ExtResource("6_k452h")
+volume_db = 5.0
+attenuation = 0.2
+bus = &"SFX"
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
