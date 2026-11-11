@@ -33,6 +33,7 @@ wait_time = 120.0
 one_shot = true
 
 [node name="AmbiencePlayer" type="AudioStreamPlayer2D" parent="." unique_id=912784979]
+visible = false
 stream = ExtResource("8_87uf6")
 autoplay = true
 bus = &"Ambience"

@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://wrnhx31vr21p"]
+
+[ext_resource type="AudioStream" uid="uid://bfa1tc6i3lrm3" path="res://assets/sfx/ambient/ambience.ogg" id="1_0qn8u"]
+[ext_resource type="Script" uid="uid://d2e41d0nfvhi7" path="res://scenes/music_and_ambience_player/music_and_ambience_player.gd" id="1_itx8a"]
+[ext_resource type="AudioStream" uid="uid://ch1j0xrkvqmyp" path="res://assets/music/IdleTheme.ogg" id="2_itx8a"]
+
+[sub_resource type="Animation" id="Animation_itx8a"]
+resource_name = "Music_FadeOut"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_op5r3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwke4"]
+_data = {
+&"Music_FadeOut": SubResource("Animation_itx8a"),
+&"RESET": SubResource("Animation_op5r3")
+}
+
+[node name="MusicAndAmbiencePlayer" type="Node" unique_id=1459447048]
+script = ExtResource("1_itx8a")
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1787953863]
+stream = ExtResource("2_itx8a")
+volume_db = 10.0
+autoplay = true
+bus = &"Music"
+
+[node name="AmbiencePlayer" type="AudioStreamPlayer2D" parent="." unique_id=1508478313]
+stream = ExtResource("1_0qn8u")
+autoplay = true
+panning_strength = 0.0
+bus = &"Ambience"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=308324906]
+libraries/ = SubResource("AnimationLibrary_jwke4")
+
+[node name="Button3" type="Button" parent="." unique_id=328209532]
+offset_left = 1043.0
+offset_top = 150.0
+offset_right = 1224.0
+offset_bottom = 196.0
+text = "music fade"
+
+[node name="Button2" type="Button" parent="." unique_id=1838430141]
+offset_left = 1043.0
+offset_top = 86.0
+offset_right = 1224.0
+offset_bottom = 132.0
+text = "music idle"
+
+[node name="Button" type="Button" parent="." unique_id=247828653]
+offset_left = 1042.0
+offset_top = 24.0
+offset_right = 1223.0
+offset_bottom = 70.0
+text = "music normal"
+
+[node name="EndOfLevelTimer" type="Timer" parent="." unique_id=250563530]
+wait_time = 2.0
+
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="EndOfLevelTimer" to="." method="_on_end_of_level_timer_timeout"]

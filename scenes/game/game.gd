@@ -39,8 +39,9 @@ func start_level() -> void:
 	lives = max_lives
 	$LevelTimer.start()
 	current_level.player.set_physics_process(true)
+	MusicAndAmbiencePlayer.play_game_music()
 
-func _on_level_timer_timeout() -> void:
+func _on_level_timer_timeout() -> void:	
 	print("Level timer ran out!!")
 	current_level.player.force_idle_anim()
 	current_level.player.set_physics_process(false)

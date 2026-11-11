@@ -28,7 +28,7 @@ var tutorial_lines = [
 	[portraits.explaining, "And your job, my friend, is to keep them cool and keep them from exploding"],
 	[portraits.button_show, "See this button?"],
 	[portraits.button_laughing, "It's my favourite part of this job!"],
-	[portraits.button_grumpy, "If you let too many machines overheat and explode..."],
+	[portraits.button_grumpy, "If you let 3 machines overheat and explode..."],
 	[portraits.button_press_laughing, "Then I'll explode you by pressing this!"],
 	[portraits.excited, "Yeah that's about it"],
 	[portraits.explaining, "Be careful when running, so you yourself wont overheat"],
@@ -191,7 +191,14 @@ func play_speech_sfx():
 	if $AudioPlayer.playing != true:
 		$AudioPlayer.stream = load("res://assets/sfx/sfx_speech.mp3")
 		$AudioPlayer.play()
-		
+
+
+func play_lose_dialogue():
+	play_random_dialogue(defeat_lines)
+	is_defeated = true
+
+func play_win_dialogue():
+	play_random_dialogue(victory_lines)
 
 func _on_test_button_button_down() -> void:
 	play_tutorial()
@@ -199,15 +206,13 @@ func _on_test_button_button_down() -> void:
 
 
 func _on_die_button_button_down() -> void:
-	play_random_dialogue(defeat_lines)
-	is_defeated = true
+	play_lose_dialogue()
 	$dieButton.visible = false
 
 
 func _on_win_button_button_down() -> void:
-	play_random_dialogue(victory_lines)
+	play_win_dialogue()
 	$winButton.visible = false
-
 
 func _on_text_scroll_timer_timeout() -> void:
 	$TextScrollTimer.stop()
