@@ -48,11 +48,16 @@ script = ExtResource("1_itx8a")
 stream = ExtResource("2_itx8a")
 volume_db = 10.0
 autoplay = true
+max_distance = 10000.0
+attenuation = 0.0
+panning_strength = 0.0
 bus = &"Music"
 
 [node name="AmbiencePlayer" type="AudioStreamPlayer2D" parent="." unique_id=1508478313]
 stream = ExtResource("1_0qn8u")
 autoplay = true
+max_distance = 10000.0
+attenuation = 0.0
 panning_strength = 0.0
 bus = &"Ambience"
 

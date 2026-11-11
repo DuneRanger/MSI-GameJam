@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cmar2vnecw58v" path="res://assets/game/player/player_idle.png" id="3_gmc11"]
 [ext_resource type="Texture2D" uid="uid://cbgusm44gcldp" path="res://assets/game/player/player_overclocked_idle.png" id="5_dqfck"]
 [ext_resource type="AudioStream" uid="uid://duqkutddpton1" path="res://assets/sfx/player/sfx_player_step.mp3" id="8_gdbv0"]
+[ext_resource type="Texture2D" uid="uid://d37klutb1oq6p" path="res://assets/game/FX/light_circle.png" id="9_6bxg8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c7er3"]
 atlas = ExtResource("3_gmc11")
@@ -180,6 +181,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1hta"]
 size = Vector2(20, 4)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w1hta"]
+blend_mode = 1
+
 [node name="Player" type="CharacterBody2D" unique_id=1893256284 node_paths=PackedStringArray("timer_sfx_steps", "audio_player_steps", "audio_player_sfx")]
 z_index = -2
 y_sort_enabled = true
@@ -236,6 +240,15 @@ offset_bottom = -13.333332
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="MonitorLight" type="Sprite2D" parent="." unique_id=1741806331]
+modulate = Color(1, 1, 1, 0.05882353)
+z_index = 3
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_w1hta")
+position = Vector2(4, -4)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("9_6bxg8")
 
 [connection signal="timeout" from="OverclockTimer" to="." method="_on_overclock_timer_timeout"]
 [connection signal="timeout" from="RechargeTimer" to="." method="_on_recharge_timer_timeout"]

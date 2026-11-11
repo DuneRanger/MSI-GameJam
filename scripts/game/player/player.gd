@@ -34,6 +34,7 @@ var nearby_machines: Array[Machine] = []
 func _ready() -> void:
 	add_to_group("player")
 	player_state = player_states.WALKING
+	$MonitorLight.self_modulate = Color.ORANGE
 
 var glowing_machine: Machine = null
 func _process(_delta) -> void:
@@ -71,8 +72,11 @@ func _physics_process(delta: float) -> void:
 	#horizontální flipování spritu
 	if character_direction.x > 0:
 		$PlayerSprite.flip_h = false
+		$MonitorLight.position = Vector2(4.0, -4)
 	elif character_direction.x < 0:
 		$PlayerSprite.flip_h = true
+		$MonitorLight.position = Vector2(-4.0, -4)
+		
 	
 	if is_overclocked == true:
 		if stamina == max_stamina:
@@ -151,7 +155,7 @@ func change_stamina(amount: float):
 func overclock() -> void:
 	audio_player_sfx.stream = load("res://assets/sfx/player/sfx_player_overclock.mp3")
 	audio_player_sfx.play()
-	
+	$MonitorLight.self_modulate = Color.RED
 	is_sprinting = false
 	is_overclocked = true
 	#overclock_timer_started = false
@@ -163,6 +167,7 @@ func recharge() -> void:
 	audio_player_sfx.stream = load("res://assets/sfx/player/sfx_player_recharge.mp3")
 	audio_player_sfx.play()
 	is_overclocked = false
+	$MonitorLight.self_modulate = Color.ORANGE
 	animation_name = "move"
 	movement_speed = movement_speed_default
 
