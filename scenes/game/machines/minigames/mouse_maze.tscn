@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhvot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rwby"]
-size = Vector2(14.5, 100)
+size = Vector2(97, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g4ot"]
 size = Vector2(38, 56)
@@ -35,7 +35,7 @@ shape = SubResource("RectangleShape2D_jhvot")
 [node name="ColorRect" type="ColorRect" parent="Walls/Area2" index="0" unique_id=913403591]
 offset_left = 21.0
 offset_top = 492.0
-offset_right = 1260.0
+offset_right = 1276.0
 offset_bottom = 699.0
 color = Color(0.10524044, 0.10524041, 0.10524035, 1)
 
@@ -47,7 +47,7 @@ shape = SubResource("RectangleShape2D_jhvot")
 [node name="ColorRect" type="ColorRect" parent="Walls/Area3" index="0" unique_id=1191450475]
 offset_left = 794.0
 offset_top = 20.0
-offset_right = 1260.0
+offset_right = 1276.0
 offset_bottom = 109.0
 color = Color(0.10524044, 0.10524041, 0.10524035, 1)
 
@@ -59,7 +59,7 @@ shape = SubResource("RectangleShape2D_jhvot")
 [node name="ColorRect" type="ColorRect" parent="Walls/Area4" index="0" unique_id=820980623]
 offset_left = 902.0
 offset_top = 209.0
-offset_right = 1260.0
+offset_right = 1276.0
 offset_bottom = 492.0
 color = Color(0.10524044, 0.10524041, 0.10524035, 1)
 
@@ -81,7 +81,7 @@ shape = SubResource("RectangleShape2D_jhvot")
 [node name="Goal" type="Area2D" parent="." index="2" unique_id=1334350612]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal" index="0" unique_id=269506771]
-position = Vector2(1209, 159)
+position = Vector2(1246.5, 159)
 shape = SubResource("RectangleShape2D_3rwby")
 
 [node name="Sprite2D" type="Sprite2D" parent="Goal" index="1" unique_id=872890277]
