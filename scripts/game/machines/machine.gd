@@ -11,7 +11,7 @@ enum State { RUNNING, OVERHEATED, IN_MINIGAME, BROKEN }
 @export var spike_multiplier: float = 1.2
 @export var explosion_temperature: float = 250.0
 @export var overheat_temperature: float = 100.0
-@export var heat_rate: float = 5.0
+@export var heat_rate: float = 3.0
 
 # Minigame
 @onready var interaction_area: Area2D = $InteractionArea
@@ -29,7 +29,7 @@ var is_glowing: bool = false
 func _init():
 	id = next_id
 	next_id += 1
-	temperature = (randf() / 2) * overheat_temperature
+	temperature = (randf() * randf()) * overheat_temperature
 
 func _ready() -> void:
 	add_to_group("machines")
