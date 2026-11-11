@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://d0xvt7ih8ak8q"]
+[gd_scene format=4 uid="uid://jsn2uxwrgdv2"]
 
 [ext_resource type="Script" uid="uid://d20mhjwo6fgd4" path="res://scripts/game/level.gd" id="1_x1c7m"]
 [ext_resource type="PackedScene" uid="uid://df7k01fldw4a7" path="res://scenes/lucky_sitting/lucky_sitting.tscn" id="3_3u6cc"]

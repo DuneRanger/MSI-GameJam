@@ -47,9 +47,11 @@ func load_level() -> void:
 			current_difficulty += 1
 	
 	if current_difficulty not in levels_by_difficulty:
-		current_difficulty -= 1
+		var difficulties = levels_by_difficulty.keys() as Array[int]
+		current_difficulty = difficulties.pick_random()
+		#TODO fix this fuckass
 	
-	current_level = levels_by_difficulty[current_difficulty].pick_random().instantiate()
+	current_level = levels_by_difficulty.get(current_difficulty).pick_random().instantiate()
 	level_container.add_child(current_level)
 	
 	current_level.machine_layer.child_entered_tree.connect(add_machine)
