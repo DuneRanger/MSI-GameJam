@@ -6,12 +6,14 @@ extends Node2D
 
 @onready var camera: Camera2D = $Player/Camera2D
 @onready var floor_layer: TileMapLayer = $Tilemap/TilemapFloorLayer
-@onready var machine_layer = $Tilemap/TileMapMachineLayer
+@onready var machine_layer = $Tilemap/TilemapMachineLayer
+@onready var belt_layer: TileMapLayer = $Tilemap/TilemapConveyorBeltLayer
 
 func _ready() -> void:
 	for node in get_children():
 		if node is Node2D:
 			node.y_sort_enabled = true
+	player.belt_layer = belt_layer
 	var rect = floor_layer.get_used_rect()
 	var tile = floor_layer.tile_set.tile_size
 	var top_left = floor_layer.to_global(rect.position * tile)

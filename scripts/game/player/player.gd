@@ -25,7 +25,8 @@ var is_sprinting = false ## if the player is sprinting (moving and holding shift
 var max_stamina = 100 ##the maximum amout of stamina the player can reach
 var stamina = max_stamina ##the amount of stamina the player has right now
 
-
+const belt_speed = 350 # should be >= player speed
+var belt_layer: TileMapLayer # assignned by level.gd
 
 signal signal_player_stamina_change(stamina: int)
 
@@ -129,7 +130,7 @@ func _physics_process(delta: float) -> void:
 			play_step_sfx(sfx_steps_normal_time)
 			
 		is_moving = true
-		velocity = character_direction * movement_speed
+		velocity = character_direction * movement_speed + get_belt_velocity()
 		$PlayerSprite.animation = animation_name
 	else:
 		
@@ -140,7 +141,7 @@ func _physics_process(delta: float) -> void:
 		is_moving = false
 		is_sprinting = false
 		$OverclockTimer.stop()
-		velocity = character_direction * movement_speed
+		velocity = character_direction * movement_speed + get_belt_velocity()
 		if is_overclocked == false:
 			$PlayerSprite.animation = "idle"
 		else:
@@ -213,3 +214,10 @@ func force_idle_anim() -> void:
 	else:
 		animation_name = "idle"
 	$PlayerSprite.animation = animation_name
+
+func get_belt_velocity() -> Vector2:
+	var feet = global_position + Vector2(0, 32)
+	var cell = belt_layer.local_to_map(belt_layer.to_local(feet))
+	var data = belt_layer.get_cell_tile_data(cell)
+	if data: return data.get_custom_data("belt_dir") * belt_speed
+	return Vector2.ZERO
