@@ -38,9 +38,12 @@ func _ready() -> void:
 
 func turn_on_glow():
 	is_glowing = true
-
+	machine_sprite.modulate = Color(1.5, 1.4, 0.8)
+	
 func turn_off_glow():
 	is_glowing = false
+	if state != State.BROKEN:
+		machine_sprite.modulate = Color(1, 1, 1)
 
 func play_explosion() -> void:
 	var explosion_sprite: AnimatedSprite2D = $ExplosionAnimationSprite
@@ -54,11 +57,6 @@ func play_explosion() -> void:
 
 func _process(delta: float) -> void:
 	process_state(delta)
-	if is_glowing:
-		machine_sprite.modulate = Color(1.5, 1.4, 0.8)
-		is_glowing = false
-	else:
-		machine_sprite.modulate = Color(1, 1, 1)
 
 func _on_interaction_area_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -85,11 +83,11 @@ func enter_state(new_state: State) -> void:
 		State.OVERHEATED:
 			machine_sprite.play("overheated")
 		State.IN_MINIGAME:
-			# Freeze all machines?, or just don't update this machine?
 			pass
 		State.BROKEN:
 			play_explosion()
 			machine_sprite.play("broken")
+			machine_sprite.modulate = Color(0.4, 0.4, 0.4, 1)
 
 func exit_state(old_state: State) -> void:
 	print("Machine ", id, " exited state ", str(old_state))
@@ -134,6 +132,4 @@ func on_minigame_success() -> void:
 func on_minigame_failed() -> void:
 	temperature *= spike_multiplier + 0.1
 	print("Minigame failed, temperature: ", temperature)
-	# change to overheated, because minigames should only run when overheated
-	# but for debugging, they run whenever
 	change_state(State.OVERHEATED)

@@ -148,7 +148,7 @@ func display_dialogue(portrait: portraits, dialogue : String):
 	$Textbox/TextLabel.visible_ratio = 0.0
 	t.bind_node($Textbox/TextLabel)
 	t.tween_property($Textbox/TextLabel, "visible_ratio", 1.0, 0.03 * dialogue.length())
-	$TextScrollTimer.wait_time = 0.03 * dialogue.length()
+	$TextScrollTimer.wait_time = 0.03 * dialogue.length() if dialogue.length() > 0 else 1.0
 	$TextScrollTimer.start()
 	
 	#text_animation_player.play("text_scroll")

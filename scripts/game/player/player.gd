@@ -42,8 +42,9 @@ func _process(_delta) -> void:
 	
 	nearby_machines.sort_custom(_sort_by_distance_desc)
 	for machine in nearby_machines:
-		#if machine.state == Machine.State.OVERHEATED:
+		if machine.state == Machine.State.OVERHEATED:
 			machine.turn_on_glow()
+			glowing_machine = machine
 			if Input.is_action_just_pressed("interact"):
 				machine.interact()
 				player_state = player_states.IN_MINIGAME
@@ -198,5 +199,12 @@ func remove_nearby_machine(machine: Machine) -> void:
 	nearby_machines.erase(machine)
 
 func _sort_by_distance_desc(a: Machine, b: Machine) -> bool:
-	var pos := global_position
+	var pos = global_position
 	return a.global_position.distance_squared_to(pos) < b.global_position.distance_squared_to(pos)
+
+func force_idle_anim() -> void:
+	if is_overclocked:
+		animation_name = "overclocked_idle"
+	else:
+		animation_name = "idle"
+	$PlayerSprite.animation = animation_name
