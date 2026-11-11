@@ -65,6 +65,7 @@ bus = &"Ambience"
 libraries/ = SubResource("AnimationLibrary_jwke4")
 
 [node name="Button3" type="Button" parent="." unique_id=328209532]
+visible = false
 offset_left = 1043.0
 offset_top = 150.0
 offset_right = 1224.0
@@ -72,6 +73,7 @@ offset_bottom = 196.0
 text = "music fade"
 
 [node name="Button2" type="Button" parent="." unique_id=1838430141]
+visible = false
 offset_left = 1043.0
 offset_top = 86.0
 offset_right = 1224.0
@@ -79,6 +81,7 @@ offset_bottom = 132.0
 text = "music idle"
 
 [node name="Button" type="Button" parent="." unique_id=247828653]
+visible = false
 offset_left = 1042.0
 offset_top = 24.0
 offset_right = 1223.0
