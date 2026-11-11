@@ -35,7 +35,6 @@ func _init():
 
 func _ready() -> void:
 	add_to_group("machines")
-	change_state(State.NOT_STARTED)
 	$ExplosionAnimationSprite.stop()
 	$MachineLight.visible = false
 
