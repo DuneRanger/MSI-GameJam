@@ -10,6 +10,8 @@
 [ext_resource type="Shader" uid="uid://cwr1ovub2hmsc" path="res://assets/game/FX/vignette.gdshader" id="6_4j704"]
 [ext_resource type="Texture2D" uid="uid://b1aqw4stficvv" path="res://assets/game/levels/clock_full.png" id="7_4j704"]
 [ext_resource type="AudioStream" uid="uid://bfa1tc6i3lrm3" path="res://assets/sfx/ambient/ambience.ogg" id="8_87uf6"]
+[ext_resource type="Theme" uid="uid://d0hf7wudlkptc" path="res://scenes/game/machines/minigames/fishing_theme.tres" id="10_5jirj"]
+[ext_resource type="Texture2D" uid="uid://dym2xxi476jag" path="res://assets/game/hud/heart.png" id="11_kp23o"]
 
 [sub_resource type="Environment" id="Environment_w1hta"]
 background_mode = 3
@@ -43,9 +45,12 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.3310000157225
 
-[node name="Game2" type="Node" unique_id=1830910457]
+[node name="Game2" type="Node" unique_id=1830910457 node_paths=PackedStringArray("progress_timer_hud", "lives_left_label", "level_num_label")]
 script = ExtResource("1_0sr1o")
 levels = Array[PackedScene]([ExtResource("5_87uf6"), ExtResource("3_2a8rs")])
+progress_timer_hud = NodePath("HUD/HBoxContainer/AspectRatioContainer/LevelTimerProgressBar")
+lives_left_label = NodePath("HUD/HBoxContainer/VBoxContainer/HBoxContainer/LivesLeftLabel")
+level_num_label = NodePath("HUD/HBoxContainer/VBoxContainer/LevelNumberLabel")
 minigame_scenes = Array[PackedScene]([ExtResource("3_lfrn8"), ExtResource("2_kelw5")])
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1839143896]
@@ -105,15 +110,64 @@ offset = Vector2(128, 80)
 scale = Vector2(0.8, 0.8)
 transform = Transform2D(0.8, 0, 0, 0.8, 128, 80)
 
-[node name="LevelTimerProgressBar" type="TextureProgressBar" parent="HUD" unique_id=2034526518]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD" unique_id=1733701325]
 anchors_preset = -1
-anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -80.0
-offset_top = 7.0
-offset_right = -7.0
-offset_bottom = 80.0
-grow_horizontal = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/HBoxContainer" unique_id=696632358]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 0
+
+[node name="LevelNumberLabel" type="RichTextLabel" parent="HUD/HBoxContainer/VBoxContainer" unique_id=200764747]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme = ExtResource("10_5jirj")
+bbcode_enabled = true
+text = "[b]Level: 4[/b]"
+scroll_active = false
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/HBoxContainer/VBoxContainer" unique_id=783827713]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 9
+alignment = 2
+
+[node name="LivesLeftLabel" type="RichTextLabel" parent="HUD/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=202611603]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_5jirj")
+bbcode_enabled = true
+text = "[b]3x[/b]"
+scroll_active = false
+horizontal_alignment = 2
+
+[node name="LivesIcon" type="TextureRect" parent="HUD/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1226000672]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("11_kp23o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="HUD/HBoxContainer" unique_id=1006215863]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+stretch_mode = 1
+alignment_horizontal = 2
+
+[node name="LevelTimerProgressBar" type="TextureProgressBar" parent="HUD/HBoxContainer/AspectRatioContainer" unique_id=2034526518]
+layout_mode = 2
 step = 0.01
 fill_mode = 4
 nine_patch_stretch = true

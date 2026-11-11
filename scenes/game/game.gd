@@ -6,6 +6,10 @@ var current_level: Node = null
 var current_difficulty : int = 0
 var levels_finished : int = 0
 
+@export var progress_timer_hud : TextureProgressBar
+@export var lives_left_label : RichTextLabel
+@export var level_num_label : RichTextLabel
+
 @export var level_end_delay : float = 5
 @export var level_start_delay : float = 5
 
@@ -25,10 +29,12 @@ func add_machine(new_machine : Machine) -> void:
 
 func load_level() -> void:
 	if current_level:
-		levels_finished += 1
+		update_levels_finished(levels_finished + 1)
 		current_level.queue_free()
 		await current_level.tree_exited
-	current_level = levels[levels_finished].instantiate()
+	var current_level_scene : PackedScene = levels[levels_finished]
+	#just make sure to not overflow :)
+	current_level = current_level_scene.instantiate()
 	level_container.add_child(current_level)
 	
 	current_level.machine_layer.child_entered_tree.connect(add_machine)
@@ -36,7 +42,8 @@ func load_level() -> void:
 	start_level()
 
 func start_level() -> void:
-	lives = max_lives
+	$HUD.visible = true
+	update_lives(max_lives)
 	$LevelTimer.start()
 	current_level.player.set_physics_process(true)
 	MusicAndAmbiencePlayer.play_game_music()
@@ -54,13 +61,21 @@ func _ready() -> void:
 	load_level()
 
 func _process(_delta: float) -> void:
-	$HUD/LevelTimerProgressBar.value = $LevelTimer.wait_time - $LevelTimer.time_left
-	$HUD/LevelTimerProgressBar.max_value = $LevelTimer.wait_time
+	progress_timer_hud.value = $LevelTimer.wait_time - $LevelTimer.time_left
+	progress_timer_hud.max_value = $LevelTimer.wait_time
 
 func _on_minigame_requested(machine: Machine) -> void:
 	chosen_minigame = machine.linked_minigame_scene.instantiate() as Minigame
 	activated_machine = machine
 	link_chosen_minigame()
+
+func update_lives(new_value : int):
+	lives = max(new_value, 0)
+	lives_left_label.text = "[b]%dx[/b]" % lives
+	
+func update_levels_finished(new_value : int):
+	levels_finished = max(new_value, 0)
+	level_num_label.text = "[b]Level: %d[/b]" % (levels_finished + 1)
 
 func link_chosen_minigame() -> void:
 	chosen_minigame.minigame_completed.connect(_on_minigame_success)
