@@ -16,7 +16,7 @@ enum State { RUNNING, OVERHEATED, IN_MINIGAME, BROKEN , NOT_STARTED}
 # Minigame
 @onready var interaction_area: Area2D = $InteractionArea
 
-var state: State = State.NOT_STARTED
+var state: State
 var temperature: float = 0.0
 var player_in_range: bool = false
 
@@ -30,6 +30,7 @@ var is_glowing: bool = false
 func _init():
 	id = next_id
 	next_id += 1
+	state = State.NOT_STARTED
 
 func _ready() -> void:
 	add_to_group("machines")
@@ -68,7 +69,7 @@ func play_explosion() -> void:
 	explosion_sprite.play("debris" + str(randi_range(1, 3)))
 
 func _process(delta: float) -> void:
-	print(temperature)
+	#print(temperature)
 	process_state(delta)
 
 func _on_interaction_area_body_entered(body: Node2D) -> void:

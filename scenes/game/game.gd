@@ -8,6 +8,7 @@ var current_level_scene: PackedScene = null
 var current_difficulty : int = 0
 var levels_finished : int = 0
 var level_finished : bool = false
+var is_level_started : bool = false
 
 static var played_tutorial : bool = false
 
@@ -35,6 +36,9 @@ func add_machine(new_machine : Machine) -> void:
 	print("adding machine ", new_machine.id)
 	new_machine.minigame_requested.connect(_on_minigame_requested)
 	new_machine.machine_exploded.connect(_on_machine_exploded)
+	if is_level_started:
+		print("Level started")
+		new_machine.start_machine()
 
 func start_new_game() -> void:
 	update_levels_finished(0)
@@ -87,10 +91,13 @@ func start_level() -> void:
 	level_finished = false
 	$LevelTimer.start()
 	current_level.player.set_physics_process(true)
+	is_level_started = true
+	print("Starting machines")
 	current_level.start_level()
 	MusicAndAmbiencePlayer.play_game_music()
 
 func _on_level_timer_timeout() -> void:
+	is_level_started = false
 	level_finished = true
 	force_end_current_minigame()
 	$CanvasLayer2/DialogueManager.play_win_dialogue(level_end_delay)
@@ -138,6 +145,7 @@ func _on_machine_exploded(_explode_machine: Machine) -> void:
 	if lives == 0:
 		$HUD.visible = false
 		level_finished = true
+		is_level_started = false
 		if current_level != null: #just to be sure idfk
 			current_level.level_over()
 		force_end_current_minigame()
