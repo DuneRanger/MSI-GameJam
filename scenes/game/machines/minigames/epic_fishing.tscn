@@ -12,10 +12,10 @@ rod = NodePath("BobberBar/Rod")
 
 [node name="BobberBar" type="Control" parent="." index="3" unique_id=1449956535]
 layout_mode = 1
-anchor_left = 0.7984375
-anchor_top = 0.069000006
-anchor_right = 0.961
-anchor_bottom = 0.93100005
+anchor_left = 0.6728395
+anchor_top = 0.06622223
+anchor_right = 0.83540213
+anchor_bottom = 0.9282223
 offset_left = 8.0
 offset_top = 0.31999588
 offset_right = -0.080078125
@@ -71,15 +71,13 @@ metadata/_edit_lock_ = true
 
 [node name="ReelButton" type="Button" parent="." index="4" unique_id=958352840]
 layout_mode = 0
-offset_left = 711.0
-offset_top = 533.0
-offset_right = 869.0
-offset_bottom = 595.88635
+offset_left = 520.0
+offset_top = 512.0
+offset_right = 757.0
+offset_bottom = 574.886
 theme = ExtResource("3_rqvgd")
+theme_override_font_sizes/font_size = 24
 text = "FISH !"
-
-[node name="Label" parent="." index="5" unique_id=732899116]
-text = "Catch the fish!"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="ReelButton" to="." method="_on_fish_button_down"]

@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://cqvyp4v243dtu"]
 
+[ext_resource type="Script" uid="uid://d3mn3pmmyqxkt" path="res://scripts/title_screen.gd" id="1_mykxm"]
 [ext_resource type="PackedScene" uid="uid://bbxi0vokk4jgr" path="res://scenes/game/tilemap/tilemap.tscn" id="1_s4lrb"]
 [ext_resource type="Shader" uid="uid://cwr1ovub2hmsc" path="res://assets/game/FX/vignette.gdshader" id="1_sa3yf"]
 [ext_resource type="FontFile" uid="uid://b08cs88egoh1y" path="res://assets/fonts/PixeloidSans-Bold.otf" id="2_s4lrb"]
@@ -7,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cbgusm44gcldp" path="res://assets/game/player/player_overclocked_idle.png" id="5_3yumr"]
 [ext_resource type="Texture2D" uid="uid://jytasmud42ug" path="res://assets/game/player/player.png" id="5_dc4i4"]
 [ext_resource type="Script" uid="uid://db3108e5jbbch" path="res://scripts/title_screen_little_guy.gd" id="6_e54dn"]
+[ext_resource type="Theme" uid="uid://d0hf7wudlkptc" path="res://scenes/game/machines/minigames/fishing_theme.tres" id="8_cs5ya"]
 
 [sub_resource type="Environment" id="Environment_mgrm8"]
 background_mode = 3
@@ -269,6 +271,7 @@ _data = {
 }
 
 [node name="TitleScreen" type="Node2D" unique_id=1669698504]
+script = ExtResource("1_mykxm")
 
 [node name="Tilemap" parent="." unique_id=1355390431 instance=ExtResource("1_s4lrb")]
 
@@ -281,7 +284,7 @@ tile_map_data = PackedByteArray("AAD//wgAAgABAAEAAAAAAAgAAgABAAAAAAABAAgAAgADAAE
 [node name="TilemapWallLayer" parent="Tilemap" index="4" unique_id=695297817]
 tile_map_data = PackedByteArray("AAALAAgAAgAGAAEAAAAEAAgAAgAHAAEAAAARAAgAAgAHAAAAAAAAAAgAAgAGAAAAAAAIAAgAAgAFAAEAAAAGAAgAAgAFAAAAAAAOAAgAAgAFAAAAAAD//wYAAwAHAAIAAAAAAAYAAwAEAAIAAAABAAYAAwAEAAIAAAACAAYAAwAEAAIAAAADAAYAAwAEAAIAAAAEAAYAAwAEAAIAAAAFAAYAAwAEAAIAAAAGAAYAAwAEAAIAAAAHAAYAAwAEAAIAAAAIAAYAAwAEAAIAAAAJAAYAAwAEAAIAAAAKAAYAAwAEAAIAAAALAAYAAwAEAAIAAAAMAAYAAwAEAAIAAAANAAYAAwAEAAIAAAAOAAYAAwAEAAIAAAAPAAYAAwAEAAIAAAAQAAYAAwAEAAIAAAARAAYAAwAEAAIAAAASAAYAAwAIAAIAAAA=")
 
-[node name="TilemapSideWallLayer" parent="Tilemap" index="6" unique_id=1769598380]
+[node name="TilemapSideWallLayer" parent="Tilemap" index="5" unique_id=1769598380]
 tile_map_data = PackedByteArray("AAD//wcAAwAHAAAAAAD//wkAAwAHAAAAAAAAAAcAAwAHAAAAAAAAAAkAAwAIAAAAAAABAAcABAAEAAAAAAABAAkAAwAIAAAAAAACAAcAAwAIAAAAAAACAAkAAwAHAAAAAAADAAcAAwAHAAAAAAADAAkAAwAHAAAAAAAEAAcABAABAAAAAAAEAAkAAwAHAAAAAAAFAAcABAAAAAAAAAAFAAkAAwAHAAAAAAAGAAcAAwAHAAAAAAAGAAkAAwAHAAAAAAAHAAcAAwAHAAAAAAAHAAkAAwAHAAAAAAAIAAcAAwAHAAAAAAAIAAkAAwAIAAAAAAAJAAcABAACAAAAAAAJAAkAAwAIAAAAAAAKAAcAAwAHAAAAAAAKAAkAAwAIAAAAAAALAAcAAwAHAAEAAAALAAkAAwAIAAAAAAAMAAcABAAAAAAAAAAMAAkAAwAHAAAAAAANAAcAAwAHAAAAAAANAAkAAwAHAAAAAAAOAAcAAwAIAAAAAAAOAAkAAwAHAAEAAAAPAAcABAADAAAAAAAPAAkAAwAHAAAAAAAQAAcAAwAIAAAAAAAQAAkAAwAHAAAAAAARAAcAAwAHAAAAAAARAAkAAwAHAAAAAAASAAcAAwAHAAAAAAASAAkAAwAHAAAAAAATAAkAAwAHAAAAAAA=")
 
 [node name="PostProcessing" type="Node" parent="." unique_id=1221978577]
@@ -356,5 +359,26 @@ autoplay = "walk"
 root_node = NodePath("../LittleGuy/Sprite")
 libraries/ = SubResource("AnimationLibrary_cs5ya")
 autoplay = &"walk"
+
+[node name="ExitButton" type="Button" parent="." unique_id=833095689]
+offset_left = 712.0
+offset_top = 320.0
+offset_right = 832.0
+offset_bottom = 382.886
+theme = ExtResource("8_cs5ya")
+theme_override_font_sizes/font_size = 24
+text = "EXIT"
+
+[node name="PlayButton" type="Button" parent="." unique_id=2138152836]
+offset_left = 448.0
+offset_top = 320.0
+offset_right = 568.0
+offset_bottom = 382.886
+theme = ExtResource("8_cs5ya")
+theme_override_font_sizes/font_size = 24
+text = "PLAY"
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 
 [editable path="Tilemap"]
