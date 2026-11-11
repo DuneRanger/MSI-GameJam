@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="MSI Game Jam"
+config/name="Robot Person Goes to Work"
+config/description="For the 2026 MSI Game Jam"
 run/main_scene="uid://bgsom0lqbhodk"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://assets/game/player/icon.svg"
+config/icon="uid://d1u7nep52bxrc"
 
 [audio]
 
