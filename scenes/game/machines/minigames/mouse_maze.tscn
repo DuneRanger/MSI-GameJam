@@ -11,7 +11,7 @@
 size = Vector2(14.5, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g4ot"]
-size = Vector2(42, 61)
+size = Vector2(38, 56)
 
 [node name="MouseMaze" unique_id=1172947997 instance=ExtResource("1_3fvyu")]
 script = ExtResource("2_jhvot")
@@ -92,7 +92,7 @@ texture = ExtResource("1_37sjx")
 [node name="Battery" type="Area2D" parent="." index="3" unique_id=639399436]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battery" index="0" unique_id=1463518949]
-position = Vector2(210, 438.5)
+position = Vector2(210, 438)
 shape = SubResource("RectangleShape2D_7g4ot")
 
 [node name="Sprite2D" type="Sprite2D" parent="Battery" index="1" unique_id=433695281]
