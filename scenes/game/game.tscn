@@ -48,6 +48,10 @@ script = ExtResource("1_0sr1o")
 levels = Array[PackedScene]([ExtResource("5_87uf6"), ExtResource("3_2a8rs")])
 minigame_scenes = Array[PackedScene]([ExtResource("3_lfrn8"), ExtResource("2_kelw5")])
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1839143896]
+
+[node name="DialogueManager" parent="CanvasLayer2" unique_id=1484026495 instance=ExtResource("4_2a8rs")]
+
 [node name="PostProcessing" type="Node" parent="." unique_id=525483226]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="PostProcessing" unique_id=690934362]
@@ -73,8 +77,6 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
-
-[node name="DialogueManager" parent="." unique_id=1484026495 instance=ExtResource("4_2a8rs")]
 
 [node name="LevelContainer" type="Node2D" parent="." unique_id=1127513561]
 

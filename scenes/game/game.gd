@@ -42,7 +42,7 @@ func start_level() -> void:
 	MusicAndAmbiencePlayer.play_game_music()
 
 func _on_level_timer_timeout() -> void:	
-	$DialogueManager.play_win_dialogue(level_end_delay)
+	$CanvasLayer2/DialogueManager.play_win_dialogue(level_end_delay)
 	
 	print("Level timer ran out!!")
 	current_level.player.force_idle_anim()
