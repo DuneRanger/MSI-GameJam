@@ -33,11 +33,9 @@ var minigame_result : bool = false
 signal return_to_menu
 
 func add_machine(new_machine : Machine) -> void:
-	print("adding machine ", new_machine.id)
 	new_machine.minigame_requested.connect(_on_minigame_requested)
 	new_machine.machine_exploded.connect(_on_machine_exploded)
 	if is_level_started:
-		print("Level started")
 		new_machine.start_machine()
 
 func start_new_game() -> void:
@@ -67,8 +65,8 @@ func select_next_level() -> void:
 	if current_difficulty not in levels_by_difficulty:
 		var difficulties = levels_by_difficulty.keys() as Array[int]
 		difficulties.sort()
+		var old_diff = current_difficulty
 		for diff in difficulties:
-			var old_diff = current_difficulty
 			current_difficulty = diff
 			if diff > old_diff:
 				break
