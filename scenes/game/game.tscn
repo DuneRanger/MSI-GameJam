@@ -65,11 +65,13 @@ minigame_scenes = Array[PackedScene]([ExtResource("3_lfrn8"), ExtResource("2_kel
 
 [node name="CanvasLayer" type="CanvasLayer" parent="PostProcessing" unique_id=690934362]
 layer = 2
+visible = false
 
 [node name="PostProcessingFX" type="WorldEnvironment" parent="PostProcessing/CanvasLayer" unique_id=1540551880]
 environment = SubResource("Environment_w1hta")
 
 [node name="CRT filter" type="ColorRect" parent="PostProcessing/CanvasLayer" unique_id=787995438]
+visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_4j704")
 anchors_preset = 8
@@ -187,6 +189,7 @@ text = "Next level"
 
 [connection signal="retry_round" from="CanvasLayer2/DialogueManager" to="." method="_on_dialogue_manager_retry_round"]
 [connection signal="total_victory" from="CanvasLayer2/DialogueManager" to="." method="_on_dialogue_manager_total_victory"]
+[connection signal="tutorial_over" from="CanvasLayer2/DialogueManager" to="." method="_on_dialogue_manager_tutorial_over"]
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
 [connection signal="pressed" from="HUD/Button" to="." method="_on_level_timer_timeout"]

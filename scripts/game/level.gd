@@ -29,6 +29,10 @@ func _ready() -> void:
 func start_level() -> void:
 	player.position = initial_player_pos
 	player.player_state = Player.player_states.WALKING
+	for m in machine_layer.get_children():
+		if m is Machine:
+			print("Starting machine ", m.id)
+			m.start_machine()
 
 func level_over() -> void:
 	player.player_state = Player.player_states.IN_DIALOGUE

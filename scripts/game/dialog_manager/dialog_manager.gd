@@ -15,32 +15,34 @@ var is_defeated = false
 var is_end_of_level = false
 
 var playing_total_victory_screen : bool = false
+var playing_tutorial : bool = false
 
 signal retry_round
 signal total_victory
+signal tutorial_over
 
 var tutorial_lines = [
 	[portraits.greeting, "Oh, hello little robot person"],
 	[portraits.explaining, "You're like the 57th model they sent here so i'll make it quick"],
-	[portraits.smiling, "My names is Lucky by the way"],
-	[portraits.smiling2, "Because its lucky to keep me around,"],
-	[portraits.grumpy, "...or something..."],
-	[portraits.explaining, "I'm your manager and we're in a factory"],
-	[portraits.weird, "Don't really know what we're producing, actually..."],
-	[portraits.annoyed, "But that doesn't matter, what matters is that we're producing A LOT of things and stuff"],
-	[portraits.explaining, "As a result, all of our machines are OVERCLOCKED and running at full power"],
-	[portraits.grumpy, "...and they're overheating"],
-	[portraits.explaining, "And your job, my friend, is to keep them cool and keep them from exploding"],
-	[portraits.button_show, "See this button?"],
-	[portraits.button_laughing, "It's my favourite part of this job!"],
-	[portraits.button_grumpy, "If you let 3 machines overheat and explode..."],
-	[portraits.button_press_laughing, "Then I'll explode you by pressing this!"],
-	[portraits.excited, "Yeah that's about it"],
-	[portraits.explaining, "Be careful when running, so you yourself wont overheat"],
-	[portraits.grumpy, "My boss also said that I was supposed to tell you... what was it?"],
-	[portraits.explaining, "WASD to move, E to interact, SHIFT to run, mouse to solve puzzles"],
-	[portraits.grumpy, "Whatever that means..."],
-	[portraits.greeting, "Ok now go do your job robot person"],
+	#[portraits.smiling, "My names is Lucky by the way"],
+	#[portraits.smiling2, "Because its lucky to keep me around,"],
+	#[portraits.grumpy, "...or something..."],
+	#[portraits.explaining, "I'm your manager and we're in a factory"],
+	#[portraits.weird, "Don't really know what we're producing, actually..."],
+	#[portraits.annoyed, "But that doesn't matter, what matters is that we're producing A LOT of things and stuff"],
+	#[portraits.explaining, "As a result, all of our machines are OVERCLOCKED and running at full power"],
+	#[portraits.grumpy, "...and they're overheating"],
+	#[portraits.explaining, "And your job, my friend, is to keep them cool and keep them from exploding"],
+	#[portraits.button_show, "See this button?"],
+	#[portraits.button_laughing, "It's my favourite part of this job!"],
+	#[portraits.button_grumpy, "If you let 3 machines overheat and explode..."],
+	#[portraits.button_press_laughing, "Then I'll explode you by pressing this!"],
+	#[portraits.excited, "Yeah that's about it"],
+	#[portraits.explaining, "Be careful when running, so you yourself wont overheat"],
+	#[portraits.grumpy, "My boss also said that I was supposed to tell you... what was it?"],
+	#[portraits.explaining, "WASD to move, E to interact, SHIFT to run, mouse to solve puzzles"],
+	#[portraits.grumpy, "Whatever that means..."],
+	#[portraits.greeting, "Ok now go do your job robot person"],
 ]
 
 var defeat_lines = [
@@ -121,7 +123,16 @@ func _process(_delta: float) -> void:
 					$AudioPlayer.play()
 				elif playing_total_victory_screen == true:
 					total_victory.emit()
-					pass
+					print("You totally won")
+					$FullAnimationPlayer.play("dialogue_system_hide")
+					is_end_of_level = false
+					is_displaying_dialogue = false
+				elif playing_tutorial == true:
+					tutorial_over.emit()
+					print("Tutorial is over")
+					$FullAnimationPlayer.play("dialogue_system_hide")
+					is_end_of_level = false
+					is_displaying_dialogue = false
 				else:
 					if $TextScrollTimer.is_stopped():
 						text_label.text = ""
@@ -137,6 +148,7 @@ func _process(_delta: float) -> void:
 func play_tutorial():
 	i = 0
 	is_loaded_dialogue_continuous = true
+	playing_tutorial = true
 	active_text_lines = tutorial_lines
 	dialogue_text = active_text_lines[i][1]
 	dialogue_portrait = active_text_lines[i][0]

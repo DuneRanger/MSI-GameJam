@@ -1,7 +1,7 @@
 class_name Machine
 extends Node2D
 
-enum State { RUNNING, OVERHEATED, IN_MINIGAME, BROKEN }
+enum State { RUNNING, OVERHEATED, IN_MINIGAME, BROKEN , NOT_STARTED}
 
 @export var machine_sprite: AnimatedSprite2D
 @export var linked_minigame_scene : PackedScene
@@ -16,7 +16,7 @@ enum State { RUNNING, OVERHEATED, IN_MINIGAME, BROKEN }
 # Minigame
 @onready var interaction_area: Area2D = $InteractionArea
 
-var state: State = State.RUNNING
+var state: State = State.NOT_STARTED
 var temperature: float = 0.0
 var player_in_range: bool = false
 
@@ -30,10 +30,15 @@ var is_glowing: bool = false
 func _init():
 	id = next_id
 	next_id += 1
-	temperature = (randf() * randf()) * overheat_temperature
 
 func _ready() -> void:
 	add_to_group("machines")
+	enter_state(State.NOT_STARTED)
+	$ExplosionAnimationSprite.stop()
+	$MachineLight.visible = false
+
+func start_machine() -> void:
+	temperature = (randf() * randf()) * overheat_temperature
 	enter_state(State.RUNNING)
 	$ExplosionAnimationSprite.stop()
 	$MachineLight.visible = false
@@ -63,6 +68,7 @@ func play_explosion() -> void:
 	explosion_sprite.play("debris" + str(randi_range(1, 3)))
 
 func _process(delta: float) -> void:
+	print(temperature)
 	process_state(delta)
 
 func _on_interaction_area_body_entered(body: Node2D) -> void:
@@ -123,6 +129,7 @@ func process_state(delta: float) -> void:
 			pass
 		State.IN_MINIGAME: pass
 		State.BROKEN: pass
+		State.NOT_STARTED: pass
 
 func update_temperature(delta: float) -> void:
 	temperature += heat_rate * delta

@@ -4,9 +4,10 @@ extends Node
 @onready var level_container = $LevelContainer
 var levels_by_difficulty = {}
 var current_level: Node = null
+var current_level_scene: PackedScene = null
 var current_difficulty : int = 0
 var levels_finished : int = 0
-var level_lost : bool = false
+var level_finished : bool = false
 
 static var played_tutorial : bool = false
 
@@ -28,7 +29,10 @@ var activated_machine: Machine = null
 @onready var minigame_success_sound : AudioStream = load("res://assets/sfx/machines/success.wav")
 var minigame_result : bool = false
 
+signal return_to_menu
+
 func add_machine(new_machine : Machine) -> void:
+	print("adding machine ", new_machine.id)
 	new_machine.minigame_requested.connect(_on_minigame_requested)
 	new_machine.machine_exploded.connect(_on_machine_exploded)
 
@@ -39,16 +43,21 @@ func start_new_game() -> void:
 	if (current_level != null):
 		current_level.queue_free()
 	current_level = null
+	select_next_level()
 	load_level()
+	if !played_tutorial:
+		$CanvasLayer2/DialogueManager.play_tutorial()
+	else:
+		start_level()
 
-func load_level() -> void:
-	if current_level:
-		update_levels_finished(levels_finished + 1)
+func select_next_level() -> void:
+	if current_level != null:
 		current_level.queue_free()
 		await current_level.tree_exited
 		const level_count_per_difficulty = 1
 		if levels_finished % level_count_per_difficulty == 0:
 			current_difficulty += 1
+	print("Currently lev finished: ", levels_finished)
 	
 	# Sets the difficulty to either the next difficulty higher than `current_difficulty`, or max difficulty
 	if current_difficulty not in levels_by_difficulty:
@@ -60,33 +69,45 @@ func load_level() -> void:
 			if diff > old_diff:
 				break
 	
-	current_level = levels_by_difficulty.get(current_difficulty).pick_random().instantiate()
+	current_level_scene = levels_by_difficulty.get(current_difficulty).pick_random()
+
+func load_level() -> void:
+	if current_level != null:
+		level_container.remove_child(current_level)
+		#current_level.queue_free()
+	current_level = current_level_scene.instantiate()
 	level_container.add_child(current_level)
 	
 	current_level.machine_layer.child_entered_tree.connect(add_machine)
 	current_level.player.set_physics_process(false)
-	start_level()
-
+ 
 func start_level() -> void:
 	$HUD.visible = true
 	update_lives(max_lives)
-	level_lost = false
+	level_finished = false
 	$LevelTimer.start()
 	current_level.player.set_physics_process(true)
 	current_level.start_level()
 	MusicAndAmbiencePlayer.play_game_music()
 
 func _on_level_timer_timeout() -> void:
+	level_finished = true
 	force_end_current_minigame()
 	$CanvasLayer2/DialogueManager.play_win_dialogue(level_end_delay)
 	current_level.player.force_idle_anim()
 	current_level.player.set_physics_process(false)
 	await get_tree().create_timer(level_end_delay).timeout
-	if false:
-		pass
-		#TODO credits type shit
+	
+	update_levels_finished(levels_finished + 1)
+	print("Deciding", levels.size())
+	if levels_finished >= levels.size():
+		print("Total victory")
+		$CanvasLayer2/DialogueManager.play_total_victory()
 	else:
+		print("NEXT LEVEL")
+		select_next_level()
 		load_level()
+		start_level()
 
 func _ready() -> void:
 	current_difficulty = 999999
@@ -112,11 +133,11 @@ func _on_minigame_requested(machine: Machine) -> void:
 	link_chosen_minigame()
 	
 func _on_machine_exploded(_explode_machine: Machine) -> void:
-	if level_lost: return
+	if level_finished: return
 	update_lives(lives-1)
 	if lives == 0:
 		$HUD.visible = false
-		level_lost = true
+		level_finished = true
 		if current_level != null: #just to be sure idfk
 			current_level.level_over()
 		force_end_current_minigame()
@@ -133,6 +154,7 @@ func update_lives(new_value : int):
 	lives_left_label.text = "[b]%dx[/b]" % lives
 	
 func update_levels_finished(new_value : int):
+	print("Updating to", new_value)
 	levels_finished = max(new_value, 0)
 	level_num_label.text = "[b]Level: %d[/b]" % (levels_finished + 1)
 
@@ -174,7 +196,13 @@ func _on_minigame_leave_timer_timeout() -> void:
 	current_level.player.player_state = Player.player_states.WALKING
 
 func _on_dialogue_manager_retry_round() -> void:
+	load_level() 
 	start_level()
 
 func _on_dialogue_manager_total_victory() -> void:
-	pass # Replace with function body.
+	print("Yay, you won")
+	return_to_menu.emit()
+
+func _on_dialogue_manager_tutorial_over() -> void:
+	played_tutorial = true
+	start_level()
