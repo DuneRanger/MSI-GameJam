@@ -80,9 +80,16 @@ var victory_lines = [
 ]
 
 var total_victory_lines = [	
-	[portraits.weird, "You did it all??"],
-	[portraits.weird, "This vexes me"],
-	[portraits.weird, "Here, go to the main menu"],
+	[portraits.button_press_laughing, "Ok, here we go again!"],
+	[portraits.button_grumpy, "Wait... you didn't blow everything up?"],
+	[portraits.grumpy, "Oh thats... great... i mean"],
+	[portraits.excited, "Congrats! Thats all for now!"],
+	[portraits.explaining, "There's no more work for you"],
+	[portraits.smiling, "I guess you can go home now."],
+	[portraits.weird, "Or... somwhere..."],
+	[portraits.greeting, "Goodbye..."],
+	[portraits.sad, "I'll miss you!"],
+	[portraits.sad, "(Thank you for playing our game!)"],
 ]
 
 var active_text_lines
