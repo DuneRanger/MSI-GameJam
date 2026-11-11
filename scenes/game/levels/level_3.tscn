@@ -8,7 +8,7 @@
 [node name="Level" type="Node2D" unique_id=1236383771]
 y_sort_enabled = true
 script = ExtResource("1_2k1cc")
-difficulty = 2
+difficulty = 3
 
 [node name="Tilemap" parent="." unique_id=1355390431 instance=ExtResource("2_2ipf5")]
 
