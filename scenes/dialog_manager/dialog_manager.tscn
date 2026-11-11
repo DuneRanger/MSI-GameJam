@@ -516,6 +516,7 @@ text = "win"
 [node name="TextScrollTimer" type="Timer" parent="." unique_id=1532033143]
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=543757662]
+attenuation = 0.0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1796185997]
 visible = false
