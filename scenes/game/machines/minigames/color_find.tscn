@@ -27,4 +27,12 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 6
 
+[node name="Label" parent="." index="4" unique_id=732899116]
+offset_left = 391.0
+offset_top = -16.0
+offset_right = 940.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 32
+text = "Click the right button!"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
