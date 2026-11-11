@@ -14,7 +14,7 @@ size = Vector2(48, 48)
 [sub_resource type="SpriteFrames" id="SpriteFrames_2cqrr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_om7lw"]
-size = Vector2(24, 18)
+size = Vector2(24, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dih23"]
 atlas = ExtResource("2_s4dqq")
@@ -113,7 +113,7 @@ sprite_frames = SubResource("SpriteFrames_2cqrr")
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=135855517]
-position = Vector2(0, -3)
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_om7lw")
 
 [node name="ExplosionAnimationSprite" type="AnimatedSprite2D" parent="." unique_id=1644810903]

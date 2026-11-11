@@ -32,7 +32,7 @@ tile_map_data = PackedByteArray("AAAGAAMAAwAFAAAAAAAGAAQAAwAFAAEAAAAGAAUAAwAFAAE
 
 [node name="TilemapSideWallLayer" parent="Tilemap" index="5" unique_id=1769598380]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAABAAIAAwAHAAAAAAAIAAIAAwAIAAAAAAAEAAcAAwAHAAEAAAAFAAcAAwAHAAEAAAADAAcAAwAHAAAAAAAGAAcAAwAIAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAAIAAwAHAAAAAAAIAAIAAwAIAAAAAAAEAAcAAwAHAAEAAAAFAAcAAwAHAAEAAAADAAcAAwAHAAAAAAAGAAcAAwAIAAAAAAACAAEAAwAHAAAAAAAHAAEAAwAIAAAAAAA=")
 
 [node name="Player" parent="." unique_id=1893256284 instance=ExtResource("3_qo6vl")]
 position = Vector2(184, 178)
