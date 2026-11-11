@@ -61,13 +61,6 @@ minigame_scenes = Array[PackedScene]([ExtResource("3_lfrn8"), ExtResource("2_kel
 
 [node name="DialogueManager" parent="CanvasLayer2" unique_id=1484026495 instance=ExtResource("4_2a8rs")]
 
-[node name="Button" type="Button" parent="CanvasLayer2" unique_id=2139162572]
-offset_left = 26.0
-offset_top = 17.0
-offset_right = 155.0
-offset_bottom = 63.0
-text = "Next level"
-
 [node name="PostProcessing" type="Node" parent="." unique_id=525483226]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="PostProcessing" unique_id=690934362]
@@ -185,8 +178,15 @@ nine_patch_stretch = true
 texture_under = ExtResource("6_2a8rs")
 texture_progress = ExtResource("7_4j704")
 
+[node name="Button" type="Button" parent="HUD" unique_id=2139162572]
+offset_left = 26.0
+offset_top = 17.0
+offset_right = 155.0
+offset_bottom = 63.0
+text = "Next level"
+
 [connection signal="retry_round" from="CanvasLayer2/DialogueManager" to="." method="_on_dialogue_manager_retry_round"]
 [connection signal="total_victory" from="CanvasLayer2/DialogueManager" to="." method="_on_dialogue_manager_total_victory"]
-[connection signal="pressed" from="CanvasLayer2/Button" to="." method="_on_level_timer_timeout"]
 [connection signal="timeout" from="MinigameLeaveTimer" to="." method="_on_minigame_leave_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
+[connection signal="pressed" from="HUD/Button" to="." method="_on_level_timer_timeout"]
