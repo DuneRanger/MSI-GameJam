@@ -1,0 +1,363 @@
+[gd_scene format=4 uid="uid://cqvyp4v243dtu"]
+
+[ext_resource type="PackedScene" uid="uid://bbxi0vokk4jgr" path="res://scenes/game/tilemap/tilemap.tscn" id="1_s4lrb"]
+[ext_resource type="Shader" uid="uid://cwr1ovub2hmsc" path="res://assets/game/FX/vignette.gdshader" id="1_sa3yf"]
+[ext_resource type="FontFile" uid="uid://b08cs88egoh1y" path="res://assets/fonts/PixeloidSans-Bold.otf" id="2_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://dht3x1we320j7" path="res://assets/game/player/player_run.png" id="4_mgrm8"]
+[ext_resource type="Texture2D" uid="uid://cbgusm44gcldp" path="res://assets/game/player/player_overclocked_idle.png" id="5_3yumr"]
+[ext_resource type="Texture2D" uid="uid://jytasmud42ug" path="res://assets/game/player/player.png" id="5_dc4i4"]
+[ext_resource type="Script" uid="uid://db3108e5jbbch" path="res://scripts/title_screen_little_guy.gd" id="6_e54dn"]
+
+[sub_resource type="Environment" id="Environment_mgrm8"]
+background_mode = 3
+glow_intensity = 0.82
+glow_bloom = 0.15
+adjustment_enabled = true
+adjustment_contrast = 1.035
+adjustment_saturation = 1.19
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dc4i4"]
+shader = ExtResource("1_sa3yf")
+shader_parameter/overlay = false
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/brightness = 1.02
+shader_parameter/scanlines_opacity = 0.2030000096425
+shader_parameter/scanlines_width = 0.01200000057
+shader_parameter/grille_opacity = 0.0
+shader_parameter/roll = false
+shader_parameter/roll_speed = 0.1
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/aberration = 4.7499999933364734e-08
+shader_parameter/noise_opacity = 0.0
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.010000000475
+shader_parameter/pixelate = false
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.010000000475
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.3310000157225
+
+[sub_resource type="Animation" id="Animation_sa3yf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 110)]
+}
+
+[sub_resource type="Animation" id="Animation_e54dn"]
+resource_name = "TextMove"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 110), Vector2(0, 120), Vector2(0, 110)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3yumr"]
+_data = {
+&"RESET": SubResource("Animation_sa3yf"),
+&"TextMove": SubResource("Animation_e54dn")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frs5l"]
+atlas = ExtResource("5_3yumr")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mynnq"]
+atlas = ExtResource("5_3yumr")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8tpv"]
+atlas = ExtResource("5_3yumr")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qe4i"]
+atlas = ExtResource("5_3yumr")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc4i4"]
+atlas = ExtResource("4_mgrm8")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e54dn"]
+atlas = ExtResource("4_mgrm8")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yumr"]
+atlas = ExtResource("4_mgrm8")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs5ya"]
+atlas = ExtResource("4_mgrm8")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mykxm"]
+atlas = ExtResource("5_dc4i4")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tklts"]
+atlas = ExtResource("5_dc4i4")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u26n3"]
+atlas = ExtResource("5_dc4i4")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib7db"]
+atlas = ExtResource("5_dc4i4")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s4lrb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frs5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mynnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8tpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qe4i")
+}],
+"loop": 1,
+"name": &"overclock_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc4i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e54dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yumr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs5ya")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mykxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tklts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u26n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib7db")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="Animation" id="Animation_dc4i4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-102.115, 581.94)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3yumr"]
+resource_name = "walk"
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6, 7.133333, 8, 11, 13, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-102.115, 581.94), Vector2(1400, 581.94), Vector2(-102.115, 581.94), Vector2(-102.115, 581.94), Vector2(1000, 581.94), Vector2(1000, 581.94), Vector2(1400, 581.94)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7.5666666, 7.9333334, 11, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_walk_anim"
+}, {
+"args": [],
+"method": &"play_walk_anim"
+}, {
+"args": [],
+"method": &"play_run_anim"
+}, {
+"args": [],
+"method": &"play_overclock_anim"
+}, {
+"args": [],
+"method": &"play_run_anim"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6, 7.6, 14.008372),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cs5ya"]
+_data = {
+&"RESET": SubResource("Animation_dc4i4"),
+&"walk": SubResource("Animation_3yumr")
+}
+
+[node name="TitleScreen" type="Node2D" unique_id=1669698504]
+
+[node name="Tilemap" parent="." unique_id=1355390431 instance=ExtResource("1_s4lrb")]
+
+[node name="TilemapFloorLayer" parent="Tilemap" index="0" unique_id=588901160]
+tile_map_data = PackedByteArray("AAD//wgAAQAAAAAAAAAAAAgAAQAAAAAAAAABAAgAAQAAAAAAAAACAAgAAQAAAAAAAAADAAgAAQAAAAAAAAAEAAgAAQAAAAAAAAAFAAgAAQAAAAAAAAAGAAgAAQAAAAAAAAAHAAgAAQAAAAAAAAAIAAgAAQAAAAAAAAAJAAgAAQAAAAAAAAAKAAgAAQAAAAAAAAALAAgAAQAAAAAAAAAMAAgAAQAAAAAAAAANAAgAAQAAAAAAAAAOAAgAAQAAAAAAAAAPAAgAAQAAAAAAAAAQAAgAAQAAAAAAAAARAAgAAQAAAAAAAAASAAgAAQAAAAAAAAATAAgAAQAAAAAAAAA=")
+
+[node name="TilemapDecorLayer" parent="Tilemap" index="1" unique_id=1888967584]
+tile_map_data = PackedByteArray("AAD//wgAAgABAAEAAAAAAAgAAgABAAAAAAABAAgAAgADAAEAAAA=")
+
+[node name="TilemapWallLayer" parent="Tilemap" index="4" unique_id=695297817]
+tile_map_data = PackedByteArray("AAALAAgAAgAGAAEAAAAEAAgAAgAHAAEAAAARAAgAAgAHAAAAAAAAAAgAAgAGAAAAAAAIAAgAAgAFAAEAAAAGAAgAAgAFAAAAAAAOAAgAAgAFAAAAAAD//wYAAwAHAAIAAAAAAAYAAwAEAAIAAAABAAYAAwAEAAIAAAACAAYAAwAEAAIAAAADAAYAAwAEAAIAAAAEAAYAAwAEAAIAAAAFAAYAAwAEAAIAAAAGAAYAAwAEAAIAAAAHAAYAAwAEAAIAAAAIAAYAAwAEAAIAAAAJAAYAAwAEAAIAAAAKAAYAAwAEAAIAAAALAAYAAwAEAAIAAAAMAAYAAwAEAAIAAAANAAYAAwAEAAIAAAAOAAYAAwAEAAIAAAAPAAYAAwAEAAIAAAAQAAYAAwAEAAIAAAARAAYAAwAEAAIAAAASAAYAAwAIAAIAAAA=")
+
+[node name="TilemapSideWallLayer" parent="Tilemap" index="5" unique_id=1769598380]
+tile_map_data = PackedByteArray("AAD//wcAAwAHAAAAAAD//wkAAwAHAAAAAAAAAAcAAwAHAAAAAAAAAAkAAwAIAAAAAAABAAcAAwAHAAAAAAABAAkAAwAIAAAAAAACAAcAAwAIAAAAAAACAAkAAwAHAAAAAAADAAcAAwAHAAAAAAADAAkAAwAHAAAAAAAEAAcAAwAIAAEAAAAEAAkAAwAHAAAAAAAFAAcAAwAHAAAAAAAFAAkAAwAHAAAAAAAGAAcAAwAHAAAAAAAGAAkAAwAHAAAAAAAHAAcAAwAHAAAAAAAHAAkAAwAHAAAAAAAIAAcAAwAHAAAAAAAIAAkAAwAIAAAAAAAJAAcAAwAIAAAAAAAJAAkAAwAIAAAAAAAKAAcAAwAHAAAAAAAKAAkAAwAIAAAAAAALAAcAAwAHAAEAAAALAAkAAwAIAAAAAAAMAAcAAwAHAAAAAAAMAAkAAwAHAAAAAAANAAcAAwAHAAAAAAANAAkAAwAHAAAAAAAOAAcAAwAIAAAAAAAOAAkAAwAHAAEAAAAPAAcAAwAIAAAAAAAPAAkAAwAHAAAAAAAQAAcAAwAIAAAAAAAQAAkAAwAHAAAAAAARAAcAAwAHAAAAAAARAAkAAwAHAAAAAAASAAcAAwAHAAAAAAASAAkAAwAHAAAAAAATAAkAAwAHAAAAAAA=")
+
+[node name="TilemapWallDecorLayer" parent="Tilemap" index="6" unique_id=1202652508]
+tile_map_data = PackedByteArray("AAABAAcABAAEAAAAAAAEAAcABAABAAAAAAAFAAcABAAAAAAAAAAJAAcABAACAAAAAAAMAAcABAAAAAAAAAAPAAcABAADAAAAAAA=")
+
+[node name="PostProcessing" type="Node" parent="." unique_id=1221978577]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="PostProcessing" unique_id=462227972]
+layer = 2
+
+[node name="PostProcessingFX" type="WorldEnvironment" parent="PostProcessing/CanvasLayer" unique_id=1606332357]
+environment = SubResource("Environment_mgrm8")
+
+[node name="CRT filter" type="ColorRect" parent="PostProcessing/CanvasLayer" unique_id=1039185524]
+visible = false
+z_index = 100
+material = SubResource("ShaderMaterial_dc4i4")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -648.0
+offset_top = -360.0
+offset_right = 648.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1766131504]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=750469016]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -648.0
+offset_top = 110.0
+offset_right = 648.0
+offset_bottom = 271.002
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.78039217, 0.23529412, 0.23529412, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8117647)
+theme_override_fonts/font = ExtResource("2_s4lrb")
+theme_override_font_sizes/font_size = 64
+text = "ROBOT PERSON
+GOES TO WORK"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=145635717]
+libraries/ = SubResource("AnimationLibrary_3yumr")
+autoplay = &"TextMove"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=324780024]
+z_index = -9
+offset_left = -105.0
+offset_top = -57.0
+offset_right = 1331.0
+offset_bottom = 767.0
+color = Color(0, 0, 0, 1)
+
+[node name="LittleGuy" type="Node2D" parent="." unique_id=1494353312]
+position = Vector2(-102.115, 581.94)
+script = ExtResource("6_e54dn")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="LittleGuy" unique_id=1518813154]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_s4lrb")
+animation = &"overclock_idle"
+autoplay = "walk"
+
+[node name="LittleGuyAnim" type="AnimationPlayer" parent="." unique_id=1652843442]
+root_node = NodePath("../LittleGuy/Sprite")
+libraries/ = SubResource("AnimationLibrary_cs5ya")
+autoplay = &"walk"
+
+[editable path="Tilemap"]
